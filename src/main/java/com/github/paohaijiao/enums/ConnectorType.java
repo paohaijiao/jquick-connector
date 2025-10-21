@@ -47,7 +47,6 @@ public enum ConnectorType {
     // API 与 Web
     CURL("CURL", "CURL"),
     SOAP("SOAP", "SOAP Web Service"),
-    WEB_SCRAPING("WEB_SCRAPING", "网页抓取"),
 
     RABBITMQ("RABBITMQ", "RabbitMQ"),
     ACTIVEMQ("ACTIVEMQ", "ActiveMQ"),

@@ -13,26 +13,18 @@
  *
  * Copyright (c) [2025-2099] Martin (goudingcheng@gmail.com)
  */
-package com.github.paohaijiao.connector;
-
-import lombok.Data;
+package com.github.paohaijiao.query;
 
 /**
- * packageName com.github.paohaijiao.connector
+ * packageName com.github.paohaijiao.query
  *
  * @author Martin
  * @version 1.0.0
  * @since 2025/10/21
  */
-@Data
-public class SqlConnector extends ConnectorType {
+public class QueryParser {
+    public ParsedQuery parse(String query) {
 
-    private String driverClassName;
-
-    private String jdbcUrl;
-
-    private String userName;
-
-    private String password;
-
+        return null;
+    }
 }

@@ -13,18 +13,34 @@
  *
  * Copyright (c) [2025-2099] Martin (goudingcheng@gmail.com)
  */
-package com.github.paohaijiao.connector;
+package com.github.paohaijiao.query;
 
-import com.github.paohaijiao.enums.ConnectorType;
+import com.github.paohaijiao.field.Processor;
+import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
 /**
- * packageName com.github.paohaijiao.connector
+ * packageName com.github.paohaijiao.query
  *
  * @author Martin
  * @version 1.0.0
  * @since 2025/10/21
  */
-public abstract class Connector {
+@Data
+public class ParsedQuery {
 
-    protected ConnectorType type;
+    private List<FieldMapping> fieldMappings;
+
+    private String connectorType;
+
+    private Map<String, Object> connectorProperties;
+
+    @Data
+    public static class FieldMapping {
+        private Processor processor;
+        private String sourceField;
+        private Class<?> dataType;
+        private String targetField;
+    }
 }

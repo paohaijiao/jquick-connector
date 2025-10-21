@@ -13,26 +13,23 @@
  *
  * Copyright (c) [2025-2099] Martin (goudingcheng@gmail.com)
  */
-package com.github.paohaijiao.connector;
-
-import lombok.Data;
+package com.github.paohaijiao.field;
 
 /**
- * packageName com.github.paohaijiao.connector
+ * packageName com.github.paohaijiao.field
  *
  * @author Martin
  * @version 1.0.0
  * @since 2025/10/21
  */
-@Data
-public class SqlConnector extends ConnectorType {
+public class FieldProcessor implements Processor {
+    @Override
+    public Object process(Object value) {
+        return value;
+    }
 
-    private String driverClassName;
-
-    private String jdbcUrl;
-
-    private String userName;
-
-    private String password;
-
+    @Override
+    public String getName() {
+        return "field";
+    }
 }

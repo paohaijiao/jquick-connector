@@ -13,26 +13,29 @@
  *
  * Copyright (c) [2025-2099] Martin (goudingcheng@gmail.com)
  */
-package com.github.paohaijiao.connector;
+package com.github.paohaijiao.data;
 
-import lombok.Data;
+import lombok.Getter;
 
 /**
- * packageName com.github.paohaijiao.connector
+ * packageName com.github.paohaijiao.dataset
  *
  * @author Martin
  * @version 1.0.0
- * @since 2025/10/21
+ * @since 2025/8/13
  */
-@Data
-public class SqlConnector extends ConnectorType {
+@Getter
+public class ColumnMeta {
 
-    private String driverClassName;
+    private final String name;
 
-    private String jdbcUrl;
+    private final Class<?> type;
 
-    private String userName;
+    private final String source;
 
-    private String password;
-
+    public ColumnMeta(String name, Class<?> type, String source) {
+        this.name = name;
+        this.type = type;
+        this.source = source;
+    }
 }

@@ -15,8 +15,6 @@
  */
 package com.github.paohaijiao.connector;
 
-import lombok.Data;
-
 /**
  * packageName com.github.paohaijiao.connector
  *
@@ -24,15 +22,7 @@ import lombok.Data;
  * @version 1.0.0
  * @since 2025/10/21
  */
-@Data
-public class SqlConnector extends ConnectorType {
+public abstract class ConnectorType {
 
-    private String driverClassName;
-
-    private String jdbcUrl;
-
-    private String userName;
-
-    private String password;
-
+    protected com.github.paohaijiao.enums.ConnectorType type;
 }

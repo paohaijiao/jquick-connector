@@ -68,9 +68,7 @@ public class DataSet {
         return new Builder();
     }
     public DataSet filter(Predicate<Row> predicate) {
-        List<Row> filtered = rows.stream()
-                .filter(predicate)
-                .collect(Collectors.toList());
+        List<Row> filtered = rows.stream().filter(predicate).collect(Collectors.toList());
         return new DataSet(columns, filtered);
     }
 

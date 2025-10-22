@@ -15,9 +15,9 @@
  */
 package com.github.paohaijiao.registry;
 
-import com.github.paohaijiao.field.Processor;
-import com.github.paohaijiao.field.FieldProcessor;
-import com.github.paohaijiao.field.JsonPathProcessor;
+import com.github.paohaijiao.field.ConnectorProcessor;
+import com.github.paohaijiao.field.ConnectorFieldProcessor;
+import com.github.paohaijiao.field.ConnectorJsonPathProcessor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,18 +30,18 @@ import java.util.Map;
  * @since 2025/10/21
  */
 public class ConnectoryProcessorRegistry {
-    private static final Map<String, Processor> processors = new HashMap<>();
+    private static final Map<String, ConnectorProcessor> processors = new HashMap<>();
 
     static {
-        registerProcessor("field", new FieldProcessor());
-        registerProcessor("jsonPath", new JsonPathProcessor());
+        registerProcessor("field", new ConnectorFieldProcessor());
+        registerProcessor("jsonPath", new ConnectorJsonPathProcessor());
     }
 
-    public static void registerProcessor(String name, Processor processor) {
+    public static void registerProcessor(String name, ConnectorProcessor processor) {
         processors.put(name.toLowerCase(), processor);
     }
 
-    public static Processor getProcessor(String name) {
+    public static ConnectorProcessor getProcessor(String name) {
         return processors.get(name.toLowerCase());
     }
 

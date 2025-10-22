@@ -15,8 +15,7 @@
  */
 package com.github.paohaijiao.registry;
 
-import com.github.paohaijiao.connector.sql.MySqlConnector;
-import com.github.paohaijiao.result.Connector;
+import com.github.paohaijiao.handler.ConnectorHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,21 +29,21 @@ import java.util.ServiceLoader;
  * @since 2025/10/21
  */
 public class ConnectorRegistry {
-    private static final Map<String, Connector> connectors = new HashMap<>();
+    private static final Map<String, ConnectorHandler> connectors = new HashMap<>();
 
     static {
-        ServiceLoader<Connector> loader = ServiceLoader.load(Connector.class);
-        for (Connector connector : loader) {
+        ServiceLoader<ConnectorHandler> loader = ServiceLoader.load(ConnectorHandler.class);
+        for (ConnectorHandler connector : loader) {
             registerConnector(connector.getType(), connector);
         }
 //        registerConnector("MYSQL", new MySqlConnector());
     }
 
-    public static void registerConnector(String type, Connector connector) {
+    public static void registerConnector(String type, ConnectorHandler connector) {
         connectors.put(type.toUpperCase(), connector);
     }
 
-    public static Connector getConnector(String type) {
+    public static ConnectorHandler getConnector(String type) {
         return connectors.get(type.toUpperCase());
     }
 }

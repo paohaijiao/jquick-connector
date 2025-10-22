@@ -1,6 +1,6 @@
 package com.github.paohaijiao.field;
 
-public interface Processor {
+public interface ConnectorProcessor {
 
     Object process(Object value);
 

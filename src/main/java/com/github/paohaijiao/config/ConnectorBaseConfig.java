@@ -16,7 +16,6 @@
 package com.github.paohaijiao.config;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +28,7 @@ import java.util.Map;
  * @since 2025/10/21
  */
 @Data
-public class BaseConnectorConfig  implements ConnectorConfig {
+public class ConnectorBaseConfig implements ConnectorConfig {
 
     private Map<String, Object> properties = new HashMap<>();
 

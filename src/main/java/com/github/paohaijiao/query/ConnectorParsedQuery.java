@@ -13,23 +13,27 @@
  *
  * Copyright (c) [2025-2099] Martin (goudingcheng@gmail.com)
  */
-package com.github.paohaijiao.field;
+package com.github.paohaijiao.query;
 
+import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
+import lombok.Data;
+
+import java.util.List;
+import java.util.Map;
 /**
- * packageName com.github.paohaijiao.field
+ * packageName com.github.paohaijiao.query
  *
  * @author Martin
  * @version 1.0.0
  * @since 2025/10/21
  */
-public class FieldProcessor implements Processor {
-    @Override
-    public Object process(Object value) {
-        return value;
-    }
+@Data
+public class ConnectorParsedQuery {
 
-    @Override
-    public String getName() {
-        return "field";
-    }
+    private List<ConnectorFieldMappingHolder> fieldMappings;
+
+    private String connectorType;
+
+    private Map<String, Object> connectorProperties;
+
 }

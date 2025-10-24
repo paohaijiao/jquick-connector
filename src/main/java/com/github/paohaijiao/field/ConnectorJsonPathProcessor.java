@@ -13,34 +13,23 @@
  *
  * Copyright (c) [2025-2099] Martin (goudingcheng@gmail.com)
  */
-package com.github.paohaijiao.query;
+package com.github.paohaijiao.field;
 
-import com.github.paohaijiao.field.Processor;
-import lombok.Data;
-
-import java.util.List;
-import java.util.Map;
 /**
- * packageName com.github.paohaijiao.query
+ * packageName com.github.paohaijiao.field
  *
  * @author Martin
  * @version 1.0.0
  * @since 2025/10/21
  */
-@Data
-public class ParsedQuery {
+public class ConnectorJsonPathProcessor implements ConnectorProcessor {
+    @Override
+    public Object process(Object value) {
+        return value;
+    }
 
-    private List<FieldMapping> fieldMappings;
-
-    private String connectorType;
-
-    private Map<String, Object> connectorProperties;
-
-    @Data
-    public static class FieldMapping {
-        private Processor processor;
-        private String sourceField;
-        private Class<?> dataType;
-        private String targetField;
+    @Override
+    public String getName() {
+        return "jsonPath";
     }
 }

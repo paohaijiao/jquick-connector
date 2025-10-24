@@ -67,4 +67,12 @@ public enum ConnectorType {
         this.code = code;
         this.name = name;
     }
+    public static ConnectorType codeOf(String code){
+        for (ConnectorType type : ConnectorType.values()) {
+            if (type.getCode().equals(code)) {
+                return type;
+            }
+        }
+        throw new RuntimeException("不支持" + code+"该类型");
+    }
 }

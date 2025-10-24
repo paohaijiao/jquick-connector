@@ -22,7 +22,7 @@ package com.github.paohaijiao.field;
  * @version 1.0.0
  * @since 2025/10/21
  */
-public class JsonPathProcessor implements Processor {
+public class ConnectorFieldProcessor implements ConnectorProcessor {
     @Override
     public Object process(Object value) {
         return value;
@@ -30,6 +30,6 @@ public class JsonPathProcessor implements Processor {
 
     @Override
     public String getName() {
-        return "jsonPath";
+        return "field";
     }
 }

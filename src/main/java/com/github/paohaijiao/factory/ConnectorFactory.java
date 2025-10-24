@@ -15,17 +15,18 @@
  */
 package com.github.paohaijiao.factory;
 
-import com.github.paohaijiao.config.BaseConnectorConfig;
-import com.github.paohaijiao.config.ConnectorConfig;
+import com.github.paohaijiao.config.ConnectorBaseConfig;
 import com.github.paohaijiao.data.ColumnMeta;
 import com.github.paohaijiao.data.DataSet;
 import com.github.paohaijiao.data.Row;
-import com.github.paohaijiao.field.Processor;
-import com.github.paohaijiao.query.ParsedQuery;
-import com.github.paohaijiao.query.QueryParser;
+import com.github.paohaijiao.field.ConnectorProcessor;
+import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
+import com.github.paohaijiao.param.JContext;
+import com.github.paohaijiao.query.ConnectorParsedQuery;
+import com.github.paohaijiao.query.ConnectorQueryParser;
 import com.github.paohaijiao.registry.ConnectorRegistry;
 import com.github.paohaijiao.registry.ConnectoryProcessorRegistry;
-import com.github.paohaijiao.result.Connector;
+import com.github.paohaijiao.handler.ConnectorHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,22 +40,29 @@ import java.util.List;
  */
 public class ConnectorFactory {
 
-    private final QueryParser queryParser;
+    private final ConnectorQueryParser queryParser;
+
+    private final JContext context;
 
     public ConnectorFactory() {
-        this.queryParser = new QueryParser();
-    }
+        this.context = new JContext();
+        this.queryParser = new ConnectorQueryParser(this.context );
 
+    }
+    public ConnectorFactory(JContext context) {
+        this.context = context;
+        this.queryParser = new ConnectorQueryParser(this.context );
+    }
     /**
      * 执行查询并返回DataSet
      */
     public DataSet executeQuery(String query) {
-        ParsedQuery parsedQuery = queryParser.parse(query);
-        Connector connector = ConnectorRegistry.getConnector(parsedQuery.getConnectorType());
+        ConnectorParsedQuery parsedQuery = queryParser.parse(query);
+        ConnectorHandler connector = ConnectorRegistry.getConnector(parsedQuery.getConnectorType());
         if (connector == null) {
             throw new IllegalArgumentException("Unsupported connector type: " + parsedQuery.getConnectorType());
         }
-        BaseConnectorConfig config = new BaseConnectorConfig();
+        ConnectorBaseConfig config = new ConnectorBaseConfig();
         parsedQuery.getConnectorProperties().forEach(config::setProperty);
         DataSet rawDataSet = connector.execute(config);
         return transformDataSet(rawDataSet, parsedQuery.getFieldMappings());
@@ -63,29 +71,22 @@ public class ConnectorFactory {
     /**
      * 根据字段映射转换数据集
      */
-    private DataSet transformDataSet(DataSet rawDataSet, List<ParsedQuery.FieldMapping> mappings) {
+    private DataSet transformDataSet(DataSet rawDataSet, List<ConnectorFieldMappingHolder> mappings) {
         List<ColumnMeta> newColumns = new ArrayList<>();
-        for (ParsedQuery.FieldMapping mapping : mappings) {
-            newColumns.add(new ColumnMeta(
-                    mapping.getTargetField(),
-                    mapping.getDataType(),
-                    mapping.getSourceField()
-            ));
+        for (ConnectorFieldMappingHolder mapping : mappings) {
+            newColumns.add(new ColumnMeta(mapping.getTargetField(), mapping.getDataType(), mapping.getSourceField()));
         }
-
         List<Row> newRows = new ArrayList<>();
         for (Row rawRow : rawDataSet.getRows()) {
             Row newRow = new Row();
-            for (ParsedQuery.FieldMapping mapping : mappings) {
+            for (ConnectorFieldMappingHolder mapping : mappings) {
                 Object rawValue = rawRow.get(mapping.getSourceField());
                 Object processedValue = mapping.getProcessor().process(rawValue);
                 Object finalValue = convertType(processedValue, mapping.getDataType());
                 newRow.put(mapping.getTargetField(), finalValue);
             }
-
             newRows.add(newRow);
         }
-
         return new DataSet(newColumns, newRows);
     }
 
@@ -94,12 +95,9 @@ public class ConnectorFactory {
      */
     private Object convertType(Object value, Class<?> targetType) {
         if (value == null) return null;
-
         if (targetType.isInstance(value)) {
             return value;
         }
-
-        // 简单的类型转换逻辑，可以根据需要扩展
         String strValue = value.toString();
         try {
             if (targetType == Integer.class || targetType == int.class) {
@@ -123,14 +121,14 @@ public class ConnectorFactory {
     /**
      * 注册自定义连接器
      */
-    public static void registerConnector(String type, Connector connector) {
+    public static void registerConnector(String type, ConnectorHandler connector) {
         ConnectorRegistry.registerConnector(type, connector);
     }
 
     /**
      * 注册自定义字段处理器
      */
-    public static void registerProcessor(String name, Processor processor) {
+    public static void registerProcessor(String name, ConnectorProcessor processor) {
         ConnectoryProcessorRegistry.registerProcessor(name, processor);
     }
 }

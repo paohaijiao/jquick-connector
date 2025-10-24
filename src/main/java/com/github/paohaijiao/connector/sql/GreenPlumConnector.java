@@ -30,6 +30,6 @@ import lombok.Data;
 public class GreenPlumConnector extends SqlConnector {
 
     public GreenPlumConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.GREENPLUM;
     }
 }

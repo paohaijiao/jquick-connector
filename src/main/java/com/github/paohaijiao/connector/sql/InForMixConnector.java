@@ -30,6 +30,6 @@ import lombok.Data;
 public class InForMixConnector extends SqlConnector {
 
     public InForMixConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.INFORMIX;
     }
 }

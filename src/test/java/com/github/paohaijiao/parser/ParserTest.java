@@ -26,4 +26,24 @@ public class ParserTest {
         System.out.println(parsedQuery);
 
     }
+    @Test
+    public  void testMysql() throws Exception {
+        JContext context = new JContext();
+        context.put("user", "test");
+        JQuickConnectorExecutor executor = new JQuickConnectorExecutor(context);
+        ConnectorParsedQuery parsedQuery=executor.execute("SELECT\n" +
+                "    field(id)->b:Integer,\n" +
+                "    field(c)->b:Integer\n" +
+                "FROM MYSQL(\n" +
+                "    url: '192.168.32.143',\n" +
+                "    port: 3306,\n" +
+                "    database: 'user_db',\n" +
+                "    sql: 'select * from a',\n" +
+                "    username: 'root',\n" +
+                "    password: '123456'\n" +
+                ")");
+
+        System.out.println(parsedQuery);
+
+    }
 }

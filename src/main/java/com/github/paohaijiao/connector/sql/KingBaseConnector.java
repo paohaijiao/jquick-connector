@@ -30,6 +30,6 @@ import lombok.Data;
 public class KingBaseConnector extends SqlConnector {
 
     public KingBaseConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.KINGBASE;
     }
 }

@@ -30,6 +30,6 @@ import lombok.Data;
 public class PostgreSqlConnector extends SqlConnector {
 
     public PostgreSqlConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.POSTGRESQL;
     }
 }

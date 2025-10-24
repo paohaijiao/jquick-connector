@@ -30,6 +30,6 @@ import lombok.Data;
 public class SyBaseConnector extends SqlConnector {
 
     public SyBaseConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.SYBASE;
     }
 }

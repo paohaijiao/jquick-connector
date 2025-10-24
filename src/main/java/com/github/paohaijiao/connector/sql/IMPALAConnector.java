@@ -30,6 +30,6 @@ import lombok.Data;
 public class IMPALAConnector extends SqlConnector {
 
     public IMPALAConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.IMPALA;
     }
 }

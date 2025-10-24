@@ -30,6 +30,6 @@ import lombok.Data;
 public class OracleSqlConnector extends SqlConnector {
 
     public OracleSqlConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.ORACLE;
     }
 }

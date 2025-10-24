@@ -30,6 +30,6 @@ import lombok.Data;
 public class H2Connector extends SqlConnector {
 
     public H2Connector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.H2;
     }
 }

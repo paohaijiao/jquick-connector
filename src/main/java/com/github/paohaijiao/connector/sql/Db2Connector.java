@@ -30,6 +30,6 @@ import lombok.Data;
 public class Db2Connector extends SqlConnector {
 
     public Db2Connector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.DB2;
     }
 }

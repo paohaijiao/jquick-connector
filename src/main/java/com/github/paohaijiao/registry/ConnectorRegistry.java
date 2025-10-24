@@ -18,8 +18,10 @@ package com.github.paohaijiao.registry;
 import com.github.paohaijiao.handler.ConnectorHandler;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.ServiceLoader;
+
+import com.github.paohaijiao.spi.ServiceLoader;
 
 /**
  * packageName com.github.paohaijiao.registry
@@ -29,14 +31,13 @@ import java.util.ServiceLoader;
  * @since 2025/10/21
  */
 public class ConnectorRegistry {
-    private static final Map<String, ConnectorHandler> connectors = new HashMap<>();
 
+    private static final Map<String, ConnectorHandler> connectors = new HashMap<>();
     static {
-        ServiceLoader<ConnectorHandler> loader = ServiceLoader.load(ConnectorHandler.class);
+        List<ConnectorHandler> loader = ServiceLoader.loadServices(ConnectorHandler.class);
         for (ConnectorHandler connector : loader) {
             registerConnector(connector.getType(), connector);
         }
-//        registerConnector("MYSQL", new MySqlConnector());
     }
 
     public static void registerConnector(String type, ConnectorHandler connector) {

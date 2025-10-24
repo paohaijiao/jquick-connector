@@ -30,6 +30,6 @@ import lombok.Data;
 public class HiveConnector extends SqlConnector {
 
     public HiveConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.HIVE;
     }
 }

@@ -30,6 +30,6 @@ import lombok.Data;
 public class DerbyConnector extends SqlConnector {
 
     public DerbyConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.DERBY;
     }
 }

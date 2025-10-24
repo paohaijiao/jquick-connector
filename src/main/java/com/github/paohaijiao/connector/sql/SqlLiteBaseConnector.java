@@ -30,6 +30,6 @@ import lombok.Data;
 public class SqlLiteBaseConnector extends SqlConnector {
 
     public SqlLiteBaseConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.SQLITE;
     }
 }

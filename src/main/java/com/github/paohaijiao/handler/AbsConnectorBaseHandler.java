@@ -1,6 +1,5 @@
 package com.github.paohaijiao.handler;
 
-import com.github.paohaijiao.config.ConnectorBaseConfig;
 import com.github.paohaijiao.data.ColumnMeta;
 import com.github.paohaijiao.data.Row;
 

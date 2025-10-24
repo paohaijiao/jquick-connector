@@ -30,6 +30,6 @@ import lombok.Data;
 public class DaMengConnector extends SqlConnector {
 
     public DaMengConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.DAMENG;
     }
 }

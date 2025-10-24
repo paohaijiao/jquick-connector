@@ -30,6 +30,6 @@ import lombok.Data;
 public class ClickHouseConnector extends SqlConnector {
 
     public ClickHouseConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorType.CLICKHOUSE;
     }
 }

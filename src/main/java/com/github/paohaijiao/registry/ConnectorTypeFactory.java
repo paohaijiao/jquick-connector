@@ -13,7 +13,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * 复杂连接器类型工厂
  * 支持动态注册、分类管理、插件机制、依赖检查等功能
  */
 public class ConnectorTypeFactory {

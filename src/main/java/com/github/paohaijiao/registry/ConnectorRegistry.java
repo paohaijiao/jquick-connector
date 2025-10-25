@@ -25,8 +25,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * 连接器注册中心 - 复杂化版本
- * 参考Spring设计思想，提供更丰富的注册、发现和管理功能
  *
  * @author Martin
  * @version 2.0.0

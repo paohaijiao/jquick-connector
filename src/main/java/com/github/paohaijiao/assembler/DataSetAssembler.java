@@ -64,7 +64,6 @@ public class DataSetAssembler {
         List<Row> processedRows = processRows(rows, fieldMappings);
         return new DataSet(columns, processedRows);
     }
-
     /**
      * 构建ColumnMeta列表
      */

@@ -192,8 +192,6 @@ public class Row implements Map<String, Object> {
 
     @Override
     public String toString() {
-        return "JRow{" +
-                " data=" + data +
-                '}';
+        return "JRow{" + " data=" + data + '}';
     }
 }

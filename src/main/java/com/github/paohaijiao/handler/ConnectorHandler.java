@@ -16,12 +16,14 @@
 package com.github.paohaijiao.handler;
 
 import com.github.paohaijiao.config.Configuration;
-import com.github.paohaijiao.dataset.DataSet;
+import com.github.paohaijiao.dataset.Row;
+
+import java.util.List;
 
 public interface ConnectorHandler {
 
 
-    DataSet execute(Configuration config);
+    List<Row> buildRow(Configuration config);
 
     String getType();
 }

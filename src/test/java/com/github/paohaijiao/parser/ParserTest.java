@@ -39,16 +39,14 @@ public class ParserTest {
                 "    field(content)->content:String,\n" +
                 "    field(type)->type:String,\n" +
                 "    field(tenant_id)->tenant_id:Long,\n" +
-                "    field(user_id)->user_id:Long,\n" +
                 "    field(create_time)->create_time:Date,\n" +
                 "    field(is_deleted)->is_deleted:Boolean\n" +
                 "FROM MYSQL(\n" +
-                "    url: 'jdbc:mysql://192.168.32.143:3306/jquickbi?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true',\n" +
+                "    url: 'jdbc:mysql://192.168.32.144:3306/jquickbi?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true',\n" +
                 "    username: 'root',\n" +
-                "    password: '13579admin',\n" +
+                "    password: '1qaz@WSX',\n" +
                 "    sql: 'select * from business_activity',\n" +
-                "    driver: 'com.mysql.jdbc.Driver',\n" +
-                "    password: '123456'\n" +
+                "    driver: 'com.mysql.jdbc.Driver'\n" +
                 ")";
         ConnectorFactory factory = new ConnectorFactory();
         DataSet dataSet = factory.executeQuery(query);

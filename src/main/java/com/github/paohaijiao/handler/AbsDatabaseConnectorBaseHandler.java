@@ -1,12 +1,13 @@
 package com.github.paohaijiao.handler;
 
 
-import com.github.paohaijiao.config.ConnectorConfiguration;
-import com.github.paohaijiao.dataset.DataSet;
+import com.github.paohaijiao.config.Configuration;
 import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.exception.JAssert;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbsDatabaseConnectorBaseHandler extends AbsConnectorBaseHandler {
 
@@ -19,12 +20,7 @@ public abstract class AbsDatabaseConnectorBaseHandler extends AbsConnectorBaseHa
     private static final  String password="password";
 
     private static final  String sql="sql";
-    /**
-     *
-     * @param config
-     * @return
-     */
-    public ResultSet doResultSet(ConnectorConfiguration config){
+    public Connection doConnection(Configuration config){
         String connectorDriverClass =config.getProperty(driver,String.class);
         JAssert.notEmptyStr(connectorDriverClass,"driver class require not null");
         String connectorUrl=config.getProperty(url,String.class);
@@ -37,37 +33,53 @@ public abstract class AbsDatabaseConnectorBaseHandler extends AbsConnectorBaseHa
         JAssert.notEmptyStr(connectorSql,"sql  require not null");
         try {
             Class.forName(connectorDriverClass);
-            Connection connection = DriverManager.getConnection(url, username, password);
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
-            DataSet dataSet = doDataSet(rs);
-            rs.close();
-            pstmt.close();
-            connection.close();
+            Connection connection = DriverManager.getConnection(connectorUrl, connectorUsername, connectorPassword);
+            return connection;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
-    private DataSet doDataSet(ResultSet rs) throws SQLException {
-        DataSet.Builder builder = DataSet.builder();
-        ResultSetMetaData metaData = rs.getMetaData();
-        int columnCount = metaData.getColumnCount();
-        for (int i = 1; i <= columnCount; i++) {
-            String columnName = metaData.getColumnName(i);
-            String source = metaData.getTableName(i);
-//            Class<?> columnType = getJavaType(metaData.getColumnType(i));
-//            builder.addColumn(columnName, columnType, source);
-        }
-        while (rs.next()) {
-            Row row = new Row();
-            for (int i = 1; i <= columnCount; i++) {
-                String columnName = metaData.getColumnName(i);
-                Object value = rs.getObject(i);
-                row.put(columnName, value);
+
+    /**
+     *
+     * @param config
+     * @return
+     */
+    @Override
+    public List<Row> buildRow(Configuration config){
+        List<Row> rows = new ArrayList<>();
+        Connection connection = doConnection(config);
+        JAssert.notNull(connection,"connection is null");
+        String connectorSql=config.getProperty(sql,String.class);
+        JAssert.notEmptyStr(connectorSql,"sql  require not null");
+        try {
+            PreparedStatement stmt = connection.prepareStatement(connectorSql);
+            ResultSet rs = stmt.executeQuery();
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            while (rs.next()) {
+                Row row = new Row();
+                for (int i = 1; i <= columnCount; i++) {
+                    String columnName = metaData.getColumnName(i);
+                    Object value = rs.getObject(i);
+                    row.put(columnName, value);
+                }
+                rows.add(row);
             }
-            builder.addRow(row);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return builder.build();
+        doRelease(connection);
+        return rows;
     }
+    public void doRelease(Connection connection){
+        if(connection != null){
+            try{
+                connection.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

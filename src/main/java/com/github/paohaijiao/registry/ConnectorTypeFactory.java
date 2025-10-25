@@ -58,10 +58,10 @@ public class ConnectorTypeFactory {
         if (initialized) {
             return;
         }
-        loadPredefinedTypes();//加载预定义类型
-        loadPluginTypes();//通过SPI加载插件类型
-        buildDependencyGraph();//构建依赖关系
-        validateAllTypes();//验证所有类型
+        loadPredefinedTypes();
+        loadPluginTypes();
+        buildDependencyGraph();
+        validateAllTypes();
         initialized = true;
     }
 

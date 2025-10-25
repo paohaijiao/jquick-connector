@@ -61,12 +61,12 @@ public class JQuickConnectorCommonVisitor  extends JQuickConnectorCoreVisitor {
     @Override
     public ConnectorFieldMappingHolder visitFieldMapping(JQuickConnectorParser.FieldMappingContext ctx) {
         JAssert.notNull(ctx.processor(),"processor not null");
-        JAssert.notNull(ctx.sourceField(),"fieldName not null");
+        JAssert.notNull(ctx.targetField(),"target column not null");
         JAssert.notNull(ctx.dataType(),"dataType not null");
         ConnectorFieldProcessorHolder connectorFieldProcessorHolder=(ConnectorFieldProcessorHolder)visit(ctx.processor());
         ConnectorFieldMappingHolder connectorFieldMappingHolder = new ConnectorFieldMappingHolder();
         connectorFieldMappingHolder.setSourceField(connectorFieldProcessorHolder.getValue());
-        connectorFieldMappingHolder.setTargetField(connectorFieldProcessorHolder.getValue());
+        connectorFieldMappingHolder.setTargetField(ctx.targetField().getText());
         connectorFieldMappingHolder.setProcessor(connectorFieldProcessorHolder.getProcessor());
         Class<?> dataType=visitDataType(ctx.dataType());
         connectorFieldMappingHolder.setDataType(dataType);

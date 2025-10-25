@@ -38,15 +38,15 @@ public interface JQuickConnectorListener extends ParseTreeListener {
 	 */
 	void exitDataType(JQuickConnectorParser.DataTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JQuickConnectorParser#sourceField}.
+	 * Enter a parse tree produced by {@link JQuickConnectorParser#targetField}.
 	 * @param ctx the parse tree
 	 */
-	void enterSourceField(JQuickConnectorParser.SourceFieldContext ctx);
+	void enterTargetField(JQuickConnectorParser.TargetFieldContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JQuickConnectorParser#sourceField}.
+	 * Exit a parse tree produced by {@link JQuickConnectorParser#targetField}.
 	 * @param ctx the parse tree
 	 */
-	void exitSourceField(JQuickConnectorParser.SourceFieldContext ctx);
+	void exitTargetField(JQuickConnectorParser.TargetFieldContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code fieldProcessor}
 	 * labeled alternative in {@link JQuickConnectorParser#processor}.

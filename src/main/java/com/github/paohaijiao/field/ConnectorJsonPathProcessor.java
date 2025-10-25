@@ -15,6 +15,9 @@
  */
 package com.github.paohaijiao.field;
 
+import com.github.paohaijiao.dataset.Row;
+import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
+
 /**
  * packageName com.github.paohaijiao.field
  *
@@ -23,13 +26,15 @@ package com.github.paohaijiao.field;
  * @since 2025/10/21
  */
 public class ConnectorJsonPathProcessor implements ConnectorProcessor {
+
+
     @Override
-    public Object process(Object value) {
-        return value;
+    public Object process(Row row, ConnectorFieldMappingHolder mapping) {
+        return null;
     }
 
     @Override
-    public String getName() {
+    public String getType() {
         return "jsonPath";
     }
 }

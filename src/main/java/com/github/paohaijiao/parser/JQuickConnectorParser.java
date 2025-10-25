@@ -28,12 +28,12 @@ public class JQuickConnectorParser extends Parser {
 		STRING_VALUE=28, NUMBER_VALUE=29, ARROW=30, COMMA=31, LPAREN=32, RPAREN=33, 
 		COLON=34, WS=35;
 	public static final int
-		RULE_select = 0, RULE_fieldMapping = 1, RULE_dataType = 2, RULE_sourceField = 3, 
+		RULE_select = 0, RULE_fieldMapping = 1, RULE_dataType = 2, RULE_targetField = 3, 
 		RULE_processor = 4, RULE_connector = 5, RULE_property = 6, RULE_value = 7, 
 		RULE_columnName = 8, RULE_var = 9;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"select", "fieldMapping", "dataType", "sourceField", "processor", "connector", 
+			"select", "fieldMapping", "dataType", "targetField", "processor", "connector", 
 			"property", "value", "columnName", "var"
 		};
 	}
@@ -196,8 +196,8 @@ public class JQuickConnectorParser extends Parser {
 			return getRuleContext(ProcessorContext.class,0);
 		}
 		public TerminalNode ARROW() { return getToken(JQuickConnectorParser.ARROW, 0); }
-		public SourceFieldContext sourceField() {
-			return getRuleContext(SourceFieldContext.class,0);
+		public TargetFieldContext targetField() {
+			return getRuleContext(TargetFieldContext.class,0);
 		}
 		public TerminalNode COLON() { return getToken(JQuickConnectorParser.COLON, 0); }
 		public DataTypeContext dataType() {
@@ -233,7 +233,7 @@ public class JQuickConnectorParser extends Parser {
 			setState(34);
 			match(ARROW);
 			setState(35);
-			sourceField();
+			targetField();
 			{
 			setState(36);
 			match(COLON);
@@ -312,32 +312,32 @@ public class JQuickConnectorParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class SourceFieldContext extends ParserRuleContext {
+	public static class TargetFieldContext extends ParserRuleContext {
 		public ColumnNameContext columnName() {
 			return getRuleContext(ColumnNameContext.class,0);
 		}
-		public SourceFieldContext(ParserRuleContext parent, int invokingState) {
+		public TargetFieldContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_sourceField; }
+		@Override public int getRuleIndex() { return RULE_targetField; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JQuickConnectorListener ) ((JQuickConnectorListener)listener).enterSourceField(this);
+			if ( listener instanceof JQuickConnectorListener ) ((JQuickConnectorListener)listener).enterTargetField(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JQuickConnectorListener ) ((JQuickConnectorListener)listener).exitSourceField(this);
+			if ( listener instanceof JQuickConnectorListener ) ((JQuickConnectorListener)listener).exitTargetField(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JQuickConnectorVisitor ) return ((JQuickConnectorVisitor<? extends T>)visitor).visitSourceField(this);
+			if ( visitor instanceof JQuickConnectorVisitor ) return ((JQuickConnectorVisitor<? extends T>)visitor).visitTargetField(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final SourceFieldContext sourceField() throws RecognitionException {
-		SourceFieldContext _localctx = new SourceFieldContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_sourceField);
+	public final TargetFieldContext targetField() throws RecognitionException {
+		TargetFieldContext _localctx = new TargetFieldContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_targetField);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{

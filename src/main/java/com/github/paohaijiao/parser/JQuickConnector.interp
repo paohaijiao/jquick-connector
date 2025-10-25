@@ -78,7 +78,7 @@ rule names:
 select
 fieldMapping
 dataType
-sourceField
+targetField
 processor
 connector
 property

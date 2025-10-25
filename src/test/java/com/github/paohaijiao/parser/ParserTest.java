@@ -33,13 +33,13 @@ public class ParserTest {
         JContext context = new JContext();
         context.put("user", "test");
         String query="SELECT\n" +
-                "    field(id)->id:Long,\n" +
+                "    field(id)->cid:Long,\n" +
                 "    field(user_id)->user_id:Long,\n" +
                 "    field(title)->title:String,\n" +
                 "    field(content)->content:String,\n" +
                 "    field(type)->type:String,\n" +
                 "    field(tenant_id)->tenant_id:Long,\n" +
-                "    field(create_time)->create_time:Date,\n" +
+                "    field(created_time)->created_time:Date,\n" +
                 "    field(is_deleted)->is_deleted:Boolean\n" +
                 "FROM MYSQL(\n" +
                 "    url: 'jdbc:mysql://192.168.32.144:3306/jquickbi?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true',\n" +

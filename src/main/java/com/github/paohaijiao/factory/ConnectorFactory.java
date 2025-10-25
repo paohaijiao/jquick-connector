@@ -79,30 +79,10 @@ public class ConnectorFactory {
         parsedQuery.getConnectorProperties().forEach(config::setProperty);
         List<Row> rows = connector.buildRow(config);
         DataSet rawDataSet=DataSetAssembler.convert(rows,parsedQuery.getFieldMappings());
-        return transformDataSet(rawDataSet, parsedQuery.getFieldMappings());
+        return rawDataSet;
     }
 
-    /**
-     * 根据字段映射转换数据集
-     */
-    private DataSet transformDataSet(DataSet rawDataSet, List<ConnectorFieldMappingHolder> mappings) {
-        List<ColumnMeta> newColumns = new ArrayList<>();
-        for (ConnectorFieldMappingHolder mapping : mappings) {
-            newColumns.add(new ColumnMeta(mapping.getTargetField(), mapping.getDataType(), mapping.getSourceField()));
-        }
-        List<Row> newRows = new ArrayList<>();
-        for (Row rawRow : rawDataSet.getRows()) {
-            Row newRow = new Row();
-            for (ConnectorFieldMappingHolder mapping : mappings) {
-                Object rawValue = rawRow.get(mapping.getSourceField());
-                Object processedValue = mapping.getProcessor().process(rawValue);
-                Object finalValue = convertType(processedValue, mapping.getDataType());
-                newRow.put(mapping.getTargetField(), finalValue);
-            }
-            newRows.add(newRow);
-        }
-        return new DataSet(newColumns, newRows);
-    }
+
 
     /**
      * 类型转换

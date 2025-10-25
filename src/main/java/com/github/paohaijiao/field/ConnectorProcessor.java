@@ -15,9 +15,12 @@
  */
 package com.github.paohaijiao.field;
 
+import com.github.paohaijiao.dataset.Row;
+import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
+
 public interface ConnectorProcessor {
 
-    Object process(Object value);
+    Object process(Row row , ConnectorFieldMappingHolder mapping);
 
-    String getName();
+    String getType();
 }

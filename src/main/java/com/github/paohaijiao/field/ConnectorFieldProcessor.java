@@ -15,6 +15,10 @@
  */
 package com.github.paohaijiao.field;
 
+import com.github.paohaijiao.dataset.Row;
+import com.github.paohaijiao.exception.JAssert;
+import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
+
 /**
  * packageName com.github.paohaijiao.field
  *
@@ -23,13 +27,18 @@ package com.github.paohaijiao.field;
  * @since 2025/10/21
  */
 public class ConnectorFieldProcessor implements ConnectorProcessor {
+
     @Override
-    public Object process(Object value) {
+    public Object process(Row row, ConnectorFieldMappingHolder mapping) {
+        String sourceField = mapping.getSourceField();
+        boolean existsColumn=row.containsKey(sourceField);
+        JAssert.isTrue(existsColumn,"the coloumn[" +sourceField+"] not exists");
+        Object value = row.get(sourceField);
         return value;
     }
 
     @Override
-    public String getName() {
+    public String getType() {
         return "field";
     }
 }

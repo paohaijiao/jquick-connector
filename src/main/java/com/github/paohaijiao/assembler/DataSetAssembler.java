@@ -83,25 +83,12 @@ public class DataSetAssembler {
      */
     private static List<Row> processRows(List<Row> rows, List<ConnectorFieldMappingHolder> fieldMappings) {
         List<Row> processedRows = new ArrayList<>();
-        for (Row originalRow : rows) {
+        for (Row row : rows) {
             Row processedRow = new Row();
             for (ConnectorFieldMappingHolder mapping : fieldMappings) {
-                String sourceField = mapping.getSourceField();
-                boolean existsColumn=originalRow.containsKey(sourceField);
-                JAssert.isTrue(existsColumn,"the coloumn[" +sourceField+"] not exists");
-                String targetField = mapping.getTargetField();
-                ConnectorProcessor processor = mapping.getProcessor();
-                Object value = originalRow.get(sourceField);
-                if (processor != null && value != null) {
-                    try {
-                        value = processor.process(value);
-                    } catch (Exception e) {
-                        throw new RuntimeException(String.format("Error processing field '%s' with processor: %s", sourceField, e.getMessage()), e);
-                    }
-                }
-                processedRow.put(targetField, value);
+                Object value=mapping.getProcessor().process(row,mapping);
+                processedRow.put(mapping.getTargetField(), value);
             }
-
             processedRows.add(processedRow);
         }
 

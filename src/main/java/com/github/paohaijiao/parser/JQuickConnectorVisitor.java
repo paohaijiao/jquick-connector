@@ -29,11 +29,11 @@ public interface JQuickConnectorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDataType(JQuickConnectorParser.DataTypeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JQuickConnectorParser#sourceField}.
+	 * Visit a parse tree produced by {@link JQuickConnectorParser#targetField}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSourceField(JQuickConnectorParser.SourceFieldContext ctx);
+	T visitTargetField(JQuickConnectorParser.TargetFieldContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code fieldProcessor}
 	 * labeled alternative in {@link JQuickConnectorParser#processor}.

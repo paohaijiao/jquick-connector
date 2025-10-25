@@ -37,8 +37,6 @@ public class ConnectorQueryParser {
         this.context = new JContext();
     }
     public ConnectorParsedQuery parse(String query) {
-        JContext context = new JContext();
-        context.put("user", "test");
         JConsole console = new JConsole();
         JQuickConnectorExecutor executor = new JQuickConnectorExecutor(context);
         console.log(JLogLevel.INFO, "query: " + query);

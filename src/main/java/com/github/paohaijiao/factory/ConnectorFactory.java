@@ -65,7 +65,6 @@ public class ConnectorFactory {
      */
     public DataSet executeQuery(String query) {
         ConnectorParsedQuery parsedQuery = queryParser.parse(query);
-        System.out.println(parsedQuery.getFieldMappings());
         ConnectorHandler connector = ConnectorRegistry.getConnector(parsedQuery.getConnectorType());
         if (connector == null) {
             throw new IllegalArgumentException("unsupported connector type: " + parsedQuery.getConnectorType());
@@ -80,36 +79,6 @@ public class ConnectorFactory {
         List<Row> rows = connector.buildRow(config);
         DataSet rawDataSet=DataSetAssembler.convert(rows,parsedQuery.getFieldMappings());
         return rawDataSet;
-    }
-
-
-
-    /**
-     * 类型转换
-     */
-    private Object convertType(Object value, Class<?> targetType) {
-        if (value == null) return null;
-        if (targetType.isInstance(value)) {
-            return value;
-        }
-        String strValue = value.toString();
-        try {
-            if (targetType == Integer.class || targetType == int.class) {
-                return Integer.parseInt(strValue);
-            } else if (targetType == Long.class || targetType == long.class) {
-                return Long.parseLong(strValue);
-            } else if (targetType == Double.class || targetType == double.class) {
-                return Double.parseDouble(strValue);
-            } else if (targetType == Boolean.class || targetType == boolean.class) {
-                return Boolean.parseBoolean(strValue);
-            } else if (targetType == String.class) {
-                return strValue;
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Cannot convert value '" + value + "' to type " + targetType);
-        }
-
-        return value;
     }
 
     /**

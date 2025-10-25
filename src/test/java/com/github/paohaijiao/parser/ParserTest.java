@@ -51,7 +51,7 @@ public class ParserTest {
         ConnectorFactory factory = new ConnectorFactory();
         DataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
-            System.out.println("id: " + row.getLong("id") + ", title: " + row.getString("title"));
+            System.out.println("created_time: " + row.get("created_time") + ", title: " + row.getString("title"));
         });
 
     }

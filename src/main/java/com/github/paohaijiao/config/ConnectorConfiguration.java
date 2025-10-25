@@ -15,6 +15,7 @@
  */
 package com.github.paohaijiao.config;
 
+import com.github.paohaijiao.convert.DataConvert;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -28,7 +29,7 @@ import java.util.Map;
  * @since 2025/10/21
  */
 @Data
-public class ConnectorConfiguration implements Configuration {
+public class ConnectorConfiguration extends DataConvert implements Configuration {
 
     private Map<String, Object> properties = new HashMap<>();
 
@@ -58,19 +59,4 @@ public class ConnectorConfiguration implements Configuration {
         properties.put(key, value);
     }
 
-    @SuppressWarnings("unchecked")
-    private <T> T convertValue(Object value, Class<T> type) {
-        if (type == String.class) {
-            return (T) value.toString();
-        } else if (type == Integer.class || type == int.class) {
-            return (T) Integer.valueOf(value.toString());
-        } else if (type == Long.class || type == long.class) {
-            return (T) Long.valueOf(value.toString());
-        } else if (type == Double.class || type == double.class) {
-            return (T) Double.valueOf(value.toString());
-        } else if (type == Boolean.class || type == boolean.class) {
-            return (T) Boolean.valueOf(value.toString());
-        }
-        throw new IllegalArgumentException("Unsupported type: " + type);
-    }
 }

@@ -15,10 +15,7 @@
  */
 package com.github.paohaijiao.dataset;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * packageName com.github.paohaijiao.dataset
@@ -174,6 +171,16 @@ public class Row implements Map<String, Object> {
      */
     public Boolean getBoolean(String columnName) {
         return (Boolean) data.get(columnName);
+    }
+    /**
+     * Gets the value for the specified column as a Date.
+     *
+     * @param columnName the column name
+     * @return the Date value, or null if the value is null
+     * @throws ClassCastException if the value is not a Date
+     */
+    public Date getDate(String columnName) {
+        return (Date) data.get(columnName);
     }
 
     @Override

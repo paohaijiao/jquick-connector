@@ -16,7 +16,7 @@
 package com.github.paohaijiao.visitor;
 
 import com.github.paohaijiao.enums.ConnectorDataType;
-import com.github.paohaijiao.enums.ConnectorType;
+import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.field.ConnectorFieldProcessor;
 import com.github.paohaijiao.field.ConnectorJsonPathProcessor;
@@ -104,7 +104,7 @@ public class JQuickConnectorCommonVisitor  extends JQuickConnectorCoreVisitor {
     @Override
     public ConnectorHolder visitConnector(JQuickConnectorParser.ConnectorContext ctx) {
         JAssert.notNull(ctx.CONNECTOR_CODE(),"connector type require not null");
-        ConnectorType type=ConnectorType.codeOf(ctx.CONNECTOR_CODE().getText());
+        ConnectorTypeEnums type= ConnectorTypeEnums.codeOf(ctx.CONNECTOR_CODE().getText());
         JAssert.notNull(type,"connector type not validate");
         ConnectorHolder connectorHolder=new ConnectorHolder();
         connectorHolder.setType(type.getCode());

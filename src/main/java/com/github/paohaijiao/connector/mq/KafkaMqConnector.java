@@ -16,8 +16,7 @@
 package com.github.paohaijiao.connector.mq;
 
 import com.github.paohaijiao.connector.MqConnector;
-import com.github.paohaijiao.connector.SqlConnector;
-import com.github.paohaijiao.enums.ConnectorType;
+import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import lombok.Data;
 
 /**
@@ -31,6 +30,6 @@ import lombok.Data;
 public class KafkaMqConnector extends MqConnector {
 
     public KafkaMqConnector(){
-        this.type= ConnectorType.KAFKA;
+        this.type= ConnectorTypeEnums.KAFKA;
     }
 }

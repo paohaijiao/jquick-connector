@@ -25,7 +25,7 @@ import lombok.Data;
  * @since 2025/10/21
  */
 @Data
-public class SqlConnector extends ConnectorType {
+public class SqlConnector extends MyConnectorType {
 
     private String driverClassName;
 

@@ -16,7 +16,7 @@
 package com.github.paohaijiao.connector.file;
 
 import com.github.paohaijiao.connector.SqlConnector;
-import com.github.paohaijiao.enums.ConnectorType;
+import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import lombok.Data;
 
 /**
@@ -30,6 +30,6 @@ import lombok.Data;
 public class XmlFileConnector extends SqlConnector {
 
     public XmlFileConnector(){
-        this.type= ConnectorType.EXCEL;
+        this.type= ConnectorTypeEnums.EXCEL;
     }
 }

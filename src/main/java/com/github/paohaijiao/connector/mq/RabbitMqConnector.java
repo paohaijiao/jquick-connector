@@ -16,7 +16,7 @@
 package com.github.paohaijiao.connector.mq;
 
 import com.github.paohaijiao.connector.MqConnector;
-import com.github.paohaijiao.enums.ConnectorType;
+import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import lombok.Data;
 
 /**
@@ -30,6 +30,6 @@ import lombok.Data;
 public class RabbitMqConnector extends MqConnector {
 
     public RabbitMqConnector(){
-        this.type= ConnectorType.RABBITMQ;
+        this.type= ConnectorTypeEnums.RABBITMQ;
     }
 }

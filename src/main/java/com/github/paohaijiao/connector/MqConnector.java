@@ -25,7 +25,7 @@ import lombok.Data;
  * @since 2025/10/21
  */
 @Data
-public class MqConnector extends ConnectorType {
+public class MqConnector extends MyConnectorType {
 
     private String brokerUrl;
 

@@ -25,7 +25,7 @@ import lombok.Data;
  * @since 2025/10/21
  */
 @Data
-public class FileConnector extends ConnectorType {
+public class FileConnector extends MyConnectorType {
 
     private String path;
 

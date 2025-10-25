@@ -16,7 +16,7 @@
 package com.github.paohaijiao.connector.sql;
 
 import com.github.paohaijiao.connector.SqlConnector;
-import com.github.paohaijiao.enums.ConnectorType;
+import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import lombok.Data;
 
 /**
@@ -30,6 +30,6 @@ import lombok.Data;
 public class Db2Connector extends SqlConnector {
 
     public Db2Connector(){
-        this.type= ConnectorType.DB2;
+        this.type= ConnectorTypeEnums.DB2;
     }
 }

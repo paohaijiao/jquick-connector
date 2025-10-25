@@ -17,7 +17,7 @@ package com.github.paohaijiao.enums;
 import lombok.Getter;
 
 @Getter
-public enum ConnectorType {
+public enum ConnectorTypeEnums {
 
     // 文件型
     CSV("CSV", "CSV"),
@@ -78,12 +78,12 @@ public enum ConnectorType {
     private String code;
     private String name;
 
-    ConnectorType(String code, String name){
+    ConnectorTypeEnums(String code, String name){
         this.code = code;
         this.name = name;
     }
-    public static ConnectorType codeOf(String code){
-        for (ConnectorType type : ConnectorType.values()) {
+    public static ConnectorTypeEnums codeOf(String code){
+        for (ConnectorTypeEnums type : ConnectorTypeEnums.values()) {
             if (type.getCode().equals(code)) {
                 return type;
             }

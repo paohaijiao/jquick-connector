@@ -15,7 +15,8 @@
  */
 package com.github.paohaijiao.connector.rest;
 
-import com.github.paohaijiao.connector.ConnectorType;
+import com.github.paohaijiao.connector.MyConnectorType;
+import com.github.paohaijiao.enums.ConnectorTypeEnums;
 
 /**
  * packageName com.github.paohaijiao.connector.rest
@@ -24,9 +25,9 @@ import com.github.paohaijiao.connector.ConnectorType;
  * @version 1.0.0
  * @since 2025/10/21
  */
-public class CurlConnector extends ConnectorType {
+public class CurlConnector extends MyConnectorType {
 
     public CurlConnector(){
-        this.type= com.github.paohaijiao.enums.ConnectorType.CURL;
+        this.type= ConnectorTypeEnums.CURL;
     }
 }

@@ -16,7 +16,7 @@
 package com.github.paohaijiao.connector.file;
 
 import com.github.paohaijiao.connector.SqlConnector;
-import com.github.paohaijiao.enums.ConnectorType;
+import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import lombok.Data;
 
 /**
@@ -30,6 +30,6 @@ import lombok.Data;
 public class PropertiesFileConnector extends SqlConnector {
 
     public PropertiesFileConnector(){
-        this.type= ConnectorType.PROPERTIES;
+        this.type= ConnectorTypeEnums.PROPERTIES;
     }
 }

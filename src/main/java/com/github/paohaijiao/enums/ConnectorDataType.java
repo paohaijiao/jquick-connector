@@ -22,13 +22,20 @@ import java.util.Date;
 public enum ConnectorDataType {
 
     Integer("Integer", Integer.class),
+
     Long("Long", Long.class),
+
     Float("Float", Float.class),
+
     Double("Double", Double.class),
+
     String("String", String.class),
+
     Boolean("Boolean", Boolean.class),
+
     Date("Date", Date.class),
-   ;
+
+    ;
     private String code;
 
     private Class<?> clazz;

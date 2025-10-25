@@ -16,7 +16,7 @@
 package com.github.paohaijiao.connector.sql;
 
 import com.github.paohaijiao.connector.SqlConnector;
-import com.github.paohaijiao.enums.ConnectorType;
+import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import lombok.Data;
 
 /**
@@ -30,6 +30,6 @@ import lombok.Data;
 public class MySqlConnector extends SqlConnector {
 
     public MySqlConnector(){
-        this.type= ConnectorType.MYSQL;
+        this.type= ConnectorTypeEnums.MYSQL;
     }
 }

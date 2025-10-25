@@ -37,7 +37,7 @@ public class DataConvert {
     protected static JConsole console=new JConsole();
 
     @SuppressWarnings("unchecked")
-    protected  <T> T convertValue(Object value, Class<T> type) {
+    public  <T> T convertValue(Object value, Class<T> type) {
         if (value == null) {
             return null;
         }

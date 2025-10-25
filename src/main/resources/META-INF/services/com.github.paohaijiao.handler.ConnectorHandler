@@ -12,3 +12,6 @@ com.github.paohaijiao.handler.database.OracleConnectorHandler
 com.github.paohaijiao.handler.database.PostgreSQLConnectorHandler
 com.github.paohaijiao.handler.database.SQliteConnectorHandler
 com.github.paohaijiao.handler.database.SysbaseConnectorHandler
+
+
+com.github.paohaijiao.handler.file.CsvConnectorHandler

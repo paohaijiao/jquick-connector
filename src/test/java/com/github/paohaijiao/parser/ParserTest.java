@@ -53,6 +53,27 @@ public class ParserTest {
         dataSet.getRows().forEach(row -> {
             System.out.println("created_time: " + row.get("created_time") + ", title: " + row.getString("title"));
         });
-
+    }
+    @Test
+    public  void testCsvl() throws Exception {
+        JContext context = new JContext();
+        context.put("user", "test");
+        String query="SELECT\n" +
+                "    field(id)->id:Long,\n" +
+                "    field(name)->name:String,\n" +
+                "    field(age)->age:Integer,\n" +
+                "    field(salary)->salary:Double,\n" +
+                "    field(is_active)->is_active:Boolean,\n" +
+                "    field(birth_date)->birth_date:Date \n"+
+                "FROM CSV(\n" +
+                "    filepath: 'D:\\idea\\jquick-connector\\src\\main\\resources\\data.csv',\n" +
+                "    split: ',',\n" +
+                "    header: 'true'"+
+                ")";
+        ConnectorFactory factory = new ConnectorFactory();
+        DataSet dataSet = factory.executeQuery(query);
+        dataSet.getRows().forEach(row -> {
+            System.out.println("id: " + row.get("id") + ", name: " + row.getString("name"));
+        });
     }
 }

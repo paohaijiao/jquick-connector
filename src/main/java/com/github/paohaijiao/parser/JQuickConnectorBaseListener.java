@@ -101,6 +101,18 @@ public class JQuickConnectorBaseListener implements JQuickConnectorListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterConnectorCode(JQuickConnectorParser.ConnectorCodeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConnectorCode(JQuickConnectorParser.ConnectorCodeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterProperty(JQuickConnectorParser.PropertyContext ctx) { }
 	/**
 	 * {@inheritDoc}

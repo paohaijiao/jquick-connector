@@ -23,18 +23,16 @@ public class JQuickConnectorParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, FIELD=3, PATH=4, INTEGER=5, LONG=6, FLOAT=7, DOUBLE=8, 
 		STRING=9, BOOLEAN=10, DATE=11, SELECT=12, FROM=13, NULL_VALUE=14, NULL=15, 
-		BOOLEAN_VALUE=16, TRUE=17, FALSE=18, CONNECTOR_CODE=19, CSV=20, EXCEL=21, 
-		MYSQL=22, ORACLE=23, KINGBASE=24, CURL=25, PROPERTY_NAME=26, VAR_NAME=27, 
-		STRING_VALUE=28, NUMBER_VALUE=29, ARROW=30, COMMA=31, LPAREN=32, RPAREN=33, 
-		COLON=34, WS=35;
+		BOOLEAN_VALUE=16, TRUE=17, FALSE=18, PROPERTY_NAME=19, VAR=20, STRING_VALUE=21, 
+		NUMBER_VALUE=22, ARROW=23, COMMA=24, LPAREN=25, RPAREN=26, COLON=27, WS=28;
 	public static final int
 		RULE_select = 0, RULE_fieldMapping = 1, RULE_dataType = 2, RULE_targetField = 3, 
-		RULE_processor = 4, RULE_connector = 5, RULE_property = 6, RULE_value = 7, 
-		RULE_columnName = 8, RULE_var = 9;
+		RULE_processor = 4, RULE_connector = 5, RULE_connectorCode = 6, RULE_property = 7, 
+		RULE_value = 8, RULE_columnName = 9, RULE_var = 10;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"select", "fieldMapping", "dataType", "targetField", "processor", "connector", 
-			"property", "value", "columnName", "var"
+			"connectorCode", "property", "value", "columnName", "var"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -42,8 +40,8 @@ public class JQuickConnectorParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'{'", "'}'", null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, "'->'", "','", "'('", "')'", "':'"
+			null, null, null, null, null, null, null, null, null, null, null, "'->'", 
+			"','", "'('", "')'", "':'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -51,8 +49,7 @@ public class JQuickConnectorParser extends Parser {
 		return new String[] {
 			null, null, null, "FIELD", "PATH", "INTEGER", "LONG", "FLOAT", "DOUBLE", 
 			"STRING", "BOOLEAN", "DATE", "SELECT", "FROM", "NULL_VALUE", "NULL", 
-			"BOOLEAN_VALUE", "TRUE", "FALSE", "CONNECTOR_CODE", "CSV", "EXCEL", "MYSQL", 
-			"ORACLE", "KINGBASE", "CURL", "PROPERTY_NAME", "VAR_NAME", "STRING_VALUE", 
+			"BOOLEAN_VALUE", "TRUE", "FALSE", "PROPERTY_NAME", "VAR", "STRING_VALUE", 
 			"NUMBER_VALUE", "ARROW", "COMMA", "LPAREN", "RPAREN", "COLON", "WS"
 		};
 	}
@@ -151,31 +148,31 @@ public class JQuickConnectorParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(20);
+			setState(22);
 			match(SELECT);
-			setState(21);
+			setState(23);
 			fieldMapping();
-			setState(26);
+			setState(28);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==COMMA) {
 				{
 				{
-				setState(22);
+				setState(24);
 				match(COMMA);
-				setState(23);
+				setState(25);
 				fieldMapping();
 				}
 				}
-				setState(28);
+				setState(30);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(29);
-			match(FROM);
-			setState(30);
-			connector();
 			setState(31);
+			match(FROM);
+			setState(32);
+			connector();
+			setState(33);
 			match(EOF);
 			}
 		}
@@ -228,16 +225,16 @@ public class JQuickConnectorParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(33);
-			processor();
-			setState(34);
-			match(ARROW);
 			setState(35);
+			processor();
+			setState(36);
+			match(ARROW);
+			setState(37);
 			targetField();
 			{
-			setState(36);
+			setState(38);
 			match(COLON);
-			setState(37);
+			setState(39);
 			dataType();
 			}
 			}
@@ -288,7 +285,7 @@ public class JQuickConnectorParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(39);
+			setState(41);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 4064L) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -341,7 +338,7 @@ public class JQuickConnectorParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(41);
+			setState(43);
 			columnName();
 			}
 		}
@@ -417,20 +414,20 @@ public class JQuickConnectorParser extends Parser {
 		ProcessorContext _localctx = new ProcessorContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_processor);
 		try {
-			setState(52);
+			setState(54);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case FIELD:
 				_localctx = new FieldProcessorContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(43);
-				match(FIELD);
-				setState(44);
-				match(LPAREN);
 				setState(45);
-				columnName();
+				match(FIELD);
 				setState(46);
+				match(LPAREN);
+				setState(47);
+				columnName();
+				setState(48);
 				match(RPAREN);
 				}
 				break;
@@ -438,13 +435,13 @@ public class JQuickConnectorParser extends Parser {
 				_localctx = new JsonPathProcessorContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(48);
-				match(PATH);
-				setState(49);
-				match(LPAREN);
 				setState(50);
-				match(STRING_VALUE);
+				match(PATH);
 				setState(51);
+				match(LPAREN);
+				setState(52);
+				match(STRING_VALUE);
+				setState(53);
 				match(RPAREN);
 				}
 				break;
@@ -465,7 +462,9 @@ public class JQuickConnectorParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ConnectorContext extends ParserRuleContext {
-		public TerminalNode CONNECTOR_CODE() { return getToken(JQuickConnectorParser.CONNECTOR_CODE, 0); }
+		public ConnectorCodeContext connectorCode() {
+			return getRuleContext(ConnectorCodeContext.class,0);
+		}
 		public TerminalNode LPAREN() { return getToken(JQuickConnectorParser.LPAREN, 0); }
 		public TerminalNode RPAREN() { return getToken(JQuickConnectorParser.RPAREN, 0); }
 		public List<PropertyContext> property() {
@@ -504,38 +503,81 @@ public class JQuickConnectorParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(54);
-			match(CONNECTOR_CODE);
-			setState(55);
+			setState(56);
+			connectorCode();
+			setState(57);
 			match(LPAREN);
-			setState(64);
+			setState(66);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==PROPERTY_NAME) {
 				{
-				setState(56);
+				setState(58);
 				property();
-				setState(61);
+				setState(63);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==COMMA) {
 					{
 					{
-					setState(57);
+					setState(59);
 					match(COMMA);
-					setState(58);
+					setState(60);
 					property();
 					}
 					}
-					setState(63);
+					setState(65);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 			}
 
-			setState(66);
+			setState(68);
 			match(RPAREN);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class ConnectorCodeContext extends ParserRuleContext {
+		public TerminalNode VAR() { return getToken(JQuickConnectorParser.VAR, 0); }
+		public ConnectorCodeContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_connectorCode; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof JQuickConnectorListener ) ((JQuickConnectorListener)listener).enterConnectorCode(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof JQuickConnectorListener ) ((JQuickConnectorListener)listener).exitConnectorCode(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof JQuickConnectorVisitor ) return ((JQuickConnectorVisitor<? extends T>)visitor).visitConnectorCode(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final ConnectorCodeContext connectorCode() throws RecognitionException {
+		ConnectorCodeContext _localctx = new ConnectorCodeContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_connectorCode);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(70);
+			match(VAR);
 			}
 		}
 		catch (RecognitionException re) {
@@ -577,15 +619,15 @@ public class JQuickConnectorParser extends Parser {
 
 	public final PropertyContext property() throws RecognitionException {
 		PropertyContext _localctx = new PropertyContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_property);
+		enterRule(_localctx, 14, RULE_property);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(68);
+			setState(72);
 			match(PROPERTY_NAME);
-			setState(69);
+			setState(73);
 			match(COLON);
-			setState(70);
+			setState(74);
 			value();
 			}
 		}
@@ -630,43 +672,43 @@ public class JQuickConnectorParser extends Parser {
 
 	public final ValueContext value() throws RecognitionException {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_value);
+		enterRule(_localctx, 16, RULE_value);
 		try {
-			setState(77);
+			setState(81);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case STRING_VALUE:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(72);
+				setState(76);
 				match(STRING_VALUE);
 				}
 				break;
 			case NUMBER_VALUE:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(73);
+				setState(77);
 				match(NUMBER_VALUE);
 				}
 				break;
 			case BOOLEAN_VALUE:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(74);
+				setState(78);
 				match(BOOLEAN_VALUE);
 				}
 				break;
 			case NULL_VALUE:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(75);
+				setState(79);
 				match(NULL_VALUE);
 				}
 				break;
 			case T__0:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(76);
+				setState(80);
 				var();
 				}
 				break;
@@ -687,7 +729,7 @@ public class JQuickConnectorParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ColumnNameContext extends ParserRuleContext {
-		public TerminalNode VAR_NAME() { return getToken(JQuickConnectorParser.VAR_NAME, 0); }
+		public TerminalNode VAR() { return getToken(JQuickConnectorParser.VAR, 0); }
 		public ColumnNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -709,12 +751,12 @@ public class JQuickConnectorParser extends Parser {
 
 	public final ColumnNameContext columnName() throws RecognitionException {
 		ColumnNameContext _localctx = new ColumnNameContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_columnName);
+		enterRule(_localctx, 18, RULE_columnName);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(79);
-			match(VAR_NAME);
+			setState(83);
+			match(VAR);
 			}
 		}
 		catch (RecognitionException re) {
@@ -730,7 +772,7 @@ public class JQuickConnectorParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class VarContext extends ParserRuleContext {
-		public TerminalNode VAR_NAME() { return getToken(JQuickConnectorParser.VAR_NAME, 0); }
+		public TerminalNode VAR() { return getToken(JQuickConnectorParser.VAR, 0); }
 		public VarContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -752,15 +794,15 @@ public class JQuickConnectorParser extends Parser {
 
 	public final VarContext var() throws RecognitionException {
 		VarContext _localctx = new VarContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_var);
+		enterRule(_localctx, 20, RULE_var);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(81);
+			setState(85);
 			match(T__0);
-			setState(82);
-			match(VAR_NAME);
-			setState(83);
+			setState(86);
+			match(VAR);
+			setState(87);
 			match(T__1);
 			}
 		}
@@ -776,54 +818,56 @@ public class JQuickConnectorParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001#V\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002\u0002"+
-		"\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002\u0005"+
-		"\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002\b\u0007"+
-		"\b\u0002\t\u0007\t\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0000\u0005"+
-		"\u0000\u0019\b\u0000\n\u0000\f\u0000\u001c\t\u0000\u0001\u0000\u0001\u0000"+
-		"\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
-		"\u0001\u0001\u0001\u0001\u0001\u0002\u0001\u0002\u0001\u0003\u0001\u0003"+
-		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
-		"\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u00045\b\u0004\u0001\u0005"+
-		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0005\u0005<\b\u0005"+
-		"\n\u0005\f\u0005?\t\u0005\u0003\u0005A\b\u0005\u0001\u0005\u0001\u0005"+
-		"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0007\u0001\u0007"+
-		"\u0001\u0007\u0001\u0007\u0001\u0007\u0003\u0007N\b\u0007\u0001\b\u0001"+
-		"\b\u0001\t\u0001\t\u0001\t\u0001\t\u0001\t\u0000\u0000\n\u0000\u0002\u0004"+
-		"\u0006\b\n\f\u000e\u0010\u0012\u0000\u0001\u0001\u0000\u0005\u000bS\u0000"+
-		"\u0014\u0001\u0000\u0000\u0000\u0002!\u0001\u0000\u0000\u0000\u0004\'"+
-		"\u0001\u0000\u0000\u0000\u0006)\u0001\u0000\u0000\u0000\b4\u0001\u0000"+
-		"\u0000\u0000\n6\u0001\u0000\u0000\u0000\fD\u0001\u0000\u0000\u0000\u000e"+
-		"M\u0001\u0000\u0000\u0000\u0010O\u0001\u0000\u0000\u0000\u0012Q\u0001"+
-		"\u0000\u0000\u0000\u0014\u0015\u0005\f\u0000\u0000\u0015\u001a\u0003\u0002"+
-		"\u0001\u0000\u0016\u0017\u0005\u001f\u0000\u0000\u0017\u0019\u0003\u0002"+
-		"\u0001\u0000\u0018\u0016\u0001\u0000\u0000\u0000\u0019\u001c\u0001\u0000"+
-		"\u0000\u0000\u001a\u0018\u0001\u0000\u0000\u0000\u001a\u001b\u0001\u0000"+
-		"\u0000\u0000\u001b\u001d\u0001\u0000\u0000\u0000\u001c\u001a\u0001\u0000"+
-		"\u0000\u0000\u001d\u001e\u0005\r\u0000\u0000\u001e\u001f\u0003\n\u0005"+
-		"\u0000\u001f \u0005\u0000\u0000\u0001 \u0001\u0001\u0000\u0000\u0000!"+
-		"\"\u0003\b\u0004\u0000\"#\u0005\u001e\u0000\u0000#$\u0003\u0006\u0003"+
-		"\u0000$%\u0005\"\u0000\u0000%&\u0003\u0004\u0002\u0000&\u0003\u0001\u0000"+
-		"\u0000\u0000\'(\u0007\u0000\u0000\u0000(\u0005\u0001\u0000\u0000\u0000"+
-		")*\u0003\u0010\b\u0000*\u0007\u0001\u0000\u0000\u0000+,\u0005\u0003\u0000"+
-		"\u0000,-\u0005 \u0000\u0000-.\u0003\u0010\b\u0000./\u0005!\u0000\u0000"+
-		"/5\u0001\u0000\u0000\u000001\u0005\u0004\u0000\u000012\u0005 \u0000\u0000"+
-		"23\u0005\u001c\u0000\u000035\u0005!\u0000\u00004+\u0001\u0000\u0000\u0000"+
-		"40\u0001\u0000\u0000\u00005\t\u0001\u0000\u0000\u000067\u0005\u0013\u0000"+
-		"\u00007@\u0005 \u0000\u00008=\u0003\f\u0006\u00009:\u0005\u001f\u0000"+
-		"\u0000:<\u0003\f\u0006\u0000;9\u0001\u0000\u0000\u0000<?\u0001\u0000\u0000"+
-		"\u0000=;\u0001\u0000\u0000\u0000=>\u0001\u0000\u0000\u0000>A\u0001\u0000"+
-		"\u0000\u0000?=\u0001\u0000\u0000\u0000@8\u0001\u0000\u0000\u0000@A\u0001"+
-		"\u0000\u0000\u0000AB\u0001\u0000\u0000\u0000BC\u0005!\u0000\u0000C\u000b"+
-		"\u0001\u0000\u0000\u0000DE\u0005\u001a\u0000\u0000EF\u0005\"\u0000\u0000"+
-		"FG\u0003\u000e\u0007\u0000G\r\u0001\u0000\u0000\u0000HN\u0005\u001c\u0000"+
-		"\u0000IN\u0005\u001d\u0000\u0000JN\u0005\u0010\u0000\u0000KN\u0005\u000e"+
-		"\u0000\u0000LN\u0003\u0012\t\u0000MH\u0001\u0000\u0000\u0000MI\u0001\u0000"+
-		"\u0000\u0000MJ\u0001\u0000\u0000\u0000MK\u0001\u0000\u0000\u0000ML\u0001"+
-		"\u0000\u0000\u0000N\u000f\u0001\u0000\u0000\u0000OP\u0005\u001b\u0000"+
-		"\u0000P\u0011\u0001\u0000\u0000\u0000QR\u0005\u0001\u0000\u0000RS\u0005"+
-		"\u001b\u0000\u0000ST\u0005\u0002\u0000\u0000T\u0013\u0001\u0000\u0000"+
-		"\u0000\u0005\u001a4=@M";
+		"\u0004\u0001\u001cZ\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
+		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
+		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0001\u0000\u0001\u0000\u0001"+
+		"\u0000\u0001\u0000\u0005\u0000\u001b\b\u0000\n\u0000\f\u0000\u001e\t\u0000"+
+		"\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001"+
+		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0002\u0001\u0002"+
+		"\u0001\u0003\u0001\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u0004"+
+		"7\b\u0004\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005"+
+		"\u0005\u0005>\b\u0005\n\u0005\f\u0005A\t\u0005\u0003\u0005C\b\u0005\u0001"+
+		"\u0005\u0001\u0005\u0001\u0006\u0001\u0006\u0001\u0007\u0001\u0007\u0001"+
+		"\u0007\u0001\u0007\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0003\bR\b"+
+		"\b\u0001\t\u0001\t\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0000\u0000"+
+		"\u000b\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0000\u0001"+
+		"\u0001\u0000\u0005\u000bV\u0000\u0016\u0001\u0000\u0000\u0000\u0002#\u0001"+
+		"\u0000\u0000\u0000\u0004)\u0001\u0000\u0000\u0000\u0006+\u0001\u0000\u0000"+
+		"\u0000\b6\u0001\u0000\u0000\u0000\n8\u0001\u0000\u0000\u0000\fF\u0001"+
+		"\u0000\u0000\u0000\u000eH\u0001\u0000\u0000\u0000\u0010Q\u0001\u0000\u0000"+
+		"\u0000\u0012S\u0001\u0000\u0000\u0000\u0014U\u0001\u0000\u0000\u0000\u0016"+
+		"\u0017\u0005\f\u0000\u0000\u0017\u001c\u0003\u0002\u0001\u0000\u0018\u0019"+
+		"\u0005\u0018\u0000\u0000\u0019\u001b\u0003\u0002\u0001\u0000\u001a\u0018"+
+		"\u0001\u0000\u0000\u0000\u001b\u001e\u0001\u0000\u0000\u0000\u001c\u001a"+
+		"\u0001\u0000\u0000\u0000\u001c\u001d\u0001\u0000\u0000\u0000\u001d\u001f"+
+		"\u0001\u0000\u0000\u0000\u001e\u001c\u0001\u0000\u0000\u0000\u001f \u0005"+
+		"\r\u0000\u0000 !\u0003\n\u0005\u0000!\"\u0005\u0000\u0000\u0001\"\u0001"+
+		"\u0001\u0000\u0000\u0000#$\u0003\b\u0004\u0000$%\u0005\u0017\u0000\u0000"+
+		"%&\u0003\u0006\u0003\u0000&\'\u0005\u001b\u0000\u0000\'(\u0003\u0004\u0002"+
+		"\u0000(\u0003\u0001\u0000\u0000\u0000)*\u0007\u0000\u0000\u0000*\u0005"+
+		"\u0001\u0000\u0000\u0000+,\u0003\u0012\t\u0000,\u0007\u0001\u0000\u0000"+
+		"\u0000-.\u0005\u0003\u0000\u0000./\u0005\u0019\u0000\u0000/0\u0003\u0012"+
+		"\t\u000001\u0005\u001a\u0000\u000017\u0001\u0000\u0000\u000023\u0005\u0004"+
+		"\u0000\u000034\u0005\u0019\u0000\u000045\u0005\u0015\u0000\u000057\u0005"+
+		"\u001a\u0000\u00006-\u0001\u0000\u0000\u000062\u0001\u0000\u0000\u0000"+
+		"7\t\u0001\u0000\u0000\u000089\u0003\f\u0006\u00009B\u0005\u0019\u0000"+
+		"\u0000:?\u0003\u000e\u0007\u0000;<\u0005\u0018\u0000\u0000<>\u0003\u000e"+
+		"\u0007\u0000=;\u0001\u0000\u0000\u0000>A\u0001\u0000\u0000\u0000?=\u0001"+
+		"\u0000\u0000\u0000?@\u0001\u0000\u0000\u0000@C\u0001\u0000\u0000\u0000"+
+		"A?\u0001\u0000\u0000\u0000B:\u0001\u0000\u0000\u0000BC\u0001\u0000\u0000"+
+		"\u0000CD\u0001\u0000\u0000\u0000DE\u0005\u001a\u0000\u0000E\u000b\u0001"+
+		"\u0000\u0000\u0000FG\u0005\u0014\u0000\u0000G\r\u0001\u0000\u0000\u0000"+
+		"HI\u0005\u0013\u0000\u0000IJ\u0005\u001b\u0000\u0000JK\u0003\u0010\b\u0000"+
+		"K\u000f\u0001\u0000\u0000\u0000LR\u0005\u0015\u0000\u0000MR\u0005\u0016"+
+		"\u0000\u0000NR\u0005\u0010\u0000\u0000OR\u0005\u000e\u0000\u0000PR\u0003"+
+		"\u0014\n\u0000QL\u0001\u0000\u0000\u0000QM\u0001\u0000\u0000\u0000QN\u0001"+
+		"\u0000\u0000\u0000QO\u0001\u0000\u0000\u0000QP\u0001\u0000\u0000\u0000"+
+		"R\u0011\u0001\u0000\u0000\u0000ST\u0005\u0014\u0000\u0000T\u0013\u0001"+
+		"\u0000\u0000\u0000UV\u0005\u0001\u0000\u0000VW\u0005\u0014\u0000\u0000"+
+		"WX\u0005\u0002\u0000\u0000X\u0015\u0001\u0000\u0000\u0000\u0005\u001c"+
+		"6?BQ";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

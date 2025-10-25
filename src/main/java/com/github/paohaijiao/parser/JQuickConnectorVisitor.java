@@ -55,6 +55,12 @@ public interface JQuickConnectorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConnector(JQuickConnectorParser.ConnectorContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JQuickConnectorParser#connectorCode}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConnectorCode(JQuickConnectorParser.ConnectorCodeContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link JQuickConnectorParser#property}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

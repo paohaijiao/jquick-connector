@@ -84,9 +84,9 @@ public class JQuickConnectorCommonVisitor  extends JQuickConnectorCoreVisitor {
     @Override
     public ConnectorFieldProcessorHolder visitFieldProcessor(JQuickConnectorParser.FieldProcessorContext ctx) {
         JAssert.notNull(ctx.columnName(),"the columnName not null");
-        JAssert.notNull(ctx.columnName().VAR_NAME(),"the var Name not null");
+        JAssert.notNull(ctx.columnName().VAR(),"the var Name not null");
         ConnectorFieldProcessorHolder connectorFieldProcessorHolder = new ConnectorFieldProcessorHolder();
-        String column=ctx.columnName().VAR_NAME().getText();
+        String column=ctx.columnName().VAR().getText();
         connectorFieldProcessorHolder.setValue(column);
         connectorFieldProcessorHolder.setProcessor(new ConnectorFieldProcessor());
         return connectorFieldProcessorHolder;
@@ -103,8 +103,8 @@ public class JQuickConnectorCommonVisitor  extends JQuickConnectorCoreVisitor {
 
     @Override
     public ConnectorHolder visitConnector(JQuickConnectorParser.ConnectorContext ctx) {
-        JAssert.notNull(ctx.CONNECTOR_CODE(),"connector type require not null");
-        ConnectorTypeEnums type= ConnectorTypeEnums.codeOf(ctx.CONNECTOR_CODE().getText());
+        JAssert.notNull(ctx.connectorCode(),"connector type require not null");
+        ConnectorTypeEnums type= ConnectorTypeEnums.codeOf(ctx.connectorCode().getText());
         JAssert.notNull(type,"connector type not validate");
         ConnectorHolder connectorHolder=new ConnectorHolder();
         connectorHolder.setType(type.getCode());
@@ -150,13 +150,13 @@ public class JQuickConnectorCommonVisitor  extends JQuickConnectorCoreVisitor {
     }
     @Override
     public String visitColumnName(JQuickConnectorParser.ColumnNameContext ctx) {
-        JAssert.notNull(ctx.VAR_NAME(),"column Name require not null");
-        return ctx.VAR_NAME().getText();
+        JAssert.notNull(ctx.VAR(),"column Name require not null");
+        return ctx.VAR().getText();
     }
     @Override
     public Object visitVar(JQuickConnectorParser.VarContext ctx) {
-        JAssert.notNull(ctx.VAR_NAME(),"var Name require not null");
-        String key=ctx.VAR_NAME().getText();
+        JAssert.notNull(ctx.VAR(),"var Name require not null");
+        String key=ctx.VAR().getText();
         JAssert.isFalse(context.containsKey(key),"the variable["+key+"]require not null");
         return context.get(key);
     }

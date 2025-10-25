@@ -67,6 +67,13 @@ public class JQuickConnectorBaseVisitor<T> extends AbstractParseTreeVisitor<T> i
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitConnectorCode(JQuickConnectorParser.ConnectorCodeContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitProperty(JQuickConnectorParser.PropertyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

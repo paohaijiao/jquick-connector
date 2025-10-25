@@ -73,15 +73,12 @@ public class DataSet {
     }
 
     public DataSet map(Function<Row, Row> mapper) {
-        List<Row> mapped = rows.stream()
-                .map(mapper)
-                .collect(Collectors.toList());
+        List<Row> mapped = rows.stream().map(mapper).collect(Collectors.toList());
         return new DataSet(columns, mapped);
     }
 
     public <T> Stream<T> mapToColumn(Function<Object, T> mapper, String columnName) {
-        return rows.stream()
-                .map(row -> mapper.apply(row.get(columnName)));
+        return rows.stream().map(row -> mapper.apply(row.get(columnName)));
     }
     public static class Builder {
         private final List<ColumnMeta> columns = new ArrayList<>();

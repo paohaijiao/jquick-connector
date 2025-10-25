@@ -18,13 +18,14 @@ public abstract class AbsDatabaseConnectorBaseHandler extends AbsConnectorBaseHa
     private static final  String username="username";
 
     private static final  String password="password";
+
     private static final  String sql="sql";
     /**
      *
      * @param config
      * @return
      */
-    public JSqlConnectionFactory doConnection(ConnectorBaseConfig config){
+    public ResultSet doResultSet(ConnectorBaseConfig config){
         String connectorDriverClass =config.getProperty(driver,String.class);
         JAssert.notEmptyStr(connectorDriverClass,"driver class require not null");
         String connectorUrl=config.getProperty(url,String.class);

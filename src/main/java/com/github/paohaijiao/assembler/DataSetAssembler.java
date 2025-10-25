@@ -107,7 +107,6 @@ public class DataSetAssembler {
         for (List<Row> rows : rowsList) {
             dataSets.add(convert(rows, fieldMappings));
         }
-
         return dataSets;
     }
 }

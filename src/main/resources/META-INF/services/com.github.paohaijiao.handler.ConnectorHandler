@@ -1,1 +1,14 @@
-com.github.paohaijiao.handler.impl.MySqlConnectorHandler
+com.github.paohaijiao.handler.database.ClickHouseConnectorHandler
+com.github.paohaijiao.handler.database.DaMengConnectorHandler
+com.github.paohaijiao.handler.database.DB2ConnectorHandler
+com.github.paohaijiao.handler.database.DerbyConnectorHandler
+com.github.paohaijiao.handler.database.H2ConnectorHandler
+com.github.paohaijiao.handler.database.HiveConnectorHandler
+com.github.paohaijiao.handler.database.ImpalaConnectorHandler
+com.github.paohaijiao.handler.database.InfomixConnectorHandler
+com.github.paohaijiao.handler.database.KingBaseConnectorHandler
+com.github.paohaijiao.handler.database.MySqlConnectorHandler
+com.github.paohaijiao.handler.database.OracleConnectorHandler
+com.github.paohaijiao.handler.database.PostgreSQLConnectorHandler
+com.github.paohaijiao.handler.database.SQliteConnectorHandler
+com.github.paohaijiao.handler.database.SysbaseConnectorHandler

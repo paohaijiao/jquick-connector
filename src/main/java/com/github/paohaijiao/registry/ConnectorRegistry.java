@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
  * @since 2025/10/25
  */
 public class ConnectorRegistry {
+
     public static JConsole console=new JConsole();
 
     private static final Map<String, ConnectorMetadata> CONNECTOR_METADATA_MAP = new ConcurrentHashMap<>();

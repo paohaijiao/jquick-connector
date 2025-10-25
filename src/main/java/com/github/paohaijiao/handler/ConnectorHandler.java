@@ -15,15 +15,15 @@
  */
 package com.github.paohaijiao.handler;
 
-import com.github.paohaijiao.config.Configuration;
 import com.github.paohaijiao.dataset.Row;
+import com.github.paohaijiao.query.ConnectorParsedQuery;
 
 import java.util.List;
 
 public interface ConnectorHandler {
 
 
-    List<Row> buildRow(Configuration config);
+    List<Row> buildRow(ConnectorParsedQuery query);
 
     String getType();
 }

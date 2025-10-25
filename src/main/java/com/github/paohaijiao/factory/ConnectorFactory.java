@@ -64,20 +64,18 @@ public class ConnectorFactory {
      * 执行查询并返回DataSet
      */
     public DataSet executeQuery(String query) {
-        ConnectorParsedQuery parsedQuery = queryParser.parse(query);
-        ConnectorHandler connector = ConnectorRegistry.getConnector(parsedQuery.getConnectorType());
+        ConnectorParsedQuery connectorParsedQuery = queryParser.parse(query);
+        ConnectorHandler connector = ConnectorRegistry.getConnector(connectorParsedQuery.getConnectorType());
         if (connector == null) {
-            throw new IllegalArgumentException("unsupported connector type: " + parsedQuery.getConnectorType());
+            throw new IllegalArgumentException("unsupported connector type: " + connectorParsedQuery.getConnectorType());
         }
         ConnectorTypeFactory connectorTypeFactory=ConnectorTypeFactory.getInstance();
-        boolean exists=connectorTypeFactory.containsType(parsedQuery.getConnectorType());
+        boolean exists=connectorTypeFactory.containsType(connectorParsedQuery.getConnectorType());
         if(!exists){
-            throw new IllegalArgumentException("connector type: " + parsedQuery.getConnectorType()+" does not exist");
+            throw new IllegalArgumentException("connector type: " + connectorParsedQuery.getConnectorType()+" does not exist");
         }
-        ConnectorConfiguration config = new ConnectorConfiguration();
-        parsedQuery.getConnectorProperties().forEach(config::setProperty);
-        List<Row> rows = connector.buildRow(config);
-        DataSet rawDataSet=DataSetAssembler.convert(rows,parsedQuery.getFieldMappings());
+        List<Row> rows = connector.buildRow(connectorParsedQuery);
+        DataSet rawDataSet=DataSetAssembler.convert(rows,connectorParsedQuery.getFieldMappings());
         return rawDataSet;
     }
 

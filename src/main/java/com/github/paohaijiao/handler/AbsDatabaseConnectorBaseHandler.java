@@ -2,8 +2,10 @@ package com.github.paohaijiao.handler;
 
 
 import com.github.paohaijiao.config.Configuration;
+import com.github.paohaijiao.config.ConnectorConfiguration;
 import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.exception.JAssert;
+import com.github.paohaijiao.query.ConnectorParsedQuery;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -42,11 +44,13 @@ public abstract class AbsDatabaseConnectorBaseHandler extends AbsConnectorBaseHa
 
     /**
      *
-     * @param config
+     * @param query
      * @return
      */
     @Override
-    public List<Row> buildRow(Configuration config){
+    public List<Row> buildRow(ConnectorParsedQuery query){
+        ConnectorConfiguration config = new ConnectorConfiguration();
+        query.getConnectorProperties().forEach(config::setProperty);
         List<Row> rows = new ArrayList<>();
         Connection connection = doConnection(config);
         JAssert.notNull(connection,"connection is null");

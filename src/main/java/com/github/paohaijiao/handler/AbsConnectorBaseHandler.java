@@ -1,8 +1,8 @@
 package com.github.paohaijiao.handler;
 
-import com.github.paohaijiao.data.ColumnMeta;
-import com.github.paohaijiao.data.DataSet;
-import com.github.paohaijiao.data.Row;
+import com.github.paohaijiao.dataset.ColumnMeta;
+import com.github.paohaijiao.dataset.DataSet;
+import com.github.paohaijiao.dataset.Row;
 import java.util.List;
 
 public abstract class AbsConnectorBaseHandler implements ConnectorHandler {

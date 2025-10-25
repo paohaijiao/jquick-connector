@@ -1,10 +1,9 @@
 package com.github.paohaijiao.handler;
 
 
-import com.github.paohaijiao.config.ConnectorBaseConfig;
-import com.github.paohaijiao.connection.JSqlConnectionFactory;
-import com.github.paohaijiao.data.DataSet;
-import com.github.paohaijiao.data.Row;
+import com.github.paohaijiao.config.ConnectorConfiguration;
+import com.github.paohaijiao.dataset.DataSet;
+import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.exception.JAssert;
 
 import java.sql.*;
@@ -25,7 +24,7 @@ public abstract class AbsDatabaseConnectorBaseHandler extends AbsConnectorBaseHa
      * @param config
      * @return
      */
-    public ResultSet doResultSet(ConnectorBaseConfig config){
+    public ResultSet doResultSet(ConnectorConfiguration config){
         String connectorDriverClass =config.getProperty(driver,String.class);
         JAssert.notEmptyStr(connectorDriverClass,"driver class require not null");
         String connectorUrl=config.getProperty(url,String.class);

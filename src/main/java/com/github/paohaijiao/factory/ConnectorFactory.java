@@ -15,10 +15,10 @@
  */
 package com.github.paohaijiao.factory;
 
-import com.github.paohaijiao.config.ConnectorBaseConfig;
-import com.github.paohaijiao.data.ColumnMeta;
-import com.github.paohaijiao.data.DataSet;
-import com.github.paohaijiao.data.Row;
+import com.github.paohaijiao.config.ConnectorConfiguration;
+import com.github.paohaijiao.dataset.ColumnMeta;
+import com.github.paohaijiao.dataset.DataSet;
+import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.field.ConnectorProcessor;
 import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
 import com.github.paohaijiao.param.JContext;
@@ -62,7 +62,7 @@ public class ConnectorFactory {
         if (connector == null) {
             throw new IllegalArgumentException("Unsupported connector type: " + parsedQuery.getConnectorType());
         }
-        ConnectorBaseConfig config = new ConnectorBaseConfig();
+        ConnectorConfiguration config = new ConnectorConfiguration();
         parsedQuery.getConnectorProperties().forEach(config::setProperty);
         DataSet rawDataSet = connector.execute(config);
         return transformDataSet(rawDataSet, parsedQuery.getFieldMappings());

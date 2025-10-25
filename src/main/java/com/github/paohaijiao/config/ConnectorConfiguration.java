@@ -28,7 +28,7 @@ import java.util.Map;
  * @since 2025/10/21
  */
 @Data
-public class ConnectorBaseConfig implements ConnectorConfig {
+public class ConnectorConfiguration implements Configuration {
 
     private Map<String, Object> properties = new HashMap<>();
 

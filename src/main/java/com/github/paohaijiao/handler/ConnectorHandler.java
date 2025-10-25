@@ -15,13 +15,13 @@
  */
 package com.github.paohaijiao.handler;
 
-import com.github.paohaijiao.config.ConnectorConfig;
-import com.github.paohaijiao.data.DataSet;
+import com.github.paohaijiao.config.Configuration;
+import com.github.paohaijiao.dataset.DataSet;
 
 public interface ConnectorHandler {
 
 
-    DataSet execute(ConnectorConfig config);
+    DataSet execute(Configuration config);
 
     String getType();
 }

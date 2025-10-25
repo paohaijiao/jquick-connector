@@ -1,6 +1,6 @@
 package com.github.paohaijiao.parser;
 
-import com.github.paohaijiao.data.DataSet;
+import com.github.paohaijiao.dataset.DataSet;
 import com.github.paohaijiao.executor.JQuickConnectorExecutor;
 import com.github.paohaijiao.factory.ConnectorFactory;
 import com.github.paohaijiao.param.JContext;

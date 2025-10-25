@@ -13,7 +13,7 @@
  *
  * Copyright (c) [2025-2099] Martin (goudingcheng@gmail.com)
  */
-package com.github.paohaijiao.data;
+package com.github.paohaijiao.dataset;
 
 import java.util.Collection;
 import java.util.HashMap;

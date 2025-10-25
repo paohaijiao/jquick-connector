@@ -13,13 +13,29 @@
  *
  * Copyright (c) [2025-2099] Martin (goudingcheng@gmail.com)
  */
-package com.github.paohaijiao.config;
+package com.github.paohaijiao.dataset;
 
-public interface ConnectorConfig {
+import lombok.Getter;
 
-    String getProperty(String key);
+/**
+ * packageName com.github.paohaijiao.dataset
+ *
+ * @author Martin
+ * @version 1.0.0
+ * @since 2025/8/13
+ */
+@Getter
+public class ColumnMeta {
 
-    <T> T getProperty(String key, Class<T> type);
+    private final String name;
 
-    boolean hasProperty(String key);
+    private final Class<?> type;
+
+    private final String source;
+
+    public ColumnMeta(String name, Class<?> type, String source) {
+        this.name = name;
+        this.type = type;
+        this.source = source;
+    }
 }

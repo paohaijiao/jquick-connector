@@ -15,6 +15,7 @@
  */
 package com.github.paohaijiao.dataset;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -181,6 +182,17 @@ public class Row implements Map<String, Object> {
      */
     public Date getDate(String columnName) {
         return (Date) data.get(columnName);
+    }
+    public Date getDate(String columnName,String format) {
+        String value=(String) data.get(columnName);
+        SimpleDateFormat sdf=new SimpleDateFormat(format);
+        try {
+            Date date=sdf.parse(value);
+            return date;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

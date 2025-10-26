@@ -119,9 +119,9 @@ public class JQuickConnectorCommonVisitor  extends JQuickConnectorCoreVisitor {
 
     @Override
     public Map<String, Object> visitProperty(JQuickConnectorParser.PropertyContext ctx) {
-        JAssert.notNull(ctx.PROPERTY_NAME(),"property name require not null");
+        JAssert.notNull(ctx.VAR(),"property name require not null");
         JAssert.notNull(ctx.value(),"property value require not null");
-        String name=ctx.PROPERTY_NAME().getText();
+        String name=ctx.VAR().getText();
         Object value=visitValue(ctx.value());
         Map<String, Object> map=new HashMap<>();
         map.put(name,value);

@@ -73,6 +73,7 @@ public class ConnectorTypeFactory {
         registerType(buildType("MYSQL", "MySQL", ConnectorCategory.DATABASE).withAliases("mysql", "mariadb").withDependencies("JDBC").withMetadata(new ConnectorTypeMetadata("8.0", "关系数据库", "MySQL数据库")).build());
         registerType(buildType("CLICKHOUSE", "ClickHouse", ConnectorCategory.DATABASE).withAliases("clickhouse", "ch").withDependencies("JDBC").withMetadata(new ConnectorTypeMetadata("22.0", "列式数据库", "ClickHouse分析型数据库")).build());
         registerType(buildType("KAFKA", "Kafka", ConnectorCategory.MESSAGE_QUEUE).withAliases("kafka").withDependencies("JavaClient").withMetadata(new ConnectorTypeMetadata("3.0", "消息系统", "Apache Kafka分布式流平台")).build());
+        registerType(buildType("JSON", "JSON", ConnectorCategory.MESSAGE_QUEUE).withAliases("json").withDependencies("Json").withMetadata(new ConnectorTypeMetadata("3.0", "文件", "Json")).build());
     }
 
     /**

@@ -22,8 +22,8 @@ public class JQuickConnectorParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, FIELD=3, PATH=4, INTEGER=5, LONG=6, FLOAT=7, DOUBLE=8, 
-		STRING=9, BOOLEAN=10, DATE=11, SELECT=12, FROM=13, NULL_VALUE=14, NULL=15, 
-		BOOLEAN_VALUE=16, TRUE=17, FALSE=18, PROPERTY_NAME=19, VAR=20, STRING_VALUE=21, 
+		STRING=9, BOOLEAN=10, DATE=11, OBJECT=12, SELECT=13, FROM=14, NULL_VALUE=15, 
+		NULL=16, BOOLEAN_VALUE=17, TRUE=18, FALSE=19, VAR=20, STRING_VALUE=21, 
 		NUMBER_VALUE=22, ARROW=23, COMMA=24, LPAREN=25, RPAREN=26, COLON=27, WS=28;
 	public static final int
 		RULE_select = 0, RULE_fieldMapping = 1, RULE_dataType = 2, RULE_targetField = 3, 
@@ -48,9 +48,9 @@ public class JQuickConnectorParser extends Parser {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, "FIELD", "PATH", "INTEGER", "LONG", "FLOAT", "DOUBLE", 
-			"STRING", "BOOLEAN", "DATE", "SELECT", "FROM", "NULL_VALUE", "NULL", 
-			"BOOLEAN_VALUE", "TRUE", "FALSE", "PROPERTY_NAME", "VAR", "STRING_VALUE", 
-			"NUMBER_VALUE", "ARROW", "COMMA", "LPAREN", "RPAREN", "COLON", "WS"
+			"STRING", "BOOLEAN", "DATE", "OBJECT", "SELECT", "FROM", "NULL_VALUE", 
+			"NULL", "BOOLEAN_VALUE", "TRUE", "FALSE", "VAR", "STRING_VALUE", "NUMBER_VALUE", 
+			"ARROW", "COMMA", "LPAREN", "RPAREN", "COLON", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -259,6 +259,7 @@ public class JQuickConnectorParser extends Parser {
 		public TerminalNode STRING() { return getToken(JQuickConnectorParser.STRING, 0); }
 		public TerminalNode BOOLEAN() { return getToken(JQuickConnectorParser.BOOLEAN, 0); }
 		public TerminalNode DATE() { return getToken(JQuickConnectorParser.DATE, 0); }
+		public TerminalNode OBJECT() { return getToken(JQuickConnectorParser.OBJECT, 0); }
 		public DataTypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -287,7 +288,7 @@ public class JQuickConnectorParser extends Parser {
 			{
 			setState(41);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 4064L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 8160L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -510,7 +511,7 @@ public class JQuickConnectorParser extends Parser {
 			setState(66);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==PROPERTY_NAME) {
+			if (_la==VAR) {
 				{
 				setState(58);
 				property();
@@ -593,7 +594,7 @@ public class JQuickConnectorParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class PropertyContext extends ParserRuleContext {
-		public TerminalNode PROPERTY_NAME() { return getToken(JQuickConnectorParser.PROPERTY_NAME, 0); }
+		public TerminalNode VAR() { return getToken(JQuickConnectorParser.VAR, 0); }
 		public TerminalNode COLON() { return getToken(JQuickConnectorParser.COLON, 0); }
 		public ValueContext value() {
 			return getRuleContext(ValueContext.class,0);
@@ -624,7 +625,7 @@ public class JQuickConnectorParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(72);
-			match(PROPERTY_NAME);
+			match(VAR);
 			setState(73);
 			match(COLON);
 			setState(74);
@@ -833,41 +834,41 @@ public class JQuickConnectorParser extends Parser {
 		"\u0007\u0001\u0007\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0003\bR\b"+
 		"\b\u0001\t\u0001\t\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0000\u0000"+
 		"\u000b\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0000\u0001"+
-		"\u0001\u0000\u0005\u000bV\u0000\u0016\u0001\u0000\u0000\u0000\u0002#\u0001"+
+		"\u0001\u0000\u0005\fV\u0000\u0016\u0001\u0000\u0000\u0000\u0002#\u0001"+
 		"\u0000\u0000\u0000\u0004)\u0001\u0000\u0000\u0000\u0006+\u0001\u0000\u0000"+
 		"\u0000\b6\u0001\u0000\u0000\u0000\n8\u0001\u0000\u0000\u0000\fF\u0001"+
 		"\u0000\u0000\u0000\u000eH\u0001\u0000\u0000\u0000\u0010Q\u0001\u0000\u0000"+
 		"\u0000\u0012S\u0001\u0000\u0000\u0000\u0014U\u0001\u0000\u0000\u0000\u0016"+
-		"\u0017\u0005\f\u0000\u0000\u0017\u001c\u0003\u0002\u0001\u0000\u0018\u0019"+
+		"\u0017\u0005\r\u0000\u0000\u0017\u001c\u0003\u0002\u0001\u0000\u0018\u0019"+
 		"\u0005\u0018\u0000\u0000\u0019\u001b\u0003\u0002\u0001\u0000\u001a\u0018"+
 		"\u0001\u0000\u0000\u0000\u001b\u001e\u0001\u0000\u0000\u0000\u001c\u001a"+
 		"\u0001\u0000\u0000\u0000\u001c\u001d\u0001\u0000\u0000\u0000\u001d\u001f"+
 		"\u0001\u0000\u0000\u0000\u001e\u001c\u0001\u0000\u0000\u0000\u001f \u0005"+
-		"\r\u0000\u0000 !\u0003\n\u0005\u0000!\"\u0005\u0000\u0000\u0001\"\u0001"+
-		"\u0001\u0000\u0000\u0000#$\u0003\b\u0004\u0000$%\u0005\u0017\u0000\u0000"+
-		"%&\u0003\u0006\u0003\u0000&\'\u0005\u001b\u0000\u0000\'(\u0003\u0004\u0002"+
-		"\u0000(\u0003\u0001\u0000\u0000\u0000)*\u0007\u0000\u0000\u0000*\u0005"+
-		"\u0001\u0000\u0000\u0000+,\u0003\u0012\t\u0000,\u0007\u0001\u0000\u0000"+
-		"\u0000-.\u0005\u0003\u0000\u0000./\u0005\u0019\u0000\u0000/0\u0003\u0012"+
-		"\t\u000001\u0005\u001a\u0000\u000017\u0001\u0000\u0000\u000023\u0005\u0004"+
-		"\u0000\u000034\u0005\u0019\u0000\u000045\u0005\u0015\u0000\u000057\u0005"+
-		"\u001a\u0000\u00006-\u0001\u0000\u0000\u000062\u0001\u0000\u0000\u0000"+
-		"7\t\u0001\u0000\u0000\u000089\u0003\f\u0006\u00009B\u0005\u0019\u0000"+
-		"\u0000:?\u0003\u000e\u0007\u0000;<\u0005\u0018\u0000\u0000<>\u0003\u000e"+
-		"\u0007\u0000=;\u0001\u0000\u0000\u0000>A\u0001\u0000\u0000\u0000?=\u0001"+
-		"\u0000\u0000\u0000?@\u0001\u0000\u0000\u0000@C\u0001\u0000\u0000\u0000"+
-		"A?\u0001\u0000\u0000\u0000B:\u0001\u0000\u0000\u0000BC\u0001\u0000\u0000"+
-		"\u0000CD\u0001\u0000\u0000\u0000DE\u0005\u001a\u0000\u0000E\u000b\u0001"+
-		"\u0000\u0000\u0000FG\u0005\u0014\u0000\u0000G\r\u0001\u0000\u0000\u0000"+
-		"HI\u0005\u0013\u0000\u0000IJ\u0005\u001b\u0000\u0000JK\u0003\u0010\b\u0000"+
-		"K\u000f\u0001\u0000\u0000\u0000LR\u0005\u0015\u0000\u0000MR\u0005\u0016"+
-		"\u0000\u0000NR\u0005\u0010\u0000\u0000OR\u0005\u000e\u0000\u0000PR\u0003"+
-		"\u0014\n\u0000QL\u0001\u0000\u0000\u0000QM\u0001\u0000\u0000\u0000QN\u0001"+
-		"\u0000\u0000\u0000QO\u0001\u0000\u0000\u0000QP\u0001\u0000\u0000\u0000"+
-		"R\u0011\u0001\u0000\u0000\u0000ST\u0005\u0014\u0000\u0000T\u0013\u0001"+
-		"\u0000\u0000\u0000UV\u0005\u0001\u0000\u0000VW\u0005\u0014\u0000\u0000"+
-		"WX\u0005\u0002\u0000\u0000X\u0015\u0001\u0000\u0000\u0000\u0005\u001c"+
-		"6?BQ";
+		"\u000e\u0000\u0000 !\u0003\n\u0005\u0000!\"\u0005\u0000\u0000\u0001\""+
+		"\u0001\u0001\u0000\u0000\u0000#$\u0003\b\u0004\u0000$%\u0005\u0017\u0000"+
+		"\u0000%&\u0003\u0006\u0003\u0000&\'\u0005\u001b\u0000\u0000\'(\u0003\u0004"+
+		"\u0002\u0000(\u0003\u0001\u0000\u0000\u0000)*\u0007\u0000\u0000\u0000"+
+		"*\u0005\u0001\u0000\u0000\u0000+,\u0003\u0012\t\u0000,\u0007\u0001\u0000"+
+		"\u0000\u0000-.\u0005\u0003\u0000\u0000./\u0005\u0019\u0000\u0000/0\u0003"+
+		"\u0012\t\u000001\u0005\u001a\u0000\u000017\u0001\u0000\u0000\u000023\u0005"+
+		"\u0004\u0000\u000034\u0005\u0019\u0000\u000045\u0005\u0015\u0000\u0000"+
+		"57\u0005\u001a\u0000\u00006-\u0001\u0000\u0000\u000062\u0001\u0000\u0000"+
+		"\u00007\t\u0001\u0000\u0000\u000089\u0003\f\u0006\u00009B\u0005\u0019"+
+		"\u0000\u0000:?\u0003\u000e\u0007\u0000;<\u0005\u0018\u0000\u0000<>\u0003"+
+		"\u000e\u0007\u0000=;\u0001\u0000\u0000\u0000>A\u0001\u0000\u0000\u0000"+
+		"?=\u0001\u0000\u0000\u0000?@\u0001\u0000\u0000\u0000@C\u0001\u0000\u0000"+
+		"\u0000A?\u0001\u0000\u0000\u0000B:\u0001\u0000\u0000\u0000BC\u0001\u0000"+
+		"\u0000\u0000CD\u0001\u0000\u0000\u0000DE\u0005\u001a\u0000\u0000E\u000b"+
+		"\u0001\u0000\u0000\u0000FG\u0005\u0014\u0000\u0000G\r\u0001\u0000\u0000"+
+		"\u0000HI\u0005\u0014\u0000\u0000IJ\u0005\u001b\u0000\u0000JK\u0003\u0010"+
+		"\b\u0000K\u000f\u0001\u0000\u0000\u0000LR\u0005\u0015\u0000\u0000MR\u0005"+
+		"\u0016\u0000\u0000NR\u0005\u0011\u0000\u0000OR\u0005\u000f\u0000\u0000"+
+		"PR\u0003\u0014\n\u0000QL\u0001\u0000\u0000\u0000QM\u0001\u0000\u0000\u0000"+
+		"QN\u0001\u0000\u0000\u0000QO\u0001\u0000\u0000\u0000QP\u0001\u0000\u0000"+
+		"\u0000R\u0011\u0001\u0000\u0000\u0000ST\u0005\u0014\u0000\u0000T\u0013"+
+		"\u0001\u0000\u0000\u0000UV\u0005\u0001\u0000\u0000VW\u0005\u0014\u0000"+
+		"\u0000WX\u0005\u0002\u0000\u0000X\u0015\u0001\u0000\u0000\u0000\u0005"+
+		"\u001c6?BQ";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

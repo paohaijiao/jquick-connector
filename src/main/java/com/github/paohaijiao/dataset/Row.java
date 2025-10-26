@@ -183,6 +183,13 @@ public class Row implements Map<String, Object> {
     public Date getDate(String columnName) {
         return (Date) data.get(columnName);
     }
+    /**
+     * Gets the value for the specified column as a Date.
+     *
+     * @param columnName the column name
+     * @return the Date value, or null if the value is null
+     * @throws ClassCastException if the value is not a Date
+     */
     public Date getDate(String columnName,String format) {
         String value=(String) data.get(columnName);
         SimpleDateFormat sdf=new SimpleDateFormat(format);
@@ -193,6 +200,16 @@ public class Row implements Map<String, Object> {
             e.printStackTrace();
             return null;
         }
+    }
+    /**
+     * Gets the value for the specified column as a Object.
+     *
+     * @param columnName the column name
+     * @return the Object value, or null if the value is null
+     * @throws ClassCastException
+     */
+    public Object getObject(String columnName) {
+        return (Object) data.get(columnName);
     }
 
     @Override

@@ -1,0 +1,225 @@
+{
+  "company": {
+    "name": "科技先锋有限公司",
+    "founded_year": 2010,
+    "ceo": {
+      "id": "CEO001",
+      "name": "张明",
+      "age": 45,
+      "contact": {
+        "email": "ceo@techpioneer.com",
+        "phone": "+86-138-0011-2233",
+        "address": {
+          "country": "中国",
+          "province": "北京市",
+          "district": "海淀区",
+          "street": "中关村大街1号",
+          "zipcode": "100080"
+        }
+      },
+      "education": [
+        {
+          "degree": "博士",
+          "major": "计算机科学",
+          "university": "清华大学",
+          "graduation_year": 2005
+        },
+        {
+          "degree": "硕士",
+          "major": "工商管理",
+          "university": "北京大学",
+          "graduation_year": 2002
+        }
+      ]
+    },
+    "stock_info": {
+      "symbol": "TECH001",
+      "price": 156.78,
+      "currency": "CNY",
+      "market_cap": 5000000000,
+      "pe_ratio": 25.6,
+      "dividend_yield": 0.023,
+      "historical_prices": [
+        {"date": "2024-01-01", "price": 150.25},
+        {"date": "2024-01-02", "price": 152.80},
+        {"date": "2024-01-03", "price": 155.45},
+        {"date": "2024-01-04", "price": 153.90},
+        {"date": "2024-01-05", "price": 156.78}
+      ]
+    }
+  },
+  "departments": [
+    {
+      "id": "DEPT001",
+      "name": "研发部",
+      "manager": {
+        "employee_id": "EMP001",
+        "name": "李华",
+        "title": "技术总监",
+        "salary": 80000,
+        "skills": ["Java", "Python", "架构设计", "团队管理"]
+      },
+      "employees": [
+        {
+          "employee_id": "EMP002",
+          "name": "王小明",
+          "title": "高级工程师",
+          "salary": 50000,
+          "projects": [
+            {
+              "project_id": "PROJ001",
+              "name": "智能客服系统",
+              "status": "进行中",
+              "priority": "高",
+              "technologies": ["Spring Boot", "Vue.js", "MySQL", "Redis"],
+              "milestones": [
+                {"name": "需求分析", "completed": true, "completion_date": "2024-01-15"},
+                {"name": "系统设计", "completed": true, "completion_date": "2024-02-01"},
+                {"name": "开发阶段", "completed": false, "estimated_completion": "2024-04-30"}
+              ]
+            }
+          ],
+          "attendance": {
+            "2024-01": {"work_days": 22, "leave_days": 2, "overtime_hours": 15},
+            "2024-02": {"work_days": 20, "leave_days": 1, "overtime_hours": 10}
+          }
+        },
+        {
+          "employee_id": "EMP003",
+          "name": "赵雪",
+          "title": "前端工程师",
+          "salary": 45000,
+          "projects": [
+            {
+              "project_id": "PROJ002",
+              "name": "移动端应用",
+              "status": "已完成",
+              "priority": "中",
+              "technologies": ["React Native", "TypeScript", "Redux"],
+              "performance_metrics": {
+                "code_coverage": 85.5,
+                "bug_count": 12,
+                "user_satisfaction": 4.8
+              }
+            }
+          ]
+        }
+      ],
+      "budget": {
+        "annual_budget": 5000000,
+        "q1_used": 1200000,
+        "q2_used": 1100000,
+        "q3_planned": 1300000,
+        "q4_planned": 1400000
+      }
+    },
+    {
+      "id": "DEPT002",
+      "name": "销售部",
+      "manager": {
+        "employee_id": "EMP004",
+        "name": "刘强",
+        "title": "销售总监",
+        "salary": 75000,
+        "sales_target": 10000000
+      },
+      "employees": [
+        {
+          "employee_id": "EMP005",
+          "name": "陈露",
+          "title": "高级销售经理",
+          "salary": 60000,
+          "sales_records": [
+            {
+              "quarter": "2024-Q1",
+              "achievement": 3500000,
+              "clients": [
+                {"client_id": "CLI001", "company": "ABC集团", "contract_value": 1500000},
+                {"client_id": "CLI002", "company": "XYZ科技", "contract_value": 2000000}
+              ]
+            }
+          ],
+          "performance_bonus": 50000
+        }
+      ]
+    }
+  ],
+  "company_metrics": {
+    "financials": {
+      "revenue": {
+        "2023": 250000000,
+        "2024_projected": 300000000,
+        "growth_rate": 0.2
+      },
+      "profit": {
+        "2023": 50000000,
+        "2024_projected": 65000000,
+        "margin": 0.2167
+      },
+      "expenses": {
+        "rd": 50000000,
+        "marketing": 30000000,
+        "administration": 20000000,
+        "salaries": 80000000
+      }
+    },
+    "hr_metrics": {
+      "total_employees": 150,
+      "attrition_rate": 0.08,
+      "average_salary": 45000,
+      "department_distribution": {
+        "研发部": 60,
+        "销售部": 40,
+        "市场部": 20,
+        "人力资源": 10,
+        "财务部": 10,
+        "行政部": 10
+      }
+    },
+    "projects_summary": {
+      "total_projects": 15,
+      "completed": 8,
+      "in_progress": 5,
+      "on_hold": 2,
+      "success_rate": 0.85
+    }
+  },
+  "settings": {
+    "system_config": {
+      "timezone": "Asia/Shanghai",
+      "language": "zh-CN",
+      "currency": "CNY",
+      "date_format": "yyyy-MM-dd"
+    },
+    "features_enabled": {
+      "multi_tenant": true,
+      "api_rate_limiting": true,
+      "audit_logging": true,
+      "backup_automation": true
+    },
+    "security": {
+      "password_policy": {
+        "min_length": 8,
+        "require_uppercase": true,
+        "require_lowercase": true,
+        "require_numbers": true,
+        "require_special_chars": true,
+        "expiry_days": 90
+      },
+      "two_factor_auth": true,
+      "session_timeout": 1800
+    }
+  },
+  "metadata": {
+    "version": "2.1.0",
+    "last_updated": "2024-03-15T14:30:00Z",
+    "created_by": "system_admin",
+    "checksum": "a1b2c3d4e5f67890",
+    "tags": ["企业数据", "人力资源", "财务", "项目管理", "配置信息"],
+    "related_files": [
+      {"name": "员工手册.pdf", "size": 2048576, "type": "document"},
+      {"name": "财务报表.xlsx", "size": 1048576, "type": "spreadsheet"},
+      {"name": "组织架构图.png", "size": 524288, "type": "image"}
+    ]
+  }
+}

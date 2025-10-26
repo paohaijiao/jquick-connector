@@ -35,6 +35,8 @@ public enum ConnectorDataType {
 
     Date("Date", Date.class),
 
+    Object("Object", Object.class),
+
     ;
     private String code;
 

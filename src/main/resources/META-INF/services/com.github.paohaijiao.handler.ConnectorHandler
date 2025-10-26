@@ -16,3 +16,4 @@ com.github.paohaijiao.handler.database.SysbaseConnectorHandler
 
 com.github.paohaijiao.handler.file.CsvConnectorHandler
 com.github.paohaijiao.handler.file.ExcelConnectorHandler
+com.github.paohaijiao.handler.file.JsonConnectorHandler

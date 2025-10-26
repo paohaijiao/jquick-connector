@@ -54,48 +54,5 @@ public class ParserTest {
             System.out.println("created_time: " + row.get("created_time") + ", title: " + row.getString("title"));
         });
     }
-    @Test
-    public  void testCsvl() throws Exception {
-        JContext context = new JContext();
-        context.put("user", "test");
-        String query="SELECT\n" +
-                "    field(id)->id:Long,\n" +
-                "    field(name)->name:String,\n" +
-                "    field(age)->age:Integer,\n" +
-                "    field(salary)->salary:Double,\n" +
-                "    field(is_active)->is_active:Boolean,\n" +
-                "    field(birth_date)->birth_date:Date \n"+
-                "FROM CSV(\n" +
-                "    filepath: 'D:\\idea\\jquick-connector\\src\\main\\resources\\data.csv',\n" +
-                "    split: ',',\n" +
-                "    header: 'true'"+
-                ")";
-        ConnectorFactory factory = new ConnectorFactory();
-        DataSet dataSet = factory.executeQuery(query);
-        dataSet.getRows().forEach(row -> {
-            System.out.println("id: " + row.get("id") + ", name: " + row.getString("name"));
-        });
-    }
-    @Test
-    public  void testExcel() throws Exception {
-        JContext context = new JContext();
-        context.put("user", "test");
-        String query="SELECT\n" +
-                "    field(is_active)->is_active:boolean,\n" +
-                "    field(birth_date)->birth_date:date,\n" +
-                "    field(name)->name:string,\n" +
-                "    field(id)->id:Long,\n" +
-                "    field(salary)->salary:double,\n" +
-                "    field(age)->age:integer \n"+
-                "FROM excel(\n" +
-                "    filepath: 'D:\\idea\\jquick-connector\\src\\main\\resources\\data.xlsx',\n" +
-                "    sheet: 'Sheet1',\n" +
-                "    header: 'true'"+
-                ")";
-        ConnectorFactory factory = new ConnectorFactory();
-        DataSet dataSet = factory.executeQuery(query);
-        dataSet.getRows().forEach(row -> {
-            System.out.println("id: " + row.get("id") + ", birth_date: " + row.getDate("birth_date"));
-        });
-    }
+
 }

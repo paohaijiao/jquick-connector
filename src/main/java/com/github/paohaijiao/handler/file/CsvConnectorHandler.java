@@ -1,10 +1,8 @@
 package com.github.paohaijiao.handler.file;
+
 import com.github.paohaijiao.config.ConnectorConfiguration;
-import com.github.paohaijiao.convert.DataConvert;
 import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
-import com.github.paohaijiao.handler.AbsConnectorBaseHandler;
-import com.github.paohaijiao.handler.AbsDatabaseConnectorBaseHandler;
 import com.github.paohaijiao.handler.AbsFileConnectorBaseHandler;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 
@@ -17,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CsvConnectorHandler extends AbsFileConnectorBaseHandler {
+
     protected static final  String split="split";
 
     @Override

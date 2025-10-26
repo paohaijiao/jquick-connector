@@ -84,7 +84,7 @@ public enum ConnectorTypeEnums {
     }
     public static ConnectorTypeEnums codeOf(String code){
         for (ConnectorTypeEnums type : ConnectorTypeEnums.values()) {
-            if (type.getCode().equals(code)) {
+            if (type.getCode().equalsIgnoreCase(code)) {
                 return type;
             }
         }

@@ -16,6 +16,7 @@
 package com.github.paohaijiao.field;
 
 import com.github.paohaijiao.dataset.Row;
+import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
 
 /**
@@ -30,7 +31,12 @@ public class ConnectorJsonPathProcessor implements ConnectorProcessor {
 
     @Override
     public Object process(Row row, ConnectorFieldMappingHolder mapping) {
-        return null;
+        String sourceField = mapping.getSourceField();
+        boolean existsColumn=row.containsKey(sourceField);
+        JAssert.isTrue(existsColumn,"the coloumn[" +sourceField+"] not exists");
+        Object value = row.get(sourceField);
+        return value;
+
     }
 
     @Override

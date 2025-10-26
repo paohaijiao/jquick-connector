@@ -46,7 +46,7 @@ public enum ConnectorDataType {
     }
     public static ConnectorDataType codeOf(String code){
         for (ConnectorDataType type : ConnectorDataType.values()) {
-            if (type.getCode().equals(code)) {
+            if (type.getCode().equalsIgnoreCase(code)) {
                 return type;
             }
         }

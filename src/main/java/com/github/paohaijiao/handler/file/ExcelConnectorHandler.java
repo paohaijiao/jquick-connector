@@ -16,9 +16,14 @@
 package com.github.paohaijiao.handler.file;
 
 import com.github.paohaijiao.config.ConnectorConfiguration;
+import com.github.paohaijiao.enums.ConnectorCategory;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import com.github.paohaijiao.handler.AbsFileConnectorBaseHandler;
+import com.github.paohaijiao.meta.ConnectorType;
+import com.github.paohaijiao.meta.ConnectorTypeMetadata;
+import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
+import com.github.paohaijiao.registry.ConnectorTypeFactory;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -36,7 +41,7 @@ import java.util.List;
  * @version 1.0.0
  * @since 2025/10/26
  */
-public class ExcelConnectorHandler extends AbsFileConnectorBaseHandler {
+public class ExcelConnectorHandler extends AbsFileConnectorBaseHandler implements ConnectorTypeProvider {
 
     protected static final String sheet = "sheet";
 
@@ -307,11 +312,6 @@ public class ExcelConnectorHandler extends AbsFileConnectorBaseHandler {
     }
 
     @Override
-    public String getType() {
-        return ConnectorTypeEnums.EXCEL.getCode();
-    }
-
-    @Override
     public List<com.github.paohaijiao.dataset.Row> doParse(Path path, ConnectorParsedQuery query) {
         ConnectorConfiguration config = new ConnectorConfiguration();
         query.getConnectorProperties().forEach(config::setProperty);
@@ -325,4 +325,11 @@ public class ExcelConnectorHandler extends AbsFileConnectorBaseHandler {
         return new ArrayList<>();
     }
 
+    @Override
+    public ConnectorType getConnectorType() {
+        ConnectorTypeFactory connectorTypeFactory=ConnectorTypeFactory.getInstance();
+        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder=connectorTypeFactory.buildType(ConnectorTypeEnums.EXCEL.getCode(), ConnectorTypeEnums.EXCEL.getName(), ConnectorCategory.FILE);;
+        ConnectorType connectorType=connectorTypeBuilder.withAliases(ConnectorTypeEnums.EXCEL.getCode(), ConnectorTypeEnums.EXCEL.getMime()).withMetadata(new ConnectorTypeMetadata("1.0", ConnectorCategory.FILE.getDescription(),  ConnectorCategory.FILE.getDescription())).build();
+        return connectorType;
+    }
 }

@@ -17,6 +17,7 @@ package com.github.paohaijiao.handler;
 
 import com.github.paohaijiao.console.JConsole;
 import com.github.paohaijiao.dataset.Row;
+import com.github.paohaijiao.param.JContext;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 
 import java.util.List;
@@ -24,6 +25,8 @@ import java.util.List;
 public abstract class AbsConnectorBaseHandler implements ConnectorHandler {
 
     protected JConsole console=new JConsole();
+
+    protected JContext context=new JContext();
 
     /**
      * buildRow

@@ -2,9 +2,14 @@ package com.github.paohaijiao.handler.file;
 
 import com.github.paohaijiao.config.ConnectorConfiguration;
 import com.github.paohaijiao.dataset.Row;
+import com.github.paohaijiao.enums.ConnectorCategory;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import com.github.paohaijiao.handler.AbsFileConnectorBaseHandler;
+import com.github.paohaijiao.meta.ConnectorType;
+import com.github.paohaijiao.meta.ConnectorTypeMetadata;
+import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
+import com.github.paohaijiao.registry.ConnectorTypeFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,14 +19,10 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CsvConnectorHandler extends AbsFileConnectorBaseHandler {
+public class CsvConnectorHandler extends AbsFileConnectorBaseHandler implements ConnectorTypeProvider {
 
     protected static final  String split="split";
 
-    @Override
-    public String getType() {
-        return ConnectorTypeEnums.CSV.getCode();
-    }
 
     @Override
     public List<Row> doParse(Path path, ConnectorParsedQuery query) {
@@ -72,4 +73,13 @@ public class CsvConnectorHandler extends AbsFileConnectorBaseHandler {
     }
 
 
+
+
+    @Override
+    public ConnectorType getConnectorType() {
+        ConnectorTypeFactory connectorTypeFactory=ConnectorTypeFactory.getInstance();
+        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder=connectorTypeFactory.buildType(ConnectorTypeEnums.CSV.getCode(), ConnectorTypeEnums.CSV.getName(), ConnectorCategory.FILE);;
+        ConnectorType connectorType=connectorTypeBuilder.withAliases(ConnectorTypeEnums.CSV.getCode(), ConnectorTypeEnums.CSV.getMime()).withMetadata(new ConnectorTypeMetadata("1.0", ConnectorCategory.FILE.getDescription(),  ConnectorCategory.FILE.getDescription())).build();
+        return connectorType;
+    }
 }

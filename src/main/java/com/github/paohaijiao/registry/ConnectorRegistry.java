@@ -53,7 +53,7 @@ public class ConnectorRegistry {
         changeState(RegistryState.INITIALIZING, RegistryState.READY);
         List<ConnectorHandler> loadedHandlers = ServiceLoader.loadServices(ConnectorHandler.class);
         for (ConnectorHandler handler : loadedHandlers) {
-            registerConnector(handler.getType(), handler);
+            registerConnector(handler.getConnectorType().getCode(), handler);
         }
         changeState(RegistryState.READY, RegistryState.READY);
     }

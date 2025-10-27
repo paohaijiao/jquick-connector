@@ -80,7 +80,7 @@ public class FileTest {
                 "    field(name)->name:string,\n" +
                 "    field(manager)->manager:object \n"+
                 "FROM JSON(\n" +
-                "    filepath: 'D:\\idea\\jquick-connector\\src\\test\\resources\\file\\data.json',\n" +
+                "    filepath: 'D:\\my\\jquick-connector\\src\\test\\resources\\file\\data.json',\n" +
                 "    searchPath: '$.departments'\n" +
                 ")";
         ConnectorFactory factory = new ConnectorFactory();

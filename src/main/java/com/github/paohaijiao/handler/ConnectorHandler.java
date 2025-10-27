@@ -16,14 +16,14 @@
 package com.github.paohaijiao.handler;
 
 import com.github.paohaijiao.dataset.Row;
+import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 
 import java.util.List;
 
-public interface ConnectorHandler {
+public interface ConnectorHandler extends ConnectorTypeProvider {
 
 
     List<Row> buildRow(ConnectorParsedQuery query);
 
-    String getType();
 }

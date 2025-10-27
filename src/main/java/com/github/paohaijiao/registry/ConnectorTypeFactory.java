@@ -84,10 +84,8 @@ public class ConnectorTypeFactory {
         for (ConnectorTypeProvider provider : loader) {
             try {
                 providers.add(provider);
-                List<ConnectorType> pluginTypes = provider.getConnectorTypes();
-                for (ConnectorType type : pluginTypes) {
-                    registerType(type);
-                }
+                ConnectorType pluginType = provider.getConnectorType();
+                registerType(pluginType);
                 console.log(JLogLevel.INFO,"Loaded connector types from provider: " + provider.getClass().getName());
             } catch (Exception e) {
                 console.log(JLogLevel.ERROR,"Failed to load connector types from provider: " + provider.getClass().getName());
@@ -120,7 +118,7 @@ public class ConnectorTypeFactory {
     public void registerType(ConnectorType type) {
         Objects.requireNonNull(type, "ConnectorType cannot be null");
         Objects.requireNonNull(type.getCode(), "ConnectorType code cannot be null");
-        validateType(type);// 验证类型
+        validateType(type);
         if (registry.containsKey(type.getCode())) {
             JAssert.throwNewException("ConnectorType with code '" + type.getCode() + "' already exists");
         }

@@ -20,67 +20,69 @@ import lombok.Getter;
 public enum ConnectorTypeEnums {
 
     // 文件型
-    CSV("CSV", "CSV"),
-    EXCEL("EXCEL", "EXCEL"),
-    JSON("JSON", "JSON"),
-    XML("XML", "XML"),
-    PROPERTIES("PROPERTIES", "属性文件"),
-    YAML("YAML", "YAML"),
+    CSV("CSV", "CSV","text/csv"),
+    EXCEL("EXCEL", "EXCEL", "application/vnd.ms-excel"),
+    JSON("JSON", "JSON", "application/json"),
+    XML("XML", "XML", "application/xml"),
+    PROPERTIES("PROPERTIES", "属性文件", "text/x-properties"),
+    YAML("YAML", "YAML", "text/yaml"),
 
     // 数据库型
-    MYSQL("MYSQL", "MySQL"),
-    ORACLE("ORACLE", "Oracle"),
-    POSTGRESQL("POSTGRESQL", "PostgreSQL"),
-    SQL_SERVER("SQL_SERVER", "SQL Server"),
-    DB2("DB2", "DB2"),
-    SYBASE("SYBASE", "Sybase"),
-    SQLITE("SQLITE", "SQLite"),
-    H2("H2", "H2"),
-    DERBY("DERBY", "Derby"),
-    INFORMIX("INFORMIX", "Informix"),
-    KINGBASE("KINGBASE", "KingbaseES"),
-    DAMENG("DAMENG", "达梦数据库"),
-    HIVE("HIVE", "Hive"),
-    IMPALA("IMPALA", "Impala"),
-    CLICKHOUSE("CLICKHOUSE", "ClickHouse"),
-    GREENPLUM("GREENPLUM", "Greenplum"),
+    MYSQL("MYSQL", "MySQL", "application/mysql"),
+    ORACLE("ORACLE", "Oracle","application/oracle"),
+    POSTGRESQL("POSTGRESQL", "PostgreSQL", "application/postgresql"),
+    SQL_SERVER("SQL_SERVER", "SQL Server", "application/sqlserver"),
+    DB2("DB2", "DB2", "application/db2"),
+    SYBASE("SYBASE", "Sybase", "application/sybase"),
+    SQLITE("SQLITE", "SQLite", "application/sqlite"),
+    H2("H2", "H2", "application/h2"),
+    DERBY("DERBY", "Derby", "application/derby"),
+    INFORMIX("INFORMIX", "Informix", "application/informix"),
+    KINGBASE("KINGBASE", "KingbaseES", "application/kingbase"),
+    DAMENG("DAMENG", "达梦数据库", "application/dameng"),
+    HIVE("HIVE", "Hive", "application/hive"),
+    IMPALA("IMPALA", "Impala", "application/impala"),
+    CLICKHOUSE("CLICKHOUSE", "ClickHouse", "application/clickhouse"),
+    GREENPLUM("GREENPLUM", "Greenplum", "application/greenplum"),
 
     // NoSQL
-    MONGODB("MONGODB", "MongoDB"),
-    REDIS("REDIS", "Redis"),
-    CASSANDRA("CASSANDRA", "Cassandra"),
-    HBASE("HBASE", "HBase"),
-    NEO4J("NEO4J", "Neo4j"),
+    MONGODB("MONGODB", "MongoDB", "application/mongodb"),
+    REDIS("REDIS", "Redis", "application/redis"),
+    CASSANDRA("CASSANDRA", "Cassandra", "application/cassandra"),
+    HBASE("HBASE", "HBase", "application/hbase"),
+    NEO4J("NEO4J", "Neo4j", "application/neo4j"),
 
     // 大数据与云
-    HADOOP_HDFS("HADOOP_HDFS", "Hadoop HDFS"),
-    S3("S3", "Amazon S3"),
-    BIGQUERY("BIGQUERY", "Google BigQuery"),
-    SNOWFLAKE("SNOWFLAKE", "Snowflake"),
-    KAFKA("KAFKA", "Kafka"),
+    HADOOP_HDFS("HADOOP_HDFS", "Hadoop HDFS", "application/hdfs"),
+    S3("S3", "Amazon S3", "application/s3"),
+    BIGQUERY("BIGQUERY", "Google BigQuery", "application/bigquery"),
+    SNOWFLAKE("SNOWFLAKE", "Snowflake", "application/snowflake"),
+    KAFKA("KAFKA", "Kafka", "application/kafka"),
 
     // API 与 Web
-    CURL("CURL", "CURL"),
-    SOAP("SOAP", "SOAP Web Service"),
+    CURL("CURL", "CURL", "application/curl"),
+    SOAP("SOAP", "SOAP Web Service", "application/soap+xml"),
 
-    RABBITMQ("RABBITMQ", "RabbitMQ"),
-    ACTIVEMQ("ACTIVEMQ", "ActiveMQ"),
+    RABBITMQ("RABBITMQ", "RabbitMQ", "application/rabbitmq"),
+    ACTIVEMQ("ACTIVEMQ", "ActiveMQ", "application/activemq"),
 
     // 其他
-    LDAP("LDAP", "LDAP"),
-    SALESFORCE("SALESFORCE", "Salesforce"),
-    SAP("SAP", "SAP"),
+    LDAP("LDAP", "LDAP", "application/ldap"),
+    SALESFORCE("SALESFORCE", "Salesforce", "application/salesforce"),
+    SAP("SAP", "SAP", "application/sap"),
 
     // 自定义或脚本
-    JAVASCRIPT("JAVASCRIPT", "JavaScript"),
-    GROOVY("GROOVY", "Groovy"),
-    PYTHON("PYTHON", "Python");
+    JAVASCRIPT("JAVASCRIPT", "JavaScript", "application/javascript"),
+    GROOVY("GROOVY", "Groovy", "application/groovy"),
+    PYTHON("PYTHON", "Python", "application/python");
     private String code;
     private String name;
+    private String mime;
 
-    ConnectorTypeEnums(String code, String name){
+    ConnectorTypeEnums(String code, String name,String mime){
         this.code = code;
         this.name = name;
+        this.mime = mime;
     }
     public static ConnectorTypeEnums codeOf(String code){
         for (ConnectorTypeEnums type : ConnectorTypeEnums.values()) {

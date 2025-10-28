@@ -28,23 +28,28 @@ import org.junit.Test;
  * @since 2025/10/26
  */
 public class CurlTest {
+    String curl="`curl -X GET \\ \n"+
+            "'http://xxxxxxx/getProjec"+
+            "  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' \\\n" +
+            "  --insecure`";
 
 
     @Test
     public  void testJson() throws Exception {
+        System.out.println(curl);
         JContext context = new JContext();
         String query="SELECT\n" +
-                "    field(id)->id:string,\n" +
-                "    field(name)->name:string,\n" +
-                "    field(manager)->manager:object \n"+
-                "FROM JSON(\n" +
-                "    filepath: 'D:\\my\\jquick-connector\\src\\test\\resources\\file\\data.json',\n" +
-                "    searchPath: '$.departments'\n" +
+                "    field(projectId)->projectId:string,\n" +
+                "    field(projectName)->projectName:string,\n" +
+                "    field(projectStage)->projectStage:object \n"+
+                "FROM CURL(\n" +
+                "    curl: "+curl+",\n" +
+                "    searchPath: '$.data'\n" +
                 ")";
         ConnectorFactory factory = new ConnectorFactory();
         DataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
-            System.out.println("id: " + row.get("id") + ", name: " + row.getString("name")+ ", manager: " + row.getObject("manager"));
+            System.out.println("projectId: " + row.get("projectId") + ", projectName: " + row.getString("projectName"));
         });
     }
 }

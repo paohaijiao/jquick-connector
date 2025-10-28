@@ -69,11 +69,6 @@ public class ConnectorFactory {
         if (connector == null) {
             throw new IllegalArgumentException("unsupported connector type: " + connectorParsedQuery.getConnectorType());
         }
-        ConnectorTypeFactory connectorTypeFactory=ConnectorTypeFactory.getInstance();
-        boolean exists=connectorTypeFactory.containsType(connectorParsedQuery.getConnectorType());
-        if(!exists){
-            throw new IllegalArgumentException("connector type: " + connectorParsedQuery.getConnectorType()+" does not exist");
-        }
         List<Row> rows = connector.buildRow(connectorParsedQuery);
         DataSet rawDataSet=DataSetAssembler.convert(rows,connectorParsedQuery.getFieldMappings());
         return rawDataSet;

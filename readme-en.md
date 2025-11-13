@@ -1,33 +1,32 @@
 # JQuick Connector
-简体中文 | [English](./readme-en.md)
-一个强大的数据连接器框架，支持使用类SQL语法统一查询多种数据源，包括数据库、文件和REST API。
+[简体中文](./README.md)| English
+A powerful data connector framework that supports unified querying of multiple data sources using SQL-like syntax, including databases, files, and REST APIs.
+## Features
 
-## 特性
+- **Unified Query Interface**: Query diverse data sources using SQL-like syntax
+- **Multiple Data Source Support**:
+    - **Databases**: MySQL、PostgreSQL、Oracle、ClickHouse、H2 etc
+    - **Files**: CSV、Excel、JSON
+    - **REST API**: HTTP requests based on jQuickCURL
+- **Flexible Field Mapping**: Extract and transform data through field processors
+- **Type Safet**: Supports strong typing definition of data fields
+- **Context Variables**: Supports parameterized queries using variables
 
-- **统一查询接口**: 使用类SQL语法查询多样化数据源
-- **多数据源支持**:
-    - **数据库**: MySQL、PostgreSQL、Oracle、ClickHouse、H2等
-    - **文件**: CSV、Excel、JSON
-    - **REST API**: 基于jQuickCURL的HTTP请求
-- **灵活字段映射**: 通过字段处理器提取和转换数据
-- **类型安全**: 支持数据字段的强类型定义
-- **上下文变量**: 支持使用变量的参数化查询
+## Quick Start
 
-## 快速开始
-
-### 基本查询语法
+### Basic Query Syntax
 
 ```sql
 SELECT
-    field(源字段) -> 目标字段:数据类型,
-    path('$.json.路径') -> json字段:string
-FROM 连接器类型(
-    属性1: '值1',
-    属性2: 123,
-    属性3: {变量名}
+    field(source field) -> target field:数据类型,
+    path('$.json.path') -> json field:string
+FROM connector type(
+    attribute1: 'value1',
+    attribute2: 123,
+    attribute3: {变量名}
 )
 ```
-### MySQL数据库查询示例
+### MySQL Database Query Example
 ```sql
 SELECT
     field(id) -> cid:Long,
@@ -46,7 +45,7 @@ FROM MYSQL(
     driver: 'com.mysql.jdbc.Driver'
 )
 ```
-### CSV 文件查询示例
+### CSV File Query Example
 ```sql
 SELECT
   field(id) -> id:Long,
@@ -61,7 +60,7 @@ FROM CSV(
         header: 'true'
      )
 ```
-### JSON 文件查询示例
+### JSON File Query Example
 ```sql
 SELECT
         field(id) -> id:string,
@@ -73,7 +72,7 @@ FROM JSON(
         searchPath: '$.departments'
      )
 ```
-### REST API 查询示例
+### REST API Query Example
 ```sql
 SELECT
          field(projectId) -> projectId:string,
@@ -84,7 +83,7 @@ FROM CURL(
         searchPath: '$.data'
      )
 ```
-### Excel 文件查询示例
+### Excel File Query Example
 ```sql
 SELECT
         field(is_active) -> is_active:boolean,
@@ -99,7 +98,7 @@ FROM excel(
         header: 'true'
      )
 ```
-### Mysql 等关系型数据库查询示例
+### Relational Database (e.g., Mysql) Query Example
 ```sql
 SELECT
         field(id) -> b:Integer,
@@ -113,32 +112,33 @@ FROM MYSQL(
     password: {db_password}
 )
 ```
-### 数据类型
-支持的数据类型包括：
-- Integer - 整数
-- Long - 长整数
-- Float - 浮点数
-- Double - 双精度浮点数
-- String - 文本数据
-- Boolean - 布尔值
-- Date - 日期时间值
-- Object - 复杂对象（JSON）
+### Data Types
+Supported data types include:：
+- Integer - Integer number
+- Long - Long integer
+- Float - Floating-point number
+- Double - Double-precision floating-point number
+- String - Text data
+- Boolean - Boolean value
+- Date - Date and time value
+- Object - Complex object (such as JSON)
 
-### 字段处理器
-#### Field 处理器
-从扁平结构中提取数据（数据库列、CSV 字段），语法格式：
+### Field Processors
+#### Field Processor
+Extract data from flat structures (database columns, CSV fields) with the syntax:
 ```sql
-field(列名) -> 目标字段:数据类型
+field(column name) -> target field:data type
 ```
-### 字段处理器
-#### Field 处理器
-从扁平结构中提取数据（数据库列、CSV 字段），语法格式：
+### Field Processors
+#### Field Processor
+Extract data from flat structures (database columns, CSV fields) with the syntax:
 ```sql
-field(列名) -> 目标字段:数据类型
+field(column name) -> target field:data type
 ```
-### 支持的连接器
-#### 数据库连接器
-| 连接器类型 | 处理器类                  | 必需参数                | 可选参数                          |
+### Supported Connectors
+#### Database Connectors
+| Connector Type	 | Processor Class	                  | Required Parameters	                | Optional Parameters
+|
 |------------|---------------------------|-------------------------|-----------------------------------|
 | MySQL      | MySqlConnectorHandler     | url, username, password, sql | driver, database, port            |
 | PostgreSQL | PostgreSQLConnectorHandler | url, username, password, sql | driver, database, port            |
@@ -155,16 +155,16 @@ field(列名) -> 目标字段:数据类型
 | 达梦       | DaMengConnectorHandler    | url, username, password, sql | driver, database, port            |
 | Informix   | InfomixConnectorHandler   | url, username, password, sql | driver, database, port            |
 
-#### 文件连接器
-文件连接器
+#### File Connectors
+File Connectors
 
-| 连接器类型 | 处理器类                  | 必需参数 | 可选参数                          |
-|------------|---------------------------|----------|-----------------------------------|
-| CSV        | CsvConnectorHandler       | filepath | split, header, encoding           |
-| Excel      | ExcelConnectorHandler     | filepath | sheet, header, startRow           |
-| JSON       | JsonConnectorHandler      | filepath | searchPath, encoding              |
+| Connector Type	 | Processor Class	                  | Required Parameters	 | Optional Parameters|
+|------------|---------------------------|----------|----------------------------------|
+| CSV        | CsvConnectorHandler       | filepath | split, header, encoding          |
+| Excel      | ExcelConnectorHandler     | filepath | sheet, header, startRow          |
+| JSON       | JsonConnectorHandler      | filepath | searchPath, encoding             |
 
-#### REST 连接器
-| 连接器类型 | 处理器类                  | 必需参数 | 可选参数                         |
-|------------|---------------------------|----------|------------------------------|
+#### REST Connector
+| Connector Type	 | Processor Class	                  | Required Parameters	 | Optional Parameters|
+|------------|---------------------------|----------|-----------------------------|
 | CURL       | CurlConnectorHandler      | curl                    | searchPath  |

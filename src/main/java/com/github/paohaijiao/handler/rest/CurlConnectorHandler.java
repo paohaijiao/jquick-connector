@@ -1,4 +1,5 @@
 package com.github.paohaijiao.handler.rest;
+
 import com.github.paohaijiao.config.ConnectorConfiguration;
 import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.enums.ConnectorCategory;
@@ -6,7 +7,6 @@ import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.executor.JQuickCurlExecutor;
 import com.github.paohaijiao.handler.AbsConnectorBaseHandler;
-import com.github.paohaijiao.handler.AbsDatabaseConnectorBaseHandler;
 import com.github.paohaijiao.meta.ConnectorType;
 import com.github.paohaijiao.meta.ConnectorTypeMetadata;
 import com.github.paohaijiao.model.JResult;

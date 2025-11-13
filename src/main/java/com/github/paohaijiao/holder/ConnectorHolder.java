@@ -17,7 +17,6 @@ package com.github.paohaijiao.holder;
 
 import lombok.Data;
 
-
 import java.util.Map;
 
 @Data

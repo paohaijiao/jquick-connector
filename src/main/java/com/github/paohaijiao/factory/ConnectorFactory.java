@@ -16,24 +16,17 @@
 package com.github.paohaijiao.factory;
 
 import com.github.paohaijiao.assembler.DataSetAssembler;
-import com.github.paohaijiao.config.ConnectorConfiguration;
 import com.github.paohaijiao.console.JConsole;
-import com.github.paohaijiao.dataset.ColumnMeta;
 import com.github.paohaijiao.dataset.DataSet;
 import com.github.paohaijiao.dataset.Row;
-import com.github.paohaijiao.enums.JLogLevel;
 import com.github.paohaijiao.field.ConnectorProcessor;
-import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
+import com.github.paohaijiao.handler.ConnectorHandler;
 import com.github.paohaijiao.param.JContext;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 import com.github.paohaijiao.query.ConnectorQueryParser;
 import com.github.paohaijiao.registry.ConnectorRegistry;
-import com.github.paohaijiao.registry.ConnectorTypeFactory;
 import com.github.paohaijiao.registry.ConnectoryProcessorRegistry;
-import com.github.paohaijiao.handler.ConnectorHandler;
-import com.google.gson.JsonObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

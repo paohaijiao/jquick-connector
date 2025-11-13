@@ -16,9 +16,10 @@
 package com.github.paohaijiao.registry;
 
 import com.github.paohaijiao.exception.JAssert;
-import com.github.paohaijiao.field.ConnectorProcessor;
 import com.github.paohaijiao.field.ConnectorFieldProcessor;
 import com.github.paohaijiao.field.ConnectorJsonPathProcessor;
+import com.github.paohaijiao.field.ConnectorProcessor;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReadWriteLock;

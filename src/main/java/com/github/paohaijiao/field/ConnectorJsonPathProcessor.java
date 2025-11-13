@@ -17,12 +17,9 @@ package com.github.paohaijiao.field;
 
 import com.github.paohaijiao.builder.JSONPathQueryBuilder;
 import com.github.paohaijiao.dataset.Row;
-import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
 import com.github.paohaijiao.model.JSONObject;
 import com.github.paohaijiao.model.JSONPathResult;
-import com.github.paohaijiao.parser.JQuickConnectorParser;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * packageName com.github.paohaijiao.field

@@ -23,31 +23,27 @@ package com.github.paohaijiao.handler.file;
  * @since 2025/10/26
  */
 
-import com.github.paohaijiao.builder.JSONPathQueryBuilder;
 import com.github.paohaijiao.config.ConnectorConfiguration;
 import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.enums.ConnectorCategory;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
-import com.github.paohaijiao.exception.JAssert;
-import com.github.paohaijiao.executor.JSONExecutor;
 import com.github.paohaijiao.handler.AbsFileConnectorBaseHandler;
 import com.github.paohaijiao.meta.ConnectorType;
 import com.github.paohaijiao.meta.ConnectorTypeMetadata;
-import com.github.paohaijiao.model.JSONObject;
-import com.github.paohaijiao.model.JSONPathResult;
 import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 import com.github.paohaijiao.registry.ConnectorTypeFactory;
 import com.github.paohaijiao.util.JSonExtractUtil;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
 
 /**
  * JSON 转 Row 列表工具类

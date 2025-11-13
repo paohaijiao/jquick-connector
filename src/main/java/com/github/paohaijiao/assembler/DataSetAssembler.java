@@ -33,9 +33,7 @@ package com.github.paohaijiao.assembler;
 import com.github.paohaijiao.dataset.ColumnMeta;
 import com.github.paohaijiao.dataset.DataSet;
 import com.github.paohaijiao.dataset.Row;
-import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
-import com.github.paohaijiao.field.ConnectorProcessor;
 
 import java.util.ArrayList;
 import java.util.List;

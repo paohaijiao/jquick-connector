@@ -14,16 +14,16 @@
  * Copyright (c) [2025-2099] Martin (goudingcheng@gmail.com)
  */
 package com.github.paohaijiao.handler;
+
 import com.github.paohaijiao.config.Configuration;
 import com.github.paohaijiao.config.ConnectorConfiguration;
 import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.List;
 
 
 public abstract class AbsFileConnectorBaseHandler extends AbsConnectorBaseHandler {

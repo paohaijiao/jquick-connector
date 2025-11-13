@@ -28,8 +28,8 @@ import org.junit.Test;
  * @since 2025/10/26
  */
 public class CurlTest {
-    String curl="`curl -X GET \\ \n"+
-            "'http://xxxxxxx/getProjec"+
+     String curl="`curl -X GET \\ \n"+
+            "'http://127.0.0.1:1211/getProjec"+
             "  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' \\\n" +
             "  --insecure`";
 

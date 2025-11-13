@@ -78,6 +78,7 @@ public class FileTest {
         String query="SELECT\n" +
                 "    field(id)->id:string,\n" +
                 "    field(name)->name:string,\n" +
+                "    path('$.manager.title')->title:string,\n" +
                 "    field(manager)->manager:object \n"+
                 "FROM JSON(\n" +
                 "    filepath: 'D:\\my\\jquick-connector\\src\\test\\resources\\file\\data.json',\n" +
@@ -86,7 +87,7 @@ public class FileTest {
         ConnectorFactory factory = new ConnectorFactory();
         DataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
-            System.out.println("id: " + row.get("id") + ", name: " + row.getString("name")+ ", manager: " + row.getObject("manager"));
+            System.out.println("id: " + row.get("id") + ", title: " + row.getString("title")+ ", manager: " + row.getObject("manager"));
         });
     }
 }

@@ -75,8 +75,11 @@ public enum ConnectorTypeEnums {
     JAVASCRIPT("JAVASCRIPT", "JavaScript", "application/javascript"),
     GROOVY("GROOVY", "Groovy", "application/groovy"),
     PYTHON("PYTHON", "Python", "application/python");
+
     private String code;
+
     private String name;
+
     private String mime;
 
     ConnectorTypeEnums(String code, String name,String mime){

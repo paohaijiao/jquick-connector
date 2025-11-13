@@ -13,6 +13,21 @@
   </parent>
   <dependencies>
     <dependency>
+      <groupId>io.github.paohaijiao</groupId>
+      <artifactId>jquick-path</artifactId>
+      <version>1.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.paohaijiao</groupId>
+      <artifactId>jquick-json</artifactId>
+      <version>1.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.paohaijiao</groupId>
+      <artifactId>javelin-core</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
     </dependency>
@@ -96,6 +111,11 @@
       <version>1.18.28</version>
       <scope>provided</scope>
     </dependency>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <scope>test</scope>
+      </dependency>
 
   </dependencies>
 </project>

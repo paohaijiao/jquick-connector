@@ -15,9 +15,14 @@
  */
 package com.github.paohaijiao.field;
 
+import com.github.paohaijiao.builder.JSONPathQueryBuilder;
 import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
+import com.github.paohaijiao.model.JSONObject;
+import com.github.paohaijiao.model.JSONPathResult;
+import com.github.paohaijiao.parser.JQuickConnectorParser;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * packageName com.github.paohaijiao.field
@@ -32,13 +37,24 @@ public class ConnectorJsonPathProcessor implements ConnectorProcessor {
     @Override
     public Object process(Row row, ConnectorFieldMappingHolder mapping) {
         String sourceField = mapping.getSourceField();
-        boolean existsColumn=row.containsKey(sourceField);
-        JAssert.isTrue(existsColumn,"the coloumn[" +sourceField+"] not exists");
-        Object value = row.get(sourceField);
-        return value;
-
+        String path=trimQuotes(sourceField);
+        JSONObject json = new JSONObject(row);
+        JSONPathResult result = JSONPathQueryBuilder.from(json)
+                .path(path)
+                .execute();
+        return result.getRawData();
     }
-
+    public static String trimQuotes(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        boolean startsWithQuote = str.startsWith("\"") || str.startsWith("'");
+        boolean endsWithQuote = str.endsWith("\"") || str.endsWith("'");
+        if (startsWithQuote && endsWithQuote) {
+            return str.substring(1, str.length() - 1);
+        }
+        return str;
+    }
     @Override
     public String getType() {
         return "jsonPath";

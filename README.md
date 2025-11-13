@@ -99,7 +99,7 @@ FROM excel(
         header: 'true'
      )
 ```
-### Excel 文件查询示例
+### Mysql 等关系型数据库查询示例
 ```sql
 SELECT
         field(id) -> b:Integer,

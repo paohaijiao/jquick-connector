@@ -40,11 +40,26 @@
       "pe_ratio": 25.6,
       "dividend_yield": 0.023,
       "historical_prices": [
-        {"date": "2024-01-01", "price": 150.25},
-        {"date": "2024-01-02", "price": 152.80},
-        {"date": "2024-01-03", "price": 155.45},
-        {"date": "2024-01-04", "price": 153.90},
-        {"date": "2024-01-05", "price": 156.78}
+        {
+          "date": "2024-01-01",
+          "price": 150.25
+        },
+        {
+          "date": "2024-01-02",
+          "price": 152.80
+        },
+        {
+          "date": "2024-01-03",
+          "price": 155.45
+        },
+        {
+          "date": "2024-01-04",
+          "price": 153.90
+        },
+        {
+          "date": "2024-01-05",
+          "price": 156.78
+        }
       ]
     }
   },
@@ -57,7 +72,12 @@
         "name": "李华",
         "title": "技术总监",
         "salary": 80000,
-        "skills": ["Java", "Python", "架构设计", "团队管理"]
+        "skills": [
+          "Java",
+          "Python",
+          "架构设计",
+          "团队管理"
+        ]
       },
       "employees": [
         {
@@ -71,17 +91,42 @@
               "name": "智能客服系统",
               "status": "进行中",
               "priority": "高",
-              "technologies": ["Spring Boot", "Vue.js", "MySQL", "Redis"],
+              "technologies": [
+                "Spring Boot",
+                "Vue.js",
+                "MySQL",
+                "Redis"
+              ],
               "milestones": [
-                {"name": "需求分析", "completed": true, "completion_date": "2024-01-15"},
-                {"name": "系统设计", "completed": true, "completion_date": "2024-02-01"},
-                {"name": "开发阶段", "completed": false, "estimated_completion": "2024-04-30"}
+                {
+                  "name": "需求分析",
+                  "completed": true,
+                  "completion_date": "2024-01-15"
+                },
+                {
+                  "name": "系统设计",
+                  "completed": true,
+                  "completion_date": "2024-02-01"
+                },
+                {
+                  "name": "开发阶段",
+                  "completed": false,
+                  "estimated_completion": "2024-04-30"
+                }
               ]
             }
           ],
           "attendance": {
-            "2024-01": {"work_days": 22, "leave_days": 2, "overtime_hours": 15},
-            "2024-02": {"work_days": 20, "leave_days": 1, "overtime_hours": 10}
+            "2024-01": {
+              "work_days": 22,
+              "leave_days": 2,
+              "overtime_hours": 15
+            },
+            "2024-02": {
+              "work_days": 20,
+              "leave_days": 1,
+              "overtime_hours": 10
+            }
           }
         },
         {
@@ -95,7 +140,11 @@
               "name": "移动端应用",
               "status": "已完成",
               "priority": "中",
-              "technologies": ["React Native", "TypeScript", "Redux"],
+              "technologies": [
+                "React Native",
+                "TypeScript",
+                "Redux"
+              ],
               "performance_metrics": {
                 "code_coverage": 85.5,
                 "bug_count": 12,
@@ -134,8 +183,16 @@
               "quarter": "2024-Q1",
               "achievement": 3500000,
               "clients": [
-                {"client_id": "CLI001", "company": "ABC集团", "contract_value": 1500000},
-                {"client_id": "CLI002", "company": "XYZ科技", "contract_value": 2000000}
+                {
+                  "client_id": "CLI001",
+                  "company": "ABC集团",
+                  "contract_value": 1500000
+                },
+                {
+                  "client_id": "CLI002",
+                  "company": "XYZ科技",
+                  "contract_value": 2000000
+                }
               ]
             }
           ],
@@ -215,11 +272,29 @@
     "last_updated": "2024-03-15T14:30:00Z",
     "created_by": "system_admin",
     "checksum": "a1b2c3d4e5f67890",
-    "tags": ["企业数据", "人力资源", "财务", "项目管理", "配置信息"],
+    "tags": [
+      "企业数据",
+      "人力资源",
+      "财务",
+      "项目管理",
+      "配置信息"
+    ],
     "related_files": [
-      {"name": "员工手册.pdf", "size": 2048576, "type": "document"},
-      {"name": "财务报表.xlsx", "size": 1048576, "type": "spreadsheet"},
-      {"name": "组织架构图.png", "size": 524288, "type": "image"}
+      {
+        "name": "员工手册.pdf",
+        "size": 2048576,
+        "type": "document"
+      },
+      {
+        "name": "财务报表.xlsx",
+        "size": 1048576,
+        "type": "spreadsheet"
+      },
+      {
+        "name": "组织架构图.png",
+        "size": 524288,
+        "type": "image"
+      }
     ]
   }
 }

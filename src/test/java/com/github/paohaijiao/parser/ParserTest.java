@@ -9,11 +9,11 @@ import org.junit.Test;
 
 public class ParserTest {
     @Test
-    public  void test() throws Exception {
+    public void test() throws Exception {
         JContext context = new JContext();
         context.put("user", "test");
         JQuickConnectorExecutor executor = new JQuickConnectorExecutor(context);
-        ConnectorParsedQuery parsedQuery=executor.execute("SELECT\n" +
+        ConnectorParsedQuery parsedQuery = executor.execute("SELECT\n" +
                 "    field(id)->b:Integer,\n" +
                 "    field(c)->b:Integer\n" +
                 "FROM MYSQL(\n" +
@@ -28,11 +28,12 @@ public class ParserTest {
         System.out.println(parsedQuery);
 
     }
+
     @Test
-    public  void testMysql() throws Exception {
+    public void testMysql() throws Exception {
         JContext context = new JContext();
         context.put("user", "test");
-        String query="SELECT\n" +
+        String query = "SELECT\n" +
                 "    field(id)->cid:Long,\n" +
                 "    field(user_id)->user_id:Long,\n" +
                 "    field(title)->title:String,\n" +

@@ -1,4 +1,5 @@
 # JQuick Connector
+
 简体中文 | [English](./readme-en.md)
 一个强大的数据连接器框架，支持使用类SQL语法统一查询多种数据源，包括数据库、文件和REST API。
 
@@ -27,7 +28,9 @@ FROM 连接器类型(
     属性3: {变量名}
 )
 ```
+
 ### MySQL数据库查询示例
+
 ```sql
 SELECT
     field(id) -> cid:Long,
@@ -46,7 +49,9 @@ FROM MYSQL(
     driver: 'com.mysql.jdbc.Driver'
 )
 ```
+
 ### CSV 文件查询示例
+
 ```sql
 SELECT
   field(id) -> id:Long,
@@ -61,7 +66,9 @@ FROM CSV(
         header: 'true'
      )
 ```
+
 ### JSON 文件查询示例
+
 ```sql
 SELECT
         field(id) -> id:string,
@@ -73,7 +80,9 @@ FROM JSON(
         searchPath: '$.departments'
      )
 ```
+
 ### REST API 查询示例
+
 ```sql
 SELECT
          field(projectId) -> projectId:string,
@@ -84,7 +93,9 @@ FROM CURL(
         searchPath: '$.data'
      )
 ```
+
 ### Excel 文件查询示例
+
 ```sql
 SELECT
         field(is_active) -> is_active:boolean,
@@ -99,7 +110,9 @@ FROM excel(
         header: 'true'
      )
 ```
+
 ### Mysql 等关系型数据库查询示例
+
 ```sql
 SELECT
         field(id) -> b:Integer,
@@ -113,8 +126,11 @@ FROM MYSQL(
     password: {db_password}
 )
 ```
+
 ### 数据类型
+
 支持的数据类型包括：
+
 - Integer - 整数
 - Long - 长整数
 - Float - 浮点数
@@ -125,46 +141,58 @@ FROM MYSQL(
 - Object - 复杂对象（JSON）
 
 ### 字段处理器
+
 #### Field 处理器
+
 从扁平结构中提取数据（数据库列、CSV 字段），语法格式：
+
 ```sql
 field(列名) -> 目标字段:数据类型
 ```
+
 ### 字段处理器
+
 #### Field 处理器
+
 从扁平结构中提取数据（数据库列、CSV 字段），语法格式：
+
 ```sql
 field(列名) -> 目标字段:数据类型
 ```
+
 ### 支持的连接器
+
 #### 数据库连接器
-| 连接器类型 | 处理器类                  | 必需参数                | 可选参数                          |
-|------------|---------------------------|-------------------------|-----------------------------------|
-| MySQL      | MySqlConnectorHandler     | url, username, password, sql | driver, database, port            |
-| PostgreSQL | PostgreSQLConnectorHandler | url, username, password, sql | driver, database, port            |
-| Oracle     | OracleConnectorHandler    | url, username, password, sql | driver, serviceName, port         |
-| ClickHouse | ClickHouseConnectorHandler | url, username, password, sql | driver, database, port            |
-| H2         | H2ConnectorHandler        | url, username, password, sql | driver                            |
-| DB2        | DB2ConnectorHandler       | url, username, password, sql | driver, database, port            |
-| Derby      | DerbyConnectorHandler     | url, username, password, sql | driver                            |
-| Hive       | HiveConnectorHandler      | url, username, password, sql | driver, database                  |
-| Impala     | ImpalaConnectorHandler    | url, username, password, sql | driver, database                  |
-| 金仓       | KingBaseConnectorHandler  | url, username, password, sql | driver, database, port            |
-| SQLite     | SQliteConnectorHandler    | url, sql                | driver                            |
-| Sybase     | SysbaseConnectorHandler   | url, username, password, sql | driver, database, port            |
-| 达梦       | DaMengConnectorHandler    | url, username, password, sql | driver, database, port            |
-| Informix   | InfomixConnectorHandler   | url, username, password, sql | driver, database, port            |
+
+| 连接器类型      | 处理器类                       | 必需参数                         | 可选参数                      |
+|------------|----------------------------|------------------------------|---------------------------|
+| MySQL      | MySqlConnectorHandler      | url, username, password, sql | driver, database, port    |
+| PostgreSQL | PostgreSQLConnectorHandler | url, username, password, sql | driver, database, port    |
+| Oracle     | OracleConnectorHandler     | url, username, password, sql | driver, serviceName, port |
+| ClickHouse | ClickHouseConnectorHandler | url, username, password, sql | driver, database, port    |
+| H2         | H2ConnectorHandler         | url, username, password, sql | driver                    |
+| DB2        | DB2ConnectorHandler        | url, username, password, sql | driver, database, port    |
+| Derby      | DerbyConnectorHandler      | url, username, password, sql | driver                    |
+| Hive       | HiveConnectorHandler       | url, username, password, sql | driver, database          |
+| Impala     | ImpalaConnectorHandler     | url, username, password, sql | driver, database          |
+| 金仓         | KingBaseConnectorHandler   | url, username, password, sql | driver, database, port    |
+| SQLite     | SQliteConnectorHandler     | url, sql                     | driver                    |
+| Sybase     | SysbaseConnectorHandler    | url, username, password, sql | driver, database, port    |
+| 达梦         | DaMengConnectorHandler     | url, username, password, sql | driver, database, port    |
+| Informix   | InfomixConnectorHandler    | url, username, password, sql | driver, database, port    |
 
 #### 文件连接器
+
 文件连接器
 
-| 连接器类型 | 处理器类                  | 必需参数 | 可选参数                          |
-|------------|---------------------------|----------|-----------------------------------|
-| CSV        | CsvConnectorHandler       | filepath | split, header, encoding           |
-| Excel      | ExcelConnectorHandler     | filepath | sheet, header, startRow           |
-| JSON       | JsonConnectorHandler      | filepath | searchPath, encoding              |
+| 连接器类型 | 处理器类                  | 必需参数     | 可选参数                    |
+|-------|-----------------------|----------|-------------------------|
+| CSV   | CsvConnectorHandler   | filepath | split, header, encoding |
+| Excel | ExcelConnectorHandler | filepath | sheet, header, startRow |
+| JSON  | JsonConnectorHandler  | filepath | searchPath, encoding    |
 
 #### REST 连接器
-| 连接器类型 | 处理器类                  | 必需参数 | 可选参数                         |
-|------------|---------------------------|----------|------------------------------|
-| CURL       | CurlConnectorHandler      | curl                    | searchPath  |
+
+| 连接器类型 | 处理器类                 | 必需参数 | 可选参数       |
+|-------|----------------------|------|------------|
+| CURL  | CurlConnectorHandler | curl | searchPath |

@@ -27,21 +27,16 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- *
  * @author Martin
  * @version 2.0.0
  * @since 2025/10/25
  */
 public class ConnectorRegistry {
 
-    public static JConsole console=new JConsole();
-
     private static final Map<String, ConnectorMetadata> CONNECTOR_METADATA_MAP = new ConcurrentHashMap<>();
-
     private static final Map<Class<?>, List<ConnectorMetadata>> TYPE_HIERARCHY_MAP = new ConcurrentHashMap<>();
-
     private static final List<RegistryListener> LISTENERS = new CopyOnWriteArrayList<>();
-
+    public static JConsole console = new JConsole();
     private static volatile RegistryState state = RegistryState.INITIALIZING;
 
     static {
@@ -245,16 +240,18 @@ public class ConnectorRegistry {
             currentClass = currentClass.getSuperclass();
         }
     }
+
     private static void removeFromTypeHierarchy(ConnectorMetadata metadata) {
         TYPE_HIERARCHY_MAP.values().forEach(list -> list.remove(metadata));
         TYPE_HIERARCHY_MAP.entrySet().removeIf(entry -> entry.getValue().isEmpty());
     }
+
     private static void notifyConnectorRegistered(String type, ConnectorHandler handler) {
         LISTENERS.forEach(listener -> {
             try {
                 listener.onConnectorRegistered(type, handler);
             } catch (Exception e) {
-                console.error("notifyConnectorRegistered error",e);
+                console.error("notifyConnectorRegistered error", e);
             }
         });
     }
@@ -264,7 +261,7 @@ public class ConnectorRegistry {
             try {
                 listener.onConnectorUnregistered(type, handler);
             } catch (Exception e) {
-                console.error("notifyConnectorUnregistered error",e);
+                console.error("notifyConnectorUnregistered error", e);
             }
         });
     }
@@ -277,7 +274,7 @@ public class ConnectorRegistry {
                 try {
                     listener.onRegistryStateChanged(oldState, newState);
                 } catch (Exception e) {
-                    console.error("Error notifying state change: ",e);
+                    console.error("Error notifying state change: ", e);
                 }
             });
         }
@@ -301,7 +298,9 @@ public class ConnectorRegistry {
      */
     public interface RegistryListener {
         void onConnectorRegistered(String type, ConnectorHandler handler);
+
         void onConnectorUnregistered(String type, ConnectorHandler handler);
+
         void onRegistryStateChanged(RegistryState oldState, RegistryState newState);
     }
 }

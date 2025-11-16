@@ -20,7 +20,7 @@ import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
 
 public interface ConnectorProcessor {
 
-    Object process(Row row , ConnectorFieldMappingHolder mapping);
+    Object process(Row row, ConnectorFieldMappingHolder mapping);
 
     String getType();
 }

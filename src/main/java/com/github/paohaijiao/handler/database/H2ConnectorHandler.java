@@ -1,4 +1,5 @@
 package com.github.paohaijiao.handler.database;
+
 import com.github.paohaijiao.enums.ConnectorCategory;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import com.github.paohaijiao.handler.AbsDatabaseConnectorBaseHandler;
@@ -12,9 +13,10 @@ public class H2ConnectorHandler extends AbsDatabaseConnectorBaseHandler implemen
 
     @Override
     public ConnectorType getConnectorType() {
-        ConnectorTypeFactory connectorTypeFactory=ConnectorTypeFactory.getInstance();
-        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder=connectorTypeFactory.buildType(ConnectorTypeEnums.H2.getCode(), ConnectorTypeEnums.H2.getName(), ConnectorCategory.DATABASE);;
-        ConnectorType connectorType=connectorTypeBuilder.withAliases(ConnectorTypeEnums.H2.getCode(), ConnectorTypeEnums.H2.getCode()).withMetadata(new ConnectorTypeMetadata("1.0",  ConnectorCategory.DATABASE.getDescription(),  ConnectorCategory.DATABASE.getDescription())).build();
+        ConnectorTypeFactory connectorTypeFactory = ConnectorTypeFactory.getInstance();
+        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder = connectorTypeFactory.buildType(ConnectorTypeEnums.H2.getCode(), ConnectorTypeEnums.H2.getName(), ConnectorCategory.DATABASE);
+        ;
+        ConnectorType connectorType = connectorTypeBuilder.withAliases(ConnectorTypeEnums.H2.getCode(), ConnectorTypeEnums.H2.getCode()).withMetadata(new ConnectorTypeMetadata("1.0", ConnectorCategory.DATABASE.getDescription(), ConnectorCategory.DATABASE.getDescription())).build();
         return connectorType;
     }
 }

@@ -33,14 +33,16 @@ public class ConnectorQueryParser {
     public ConnectorQueryParser(JContext context) {
         this.context = context;
     }
+
     public ConnectorQueryParser() {
         this.context = new JContext();
     }
+
     public ConnectorParsedQuery parse(String query) {
         JConsole console = new JConsole();
         JQuickConnectorExecutor executor = new JQuickConnectorExecutor(context);
         console.log(JLogLevel.INFO, "query: " + query);
-        ConnectorParsedQuery parsedQuery=executor.execute(query);
+        ConnectorParsedQuery parsedQuery = executor.execute(query);
         console.log(JLogLevel.INFO, "parsedQuery: " + parsedQuery);
         return parsedQuery;
     }

@@ -56,8 +56,6 @@ public class Row implements Map<String, Object> {
     }
 
 
-
-
     @Override
     public int size() {
         return data.size();
@@ -119,6 +117,7 @@ public class Row implements Map<String, Object> {
     }
 
     // Convenience methods for database operations
+
     /**
      * Gets the value for the specified column as a String.
      *
@@ -173,6 +172,7 @@ public class Row implements Map<String, Object> {
     public Boolean getBoolean(String columnName) {
         return (Boolean) data.get(columnName);
     }
+
     /**
      * Gets the value for the specified column as a Date.
      *
@@ -183,6 +183,7 @@ public class Row implements Map<String, Object> {
     public Date getDate(String columnName) {
         return (Date) data.get(columnName);
     }
+
     /**
      * Gets the value for the specified column as a Date.
      *
@@ -190,17 +191,18 @@ public class Row implements Map<String, Object> {
      * @return the Date value, or null if the value is null
      * @throws ClassCastException if the value is not a Date
      */
-    public Date getDate(String columnName,String format) {
-        String value=(String) data.get(columnName);
-        SimpleDateFormat sdf=new SimpleDateFormat(format);
+    public Date getDate(String columnName, String format) {
+        String value = (String) data.get(columnName);
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
         try {
-            Date date=sdf.parse(value);
+            Date date = sdf.parse(value);
             return date;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
     /**
      * Gets the value for the specified column as a Object.
      *
@@ -217,7 +219,7 @@ public class Row implements Map<String, Object> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Row jRow = (Row) o;
-        return data.equals(jRow.data) ;
+        return data.equals(jRow.data);
     }
 
     @Override

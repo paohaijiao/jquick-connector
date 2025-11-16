@@ -28,22 +28,22 @@ import org.junit.Test;
  * @since 2025/10/26
  */
 public class CurlTest {
-     String curl="`curl -X GET \\ \n"+
-            "'http://127.0.0.1:1211/getProjec"+
+    String curl = "`curl -X GET \\ \n" +
+            "'http://127.0.0.1:1211/getProjec" +
             "  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36' \\\n" +
             "  --insecure`";
 
 
     @Test
-    public  void testJson() throws Exception {
+    public void testJson() throws Exception {
         System.out.println(curl);
         JContext context = new JContext();
-        String query="SELECT\n" +
+        String query = "SELECT\n" +
                 "    field(projectId)->projectId:string,\n" +
                 "    field(projectName)->projectName:string,\n" +
-                "    field(projectStage)->projectStage:object \n"+
+                "    field(projectStage)->projectStage:object \n" +
                 "FROM CURL(\n" +
-                "    curl: "+curl+",\n" +
+                "    curl: " + curl + ",\n" +
                 "    searchPath: '$.data'\n" +
                 ")";
         ConnectorFactory factory = new ConnectorFactory();

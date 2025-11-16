@@ -31,16 +31,6 @@ import com.github.paohaijiao.model.JSONPathResult;
 public class ConnectorJsonPathProcessor implements ConnectorProcessor {
 
 
-    @Override
-    public Object process(Row row, ConnectorFieldMappingHolder mapping) {
-        String sourceField = mapping.getSourceField();
-        String path=trimQuotes(sourceField);
-        JSONObject json = new JSONObject(row);
-        JSONPathResult result = JSONPathQueryBuilder.from(json)
-                .path(path)
-                .execute();
-        return result.getRawData();
-    }
     public static String trimQuotes(String str) {
         if (str == null || str.isEmpty()) {
             return str;
@@ -52,6 +42,18 @@ public class ConnectorJsonPathProcessor implements ConnectorProcessor {
         }
         return str;
     }
+
+    @Override
+    public Object process(Row row, ConnectorFieldMappingHolder mapping) {
+        String sourceField = mapping.getSourceField();
+        String path = trimQuotes(sourceField);
+        JSONObject json = new JSONObject(row);
+        JSONPathResult result = JSONPathQueryBuilder.from(json)
+                .path(path)
+                .execute();
+        return result.getRawData();
+    }
+
     @Override
     public String getType() {
         return "jsonPath";

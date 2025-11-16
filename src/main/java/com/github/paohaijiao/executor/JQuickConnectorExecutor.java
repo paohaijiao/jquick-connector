@@ -29,14 +29,16 @@ import org.antlr.v4.runtime.TokenStream;
 
 public class JQuickConnectorExecutor extends JAbstractAntlrExecutor<String, ConnectorParsedQuery> {
 
-    private JContext context=new JContext();
+    private JContext context = new JContext();
 
-    public JQuickConnectorExecutor(JContext context){
+    public JQuickConnectorExecutor(JContext context) {
         this.context = context;
     }
-    public JQuickConnectorExecutor( ){
+
+    public JQuickConnectorExecutor() {
         this.context = new JContext();
     }
+
     @Override
     protected Lexer createLexer(CharStream input) {
         return new JQuickConnectorLexer(input);

@@ -70,7 +70,7 @@ public class JsonConnectorHandler extends AbsFileConnectorBaseHandler implements
         ConnectorConfiguration config = new ConnectorConfiguration();
         query.getConnectorProperties().forEach(config::setProperty);
         String connectorEncoding = config.getProperty(encoding, String.class);
-        String charsetName= StringUtils.isEmpty(connectorEncoding)?Charset.defaultCharset().name():connectorEncoding;
+        String charsetName = StringUtils.isEmpty(connectorEncoding) ? Charset.defaultCharset().name() : connectorEncoding;
         StringBuilder content = new StringBuilder();
         try (InputStream inputStream = Files.newInputStream(path)) {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, charsetName))) {
@@ -79,20 +79,21 @@ public class JsonConnectorHandler extends AbsFileConnectorBaseHandler implements
                     content.append(line);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         String connectorSearchPath = config.getProperty(searchPath, String.class);
-        List<Row> rows=JSonExtractUtil.buildRowsFromJSon(content.toString(),connectorSearchPath);
-        return rows ;
+        List<Row> rows = JSonExtractUtil.buildRowsFromJSon(content.toString(), connectorSearchPath);
+        return rows;
     }
 
 
     @Override
     public ConnectorType getConnectorType() {
-        ConnectorTypeFactory connectorTypeFactory=ConnectorTypeFactory.getInstance();
-        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder=connectorTypeFactory.buildType(ConnectorTypeEnums.JSON.getCode(), ConnectorTypeEnums.JSON.getName(), ConnectorCategory.FILE);;
-        ConnectorType connectorType=connectorTypeBuilder.withAliases(ConnectorTypeEnums.JSON.getCode(), ConnectorTypeEnums.JSON.getMime()).withMetadata(new ConnectorTypeMetadata("1.0", ConnectorCategory.FILE.getDescription(),  ConnectorCategory.FILE.getDescription())).build();
+        ConnectorTypeFactory connectorTypeFactory = ConnectorTypeFactory.getInstance();
+        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder = connectorTypeFactory.buildType(ConnectorTypeEnums.JSON.getCode(), ConnectorTypeEnums.JSON.getName(), ConnectorCategory.FILE);
+        ;
+        ConnectorType connectorType = connectorTypeBuilder.withAliases(ConnectorTypeEnums.JSON.getCode(), ConnectorTypeEnums.JSON.getMime()).withMetadata(new ConnectorTypeMetadata("1.0", ConnectorCategory.FILE.getDescription(), ConnectorCategory.FILE.getDescription())).build();
         return connectorType;
     }
 }

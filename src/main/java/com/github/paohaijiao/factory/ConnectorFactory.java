@@ -38,7 +38,7 @@ import java.util.List;
  */
 public class ConnectorFactory {
 
-    public final static JConsole console=new JConsole();
+    public final static JConsole console = new JConsole();
 
     private final ConnectorQueryParser queryParser;
 
@@ -46,25 +46,13 @@ public class ConnectorFactory {
 
     public ConnectorFactory() {
         this.context = new JContext();
-        this.queryParser = new ConnectorQueryParser(this.context );
+        this.queryParser = new ConnectorQueryParser(this.context);
 
     }
+
     public ConnectorFactory(JContext context) {
         this.context = context;
-        this.queryParser = new ConnectorQueryParser(this.context );
-    }
-    /**
-     * 执行查询并返回DataSet
-     */
-    public DataSet executeQuery(String query) {
-        ConnectorParsedQuery connectorParsedQuery = queryParser.parse(query);
-        ConnectorHandler connector = ConnectorRegistry.getConnector(connectorParsedQuery.getConnectorType());
-        if (connector == null) {
-            throw new IllegalArgumentException("unsupported connector type: " + connectorParsedQuery.getConnectorType());
-        }
-        List<Row> rows = connector.buildRow(connectorParsedQuery);
-        DataSet rawDataSet=DataSetAssembler.convert(rows,connectorParsedQuery.getFieldMappings());
-        return rawDataSet;
+        this.queryParser = new ConnectorQueryParser(this.context);
     }
 
     /**
@@ -79,5 +67,19 @@ public class ConnectorFactory {
      */
     public static void registerProcessor(String name, ConnectorProcessor processor) {
         ConnectoryProcessorRegistry.registerProcessor(name, processor);
+    }
+
+    /**
+     * 执行查询并返回DataSet
+     */
+    public DataSet executeQuery(String query) {
+        ConnectorParsedQuery connectorParsedQuery = queryParser.parse(query);
+        ConnectorHandler connector = ConnectorRegistry.getConnector(connectorParsedQuery.getConnectorType());
+        if (connector == null) {
+            throw new IllegalArgumentException("unsupported connector type: " + connectorParsedQuery.getConnectorType());
+        }
+        List<Row> rows = connector.buildRow(connectorParsedQuery);
+        DataSet rawDataSet = DataSetAssembler.convert(rows, connectorParsedQuery.getFieldMappings());
+        return rawDataSet;
     }
 }

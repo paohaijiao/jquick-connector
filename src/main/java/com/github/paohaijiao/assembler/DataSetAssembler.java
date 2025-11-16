@@ -50,7 +50,7 @@ public class DataSetAssembler {
     /**
      * 将List<Row>根据字段映射配置转换为DataSet
      *
-     * @param rows 原始数据行列表
+     * @param rows          原始数据行列表
      * @param fieldMappings 字段映射配置列表
      * @return 转换后的DataSet
      */
@@ -62,6 +62,7 @@ public class DataSetAssembler {
         List<Row> processedRows = processRows(rows, fieldMappings);
         return new DataSet(columns, processedRows);
     }
+
     /**
      * 构建ColumnMeta列表
      */
@@ -84,7 +85,7 @@ public class DataSetAssembler {
         for (Row row : rows) {
             Row processedRow = new Row();
             for (ConnectorFieldMappingHolder mapping : fieldMappings) {
-                Object value=mapping.getProcessor().process(row,mapping);
+                Object value = mapping.getProcessor().process(row, mapping);
                 processedRow.put(mapping.getTargetField(), value);
             }
             processedRows.add(processedRow);
@@ -96,7 +97,7 @@ public class DataSetAssembler {
     /**
      * 批量转换多个数据集的便捷方法
      *
-     * @param rowsList 多个原始数据行列表
+     * @param rowsList      多个原始数据行列表
      * @param fieldMappings 字段映射配置列表
      * @return 转换后的DataSet列表
      */

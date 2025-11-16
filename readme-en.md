@@ -1,6 +1,9 @@
 # JQuick Connector
+
 [简体中文](./README.md)| English
-A powerful data connector framework that supports unified querying of multiple data sources using SQL-like syntax, including databases, files, and REST APIs.
+A powerful data connector framework that supports unified querying of multiple data sources using SQL-like syntax,
+including databases, files, and REST APIs.
+
 ## Features
 
 - **Unified Query Interface**: Query diverse data sources using SQL-like syntax
@@ -26,7 +29,9 @@ FROM connector type(
     attribute3: {变量名}
 )
 ```
+
 ### MySQL Database Query Example
+
 ```sql
 SELECT
     field(id) -> cid:Long,
@@ -45,7 +50,9 @@ FROM MYSQL(
     driver: 'com.mysql.jdbc.Driver'
 )
 ```
+
 ### CSV File Query Example
+
 ```sql
 SELECT
   field(id) -> id:Long,
@@ -60,7 +67,9 @@ FROM CSV(
         header: 'true'
      )
 ```
+
 ### JSON File Query Example
+
 ```sql
 SELECT
         field(id) -> id:string,
@@ -72,7 +81,9 @@ FROM JSON(
         searchPath: '$.departments'
      )
 ```
+
 ### REST API Query Example
+
 ```sql
 SELECT
          field(projectId) -> projectId:string,
@@ -83,7 +94,9 @@ FROM CURL(
         searchPath: '$.data'
      )
 ```
+
 ### Excel File Query Example
+
 ```sql
 SELECT
         field(is_active) -> is_active:boolean,
@@ -98,7 +111,9 @@ FROM excel(
         header: 'true'
      )
 ```
+
 ### Relational Database (e.g., Mysql) Query Example
+
 ```sql
 SELECT
         field(id) -> b:Integer,
@@ -112,8 +127,11 @@ FROM MYSQL(
     password: {db_password}
 )
 ```
+
 ### Data Types
+
 Supported data types include:：
+
 - Integer - Integer number
 - Long - Long integer
 - Float - Floating-point number
@@ -124,47 +142,59 @@ Supported data types include:：
 - Object - Complex object (such as JSON)
 
 ### Field Processors
+
 #### Field Processor
+
 Extract data from flat structures (database columns, CSV fields) with the syntax:
+
 ```sql
 field(column name) -> target field:data type
 ```
+
 ### Field Processors
+
 #### Field Processor
+
 Extract data from flat structures (database columns, CSV fields) with the syntax:
+
 ```sql
 field(column name) -> target field:data type
 ```
+
 ### Supported Connectors
+
 #### Database Connectors
-| Connector Type	 | Processor Class	                  | Required Parameters	                | Optional Parameters
+
+| Connector Type | Processor Class | Required Parameters | Optional Parameters
 |
 |------------|---------------------------|-------------------------|-----------------------------------|
-| MySQL      | MySqlConnectorHandler     | url, username, password, sql | driver, database, port            |
-| PostgreSQL | PostgreSQLConnectorHandler | url, username, password, sql | driver, database, port            |
-| Oracle     | OracleConnectorHandler    | url, username, password, sql | driver, serviceName, port         |
-| ClickHouse | ClickHouseConnectorHandler | url, username, password, sql | driver, database, port            |
-| H2         | H2ConnectorHandler        | url, username, password, sql | driver                            |
-| DB2        | DB2ConnectorHandler       | url, username, password, sql | driver, database, port            |
-| Derby      | DerbyConnectorHandler     | url, username, password, sql | driver                            |
-| Hive       | HiveConnectorHandler      | url, username, password, sql | driver, database                  |
-| Impala     | ImpalaConnectorHandler    | url, username, password, sql | driver, database                  |
-| 金仓       | KingBaseConnectorHandler  | url, username, password, sql | driver, database, port            |
-| SQLite     | SQliteConnectorHandler    | url, sql                | driver                            |
-| Sybase     | SysbaseConnectorHandler   | url, username, password, sql | driver, database, port            |
-| 达梦       | DaMengConnectorHandler    | url, username, password, sql | driver, database, port            |
-| Informix   | InfomixConnectorHandler   | url, username, password, sql | driver, database, port            |
+| MySQL | MySqlConnectorHandler | url, username, password, sql | driver, database, port |
+| PostgreSQL | PostgreSQLConnectorHandler | url, username, password, sql | driver, database, port |
+| Oracle | OracleConnectorHandler | url, username, password, sql | driver, serviceName, port |
+| ClickHouse | ClickHouseConnectorHandler | url, username, password, sql | driver, database, port |
+| H2 | H2ConnectorHandler | url, username, password, sql | driver |
+| DB2 | DB2ConnectorHandler | url, username, password, sql | driver, database, port |
+| Derby | DerbyConnectorHandler | url, username, password, sql | driver |
+| Hive | HiveConnectorHandler | url, username, password, sql | driver, database |
+| Impala | ImpalaConnectorHandler | url, username, password, sql | driver, database |
+| 金仓 | KingBaseConnectorHandler | url, username, password, sql | driver, database, port |
+| SQLite | SQliteConnectorHandler | url, sql | driver |
+| Sybase | SysbaseConnectorHandler | url, username, password, sql | driver, database, port |
+| 达梦 | DaMengConnectorHandler | url, username, password, sql | driver, database, port |
+| Informix | InfomixConnectorHandler | url, username, password, sql | driver, database, port |
 
 #### File Connectors
+
 File Connectors
 
-| Connector Type	 | Processor Class	                  | Required Parameters	 | Optional Parameters|
-|------------|---------------------------|----------|----------------------------------|
-| CSV        | CsvConnectorHandler       | filepath | split, header, encoding          |
-| Excel      | ExcelConnectorHandler     | filepath | sheet, header, startRow          |
-| JSON       | JsonConnectorHandler      | filepath | searchPath, encoding             |
+| Connector Type	 | Processor Class	      | Required Parameters	 | Optional Parameters     |
+|-----------------|-----------------------|----------------------|-------------------------|
+| CSV             | CsvConnectorHandler   | filepath             | split, header, encoding |
+| Excel           | ExcelConnectorHandler | filepath             | sheet, header, startRow |
+| JSON            | JsonConnectorHandler  | filepath             | searchPath, encoding    |
 
 #### REST Connector
-| Connector Type	 | Processor Class	                  | Required Parameters	 | Optional Parameters|
-|------------|---------------------------|----------|-----------------------------|
-| CURL       | CurlConnectorHandler      | curl                    | searchPath  |
+
+| Connector Type	 | Processor Class	     | Required Parameters	 | Optional Parameters |
+|-----------------|----------------------|----------------------|---------------------|
+| CURL            | CurlConnectorHandler | curl                 | searchPath          |

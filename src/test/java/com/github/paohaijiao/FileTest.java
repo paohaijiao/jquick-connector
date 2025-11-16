@@ -29,20 +29,20 @@ import org.junit.Test;
  */
 public class FileTest {
     @Test
-    public  void testCsvl() throws Exception {
+    public void testCsvl() throws Exception {
         JContext context = new JContext();
         context.put("user", "test");
-        String query="SELECT\n" +
+        String query = "SELECT\n" +
                 "    field(id)->id:Long,\n" +
                 "    field(name)->name:String,\n" +
                 "    field(age)->age:Integer,\n" +
                 "    field(salary)->salary:Double,\n" +
                 "    field(is_active)->is_active:Boolean,\n" +
-                "    field(birth_date)->birth_date:Date \n"+
+                "    field(birth_date)->birth_date:Date \n" +
                 "FROM CSV(\n" +
                 "    filepath: 'D:\\idea\\jquick-connector\\src\\test\\resources\\file\\data.csv',\n" +
                 "    split: ',',\n" +
-                "    header: 'true'"+
+                "    header: 'true'" +
                 ")";
         ConnectorFactory factory = new ConnectorFactory();
         DataSet dataSet = factory.executeQuery(query);
@@ -50,21 +50,22 @@ public class FileTest {
             System.out.println("id: " + row.get("id") + ", name: " + row.getString("name"));
         });
     }
+
     @Test
-    public  void testExcel() throws Exception {
+    public void testExcel() throws Exception {
         JContext context = new JContext();
         context.put("user", "test");
-        String query="SELECT\n" +
+        String query = "SELECT\n" +
                 "    field(is_active)->is_active:boolean,\n" +
                 "    field(birth_date)->birth_date:date,\n" +
                 "    field(name)->name:string,\n" +
                 "    field(id)->id:Long,\n" +
                 "    field(salary)->salary:double,\n" +
-                "    field(age)->age:integer \n"+
+                "    field(age)->age:integer \n" +
                 "FROM excel(\n" +
                 "    filepath: 'D:\\idea\\jquick-connector\\src\\test\\resources\\file\\data.xlsx',\n" +
                 "    sheet: 'Sheet1',\n" +
-                "    header: 'true'"+
+                "    header: 'true'" +
                 ")";
         ConnectorFactory factory = new ConnectorFactory();
         DataSet dataSet = factory.executeQuery(query);
@@ -72,14 +73,15 @@ public class FileTest {
             System.out.println("id: " + row.get("id") + ", birth_date: " + row.getDate("birth_date"));
         });
     }
+
     @Test
-    public  void testJson() throws Exception {
+    public void testJson() throws Exception {
         JContext context = new JContext();
-        String query="SELECT\n" +
+        String query = "SELECT\n" +
                 "    field(id)->id:string,\n" +
                 "    field(name)->name:string,\n" +
                 "    path('$.manager.title')->title:string,\n" +
-                "    field(manager)->manager:object \n"+
+                "    field(manager)->manager:object \n" +
                 "FROM JSON(\n" +
                 "    filepath: 'D:\\my\\jquick-connector\\src\\test\\resources\\file\\data.json',\n" +
                 "    searchPath: '$.departments'\n" +
@@ -87,7 +89,7 @@ public class FileTest {
         ConnectorFactory factory = new ConnectorFactory();
         DataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
-            System.out.println("id: " + row.get("id") + ", title: " + row.getString("title")+ ", manager: " + row.getObject("manager"));
+            System.out.println("id: " + row.get("id") + ", title: " + row.getString("title") + ", manager: " + row.getObject("manager"));
         });
     }
 }

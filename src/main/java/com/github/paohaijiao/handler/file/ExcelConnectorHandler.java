@@ -327,9 +327,10 @@ public class ExcelConnectorHandler extends AbsFileConnectorBaseHandler implement
 
     @Override
     public ConnectorType getConnectorType() {
-        ConnectorTypeFactory connectorTypeFactory=ConnectorTypeFactory.getInstance();
-        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder=connectorTypeFactory.buildType(ConnectorTypeEnums.EXCEL.getCode(), ConnectorTypeEnums.EXCEL.getName(), ConnectorCategory.FILE);;
-        ConnectorType connectorType=connectorTypeBuilder.withAliases(ConnectorTypeEnums.EXCEL.getCode(), ConnectorTypeEnums.EXCEL.getMime()).withMetadata(new ConnectorTypeMetadata("1.0", ConnectorCategory.FILE.getDescription(),  ConnectorCategory.FILE.getDescription())).build();
+        ConnectorTypeFactory connectorTypeFactory = ConnectorTypeFactory.getInstance();
+        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder = connectorTypeFactory.buildType(ConnectorTypeEnums.EXCEL.getCode(), ConnectorTypeEnums.EXCEL.getName(), ConnectorCategory.FILE);
+        ;
+        ConnectorType connectorType = connectorTypeBuilder.withAliases(ConnectorTypeEnums.EXCEL.getCode(), ConnectorTypeEnums.EXCEL.getMime()).withMetadata(new ConnectorTypeMetadata("1.0", ConnectorCategory.FILE.getDescription(), ConnectorCategory.FILE.getDescription())).build();
         return connectorType;
     }
 }

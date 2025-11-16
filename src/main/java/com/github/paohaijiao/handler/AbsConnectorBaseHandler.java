@@ -24,16 +24,16 @@ import java.util.List;
 
 public abstract class AbsConnectorBaseHandler implements ConnectorHandler {
 
-    protected JConsole console=new JConsole();
+    protected JConsole console = new JConsole();
 
-    protected JContext context=new JContext();
+    protected JContext context = new JContext();
 
     /**
      * buildRow
+     *
      * @return
      */
     public abstract List<Row> buildRow(ConnectorParsedQuery query);
-
 
 
 }

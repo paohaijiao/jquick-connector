@@ -24,6 +24,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
+
 /**
  * packageName com.github.paohaijiao.convert
  *
@@ -33,10 +34,10 @@ import java.util.Date;
  */
 public class DataConvert {
 
-    protected static JConsole console=new JConsole();
+    protected static JConsole console = new JConsole();
 
     @SuppressWarnings("unchecked")
-    public  <T> T convertValue(Object value, Class<T> type) {
+    public <T> T convertValue(Object value, Class<T> type) {
         if (value == null) {
             return null;
         }
@@ -74,7 +75,7 @@ public class DataConvert {
                 sdf.setLenient(false);
                 return sdf.parse(dateStr);
             } catch (ParseException e) {
-                console.error("parser date error",e);
+                console.error("parser date error", e);
             }
         }
         throw new IllegalArgumentException("Unable to parse date: " + dateStr);
@@ -90,7 +91,7 @@ public class DataConvert {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
                 return LocalDate.parse(dateStr, formatter);
             } catch (DateTimeParseException e) {
-                console.error("parser date error",e);
+                console.error("parser date error", e);
             }
         }
         throw new IllegalArgumentException("Unable to parse LocalDate: " + dateStr);
@@ -106,7 +107,7 @@ public class DataConvert {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
                 return LocalDateTime.parse(dateStr, formatter);
             } catch (DateTimeParseException e) {
-                console.error("parser date error",e);
+                console.error("parser date error", e);
             }
         }
         throw new IllegalArgumentException("Unable to parse LocalDateTime: " + dateStr);

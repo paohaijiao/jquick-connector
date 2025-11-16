@@ -14,6 +14,7 @@
  * Copyright (c) [2025-2099] Martin (goudingcheng@gmail.com)
  */
 package com.github.paohaijiao.enums;
+
 import lombok.Getter;
 
 import java.util.Date;
@@ -42,16 +43,17 @@ public enum ConnectorDataType {
 
     private Class<?> clazz;
 
-    ConnectorDataType(String code, Class<?> clazz){
+    ConnectorDataType(String code, Class<?> clazz) {
         this.code = code;
         this.clazz = clazz;
     }
-    public static ConnectorDataType codeOf(String code){
+
+    public static ConnectorDataType codeOf(String code) {
         for (ConnectorDataType type : ConnectorDataType.values()) {
             if (type.getCode().equalsIgnoreCase(code)) {
                 return type;
             }
         }
-        throw new RuntimeException("不支持" + code+"该类型");
+        throw new RuntimeException("不支持" + code + "该类型");
     }
 }

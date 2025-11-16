@@ -17,23 +17,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class ConnectorTypeFactory {
 
-    protected JConsole console=new JConsole();
-
     protected static final ConnectorTypeFactory INSTANCE = new ConnectorTypeFactory();
-
     protected final Map<String, ConnectorType> registry = new ConcurrentHashMap<>();
-
     protected final Map<ConnectorCategory, List<ConnectorType>> categoryIndex = new ConcurrentHashMap<>();
-
-
     protected final Map<String, String> aliasRegistry = new ConcurrentHashMap<>();
-
     protected final List<ConnectorTypeProvider> providers = new CopyOnWriteArrayList<>();
-
     protected final Map<String, Set<String>> dependencyGraph = new ConcurrentHashMap<>();
-
     protected final Map<String, ConnectorTypeMetadata> metadataRegistry = new ConcurrentHashMap<>();
-
+    protected JConsole console = new JConsole();
     protected boolean initialized = false;
 
     private ConnectorTypeFactory() {
@@ -86,9 +77,9 @@ public class ConnectorTypeFactory {
                 providers.add(provider);
                 ConnectorType pluginType = provider.getConnectorType();
                 registerType(pluginType);
-                console.log(JLogLevel.INFO,"Loaded connector types from provider: " + provider.getClass().getName());
+                console.log(JLogLevel.INFO, "Loaded connector types from provider: " + provider.getClass().getName());
             } catch (Exception e) {
-                console.log(JLogLevel.ERROR,"Failed to load connector types from provider: " + provider.getClass().getName());
+                console.log(JLogLevel.ERROR, "Failed to load connector types from provider: " + provider.getClass().getName());
                 e.printStackTrace();
             }
         }
@@ -125,7 +116,7 @@ public class ConnectorTypeFactory {
         registry.put(type.getCode(), type);
         for (String alias : type.getAliases()) {
             if (aliasRegistry.containsKey(alias)) {
-                console.log(JLogLevel.ERROR,"Warning: Alias '" + alias + "' already exists for type '" + aliasRegistry.get(alias) + "', will be overwritten by '" + type.getCode() + "'");
+                console.log(JLogLevel.ERROR, "Warning: Alias '" + alias + "' already exists for type '" + aliasRegistry.get(alias) + "', will be overwritten by '" + type.getCode() + "'");
             }
             aliasRegistry.put(alias.toLowerCase(), type.getCode());
         }
@@ -134,7 +125,7 @@ public class ConnectorTypeFactory {
             metadataRegistry.put(type.getCode(), type.getMetadata());
         }
         dependencyGraph.put(type.getCode(), new HashSet<>(type.getDependencies()));
-        console.log(JLogLevel.INFO,"Registered connector type: " + type.getCode() + " - " + type.getName());
+        console.log(JLogLevel.INFO, "Registered connector type: " + type.getCode() + " - " + type.getName());
     }
 
     /**
@@ -229,7 +220,7 @@ public class ConnectorTypeFactory {
             }
             metadataRegistry.remove(code);
             dependencyGraph.remove(code);
-            console.log(JLogLevel.INFO,"Unregistered connector type: " + type.getCode());
+            console.log(JLogLevel.INFO, "Unregistered connector type: " + type.getCode());
         }
     }
 

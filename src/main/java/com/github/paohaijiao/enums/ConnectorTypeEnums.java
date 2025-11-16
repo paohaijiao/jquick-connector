@@ -14,13 +14,14 @@
  * Copyright (c) [2025-2099] Martin (goudingcheng@gmail.com)
  */
 package com.github.paohaijiao.enums;
+
 import lombok.Getter;
 
 @Getter
 public enum ConnectorTypeEnums {
 
     // 文件型
-    CSV("CSV", "CSV","text/csv"),
+    CSV("CSV", "CSV", "text/csv"),
     EXCEL("EXCEL", "EXCEL", "application/vnd.ms-excel"),
     JSON("JSON", "JSON", "application/json"),
     XML("XML", "XML", "application/xml"),
@@ -29,7 +30,7 @@ public enum ConnectorTypeEnums {
 
     // 数据库型
     MYSQL("MYSQL", "MySQL", "application/mysql"),
-    ORACLE("ORACLE", "Oracle","application/oracle"),
+    ORACLE("ORACLE", "Oracle", "application/oracle"),
     POSTGRESQL("POSTGRESQL", "PostgreSQL", "application/postgresql"),
     SQL_SERVER("SQL_SERVER", "SQL Server", "application/sqlserver"),
     DB2("DB2", "DB2", "application/db2"),
@@ -82,17 +83,18 @@ public enum ConnectorTypeEnums {
 
     private String mime;
 
-    ConnectorTypeEnums(String code, String name,String mime){
+    ConnectorTypeEnums(String code, String name, String mime) {
         this.code = code;
         this.name = name;
         this.mime = mime;
     }
-    public static ConnectorTypeEnums codeOf(String code){
+
+    public static ConnectorTypeEnums codeOf(String code) {
         for (ConnectorTypeEnums type : ConnectorTypeEnums.values()) {
             if (type.getCode().equalsIgnoreCase(code)) {
                 return type;
             }
         }
-        throw new RuntimeException("不支持" + code+"该类型");
+        throw new RuntimeException("不支持" + code + "该类型");
     }
 }

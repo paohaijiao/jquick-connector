@@ -42,7 +42,7 @@ public class ConnectorType {
 
     private final List<String> dependencies;
 
-     private final ConnectorTypeMetadata metadata;
+    private final ConnectorTypeMetadata metadata;
 
     public ConnectorType(String code, String name, ConnectorCategory category, List<String> aliases, List<String> dependencies, ConnectorTypeMetadata metadata) {
         this.code = code;

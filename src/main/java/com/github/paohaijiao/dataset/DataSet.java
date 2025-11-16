@@ -41,9 +41,14 @@ public class DataSet {
         this.rows = Collections.unmodifiableList(new ArrayList<>(rows));
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public List<ColumnMeta> getColumns() {
         return columns;
     }
+
     public List<Row> getRows() {
         return rows;
     }
@@ -64,9 +69,6 @@ public class DataSet {
         return rows.isEmpty();
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
     public DataSet filter(Predicate<Row> predicate) {
         List<Row> filtered = rows.stream().filter(predicate).collect(Collectors.toList());
         return new DataSet(columns, filtered);
@@ -80,9 +82,11 @@ public class DataSet {
     public <T> Stream<T> mapToColumn(Function<Object, T> mapper, String columnName) {
         return rows.stream().map(row -> mapper.apply(row.get(columnName)));
     }
+
     public static class Builder {
         private final List<ColumnMeta> columns = new ArrayList<>();
         private final List<Row> rows = new ArrayList<>();
+
         public Builder addColumn(String name, Class<?> type, String source) {
             columns.add(new ColumnMeta(name, type, source));
             return this;

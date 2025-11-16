@@ -26,7 +26,6 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- *
  * @author Martin
  * @version 2.0.0
  * @since 2025/10/21
@@ -52,7 +51,7 @@ public class ConnectoryProcessorRegistry {
     /**
      * 注册处理器（带优先级）
      *
-     * @param name     处理器名称
+     * @param name      处理器名称
      * @param processor 处理器实例
      * @param priority  优先级，数值越小优先级越高
      */

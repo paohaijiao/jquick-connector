@@ -31,8 +31,8 @@ public class ConnectorFieldProcessor implements ConnectorProcessor {
     @Override
     public Object process(Row row, ConnectorFieldMappingHolder mapping) {
         String sourceField = mapping.getSourceField();
-        boolean existsColumn=row.containsKey(sourceField);
-        JAssert.isTrue(existsColumn,"the coloumn[" +sourceField+"] not exists");
+        boolean existsColumn = row.containsKey(sourceField);
+        JAssert.isTrue(existsColumn, "the coloumn[" + sourceField + "] not exists");
         Object value = row.get(sourceField);
         return value;
     }

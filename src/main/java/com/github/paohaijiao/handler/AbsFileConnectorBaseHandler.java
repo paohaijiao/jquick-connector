@@ -28,29 +28,28 @@ import java.util.List;
 
 public abstract class AbsFileConnectorBaseHandler extends AbsConnectorBaseHandler {
 
-    private static final  String filepath="filepath";
-    protected static final  String header="header";
+    protected static final String header = "header";
+    private static final String filepath = "filepath";
 
-    public Path  doGetPath(Configuration config){
-        String connectorPath =config.getProperty(filepath,String.class);
-        JAssert.notEmptyStr(connectorPath,"filepath require not null");
-        return  Paths.get(connectorPath);
+    public Path doGetPath(Configuration config) {
+        String connectorPath = config.getProperty(filepath, String.class);
+        JAssert.notEmptyStr(connectorPath, "filepath require not null");
+        return Paths.get(connectorPath);
     }
 
-    public abstract List<Row> doParse(Path path,ConnectorParsedQuery query);
+    public abstract List<Row> doParse(Path path, ConnectorParsedQuery query);
 
     /**
-     *
      * @param query
      * @return
      */
     @Override
-    public List<Row> buildRow(ConnectorParsedQuery query){
+    public List<Row> buildRow(ConnectorParsedQuery query) {
         ConnectorConfiguration config = new ConnectorConfiguration();
         query.getConnectorProperties().forEach(config::setProperty);
         Path path = doGetPath(config);
-        JAssert.notNull(path,"filepath require not null");
-        List<Row> rows = doParse(path,query);
+        JAssert.notNull(path, "filepath require not null");
+        List<Row> rows = doParse(path, query);
         return rows;
     }
 

@@ -21,23 +21,9 @@ import java.util.List;
 
 public class CsvConnectorHandler extends AbsFileConnectorBaseHandler implements ConnectorTypeProvider {
 
-    protected static final  String split="split";
+    protected static final String split = "split";
 
-
-    @Override
-    public List<Row> doParse(Path path, ConnectorParsedQuery query) {
-        ConnectorConfiguration config = new ConnectorConfiguration();
-        query.getConnectorProperties().forEach(config::setProperty);
-        Boolean h= config.getProperty(header,Boolean.class);
-        String splitStr= config.getProperty(split,String.class);
-        try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
-            return convert(reader,splitStr, h);
-        } catch (IOException e) {
-            console.error("csv parse error", e);
-        }
-        return new ArrayList<>();
-    }
-    private static List<Row> convert(BufferedReader reader,String split, boolean hasHeader) throws IOException {
+    private static List<Row> convert(BufferedReader reader, String split, boolean hasHeader) throws IOException {
         List<Row> result = new ArrayList<>();
         String[] headers = null;
         String line;
@@ -64,6 +50,7 @@ public class CsvConnectorHandler extends AbsFileConnectorBaseHandler implements 
         }
         return result;
     }
+
     private static String[] generateDefaultHeaders(int count) {
         String[] headers = new String[count];
         for (int i = 0; i < count; i++) {
@@ -72,14 +59,26 @@ public class CsvConnectorHandler extends AbsFileConnectorBaseHandler implements 
         return headers;
     }
 
-
-
+    @Override
+    public List<Row> doParse(Path path, ConnectorParsedQuery query) {
+        ConnectorConfiguration config = new ConnectorConfiguration();
+        query.getConnectorProperties().forEach(config::setProperty);
+        Boolean h = config.getProperty(header, Boolean.class);
+        String splitStr = config.getProperty(split, String.class);
+        try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+            return convert(reader, splitStr, h);
+        } catch (IOException e) {
+            console.error("csv parse error", e);
+        }
+        return new ArrayList<>();
+    }
 
     @Override
     public ConnectorType getConnectorType() {
-        ConnectorTypeFactory connectorTypeFactory=ConnectorTypeFactory.getInstance();
-        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder=connectorTypeFactory.buildType(ConnectorTypeEnums.CSV.getCode(), ConnectorTypeEnums.CSV.getName(), ConnectorCategory.FILE);;
-        ConnectorType connectorType=connectorTypeBuilder.withAliases(ConnectorTypeEnums.CSV.getCode(), ConnectorTypeEnums.CSV.getMime()).withMetadata(new ConnectorTypeMetadata("1.0", ConnectorCategory.FILE.getDescription(),  ConnectorCategory.FILE.getDescription())).build();
+        ConnectorTypeFactory connectorTypeFactory = ConnectorTypeFactory.getInstance();
+        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder = connectorTypeFactory.buildType(ConnectorTypeEnums.CSV.getCode(), ConnectorTypeEnums.CSV.getName(), ConnectorCategory.FILE);
+        ;
+        ConnectorType connectorType = connectorTypeBuilder.withAliases(ConnectorTypeEnums.CSV.getCode(), ConnectorTypeEnums.CSV.getMime()).withMetadata(new ConnectorTypeMetadata("1.0", ConnectorCategory.FILE.getDescription(), ConnectorCategory.FILE.getDescription())).build();
         return connectorType;
     }
 }

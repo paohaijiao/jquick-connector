@@ -22,5 +22,5 @@ import lombok.Data;
 @Data
 public class JQuickConnectorCoreVisitor extends JQuickConnectorBaseVisitor {
 
-    protected JContext context=new JContext();
+    protected JContext context = new JContext();
 }

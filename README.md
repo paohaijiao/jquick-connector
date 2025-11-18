@@ -154,10 +154,34 @@ FROM PROPERTIES(
         searchPath: '$'
      )
 ```
-
-### Mysql 等关系型数据库查询示例
-
+### YAML 等形式的查询
 ```sql
+SELECT
+path('$.app.name')->name:string,
+path('$.app.version')->version:string
+FROM YAML(
+filepath: 'D:\idea\jquick-connector\src\test\resources\file\config.yml',
+searchPath: '$'
+)
+```
+### PROPERTIES 等形式的查询
+```sql
+SELECT
+    path('$.database.username')->username:string,
+    path('$.app.version')->name:string,
+    path('$.database.url')->email:string,
+    path('$.database.username')->age:string,
+    path('$.database.password')->department:object
+    path('$.server.port')->salary:object
+    path('$.logging.level')->hireDate:object
+FROM PROPERTIES(
+filepath: 'D:\idea\jquick-connector\src\test\resources\file\config.properties',
+searchPath: '$'
+)
+```
+### Mysql 等关系型数据库查询示例
+      
+      ```sql
 SELECT
         field(id) -> b:Integer,
         field(c) -> b:Integer
@@ -238,7 +262,8 @@ field(列名) -> 目标字段:数据类型
 | Excel | ExcelConnectorHandler | filepath | sheet, header, startRow |
 | JSON  | JsonConnectorHandler  | filepath | searchPath, encoding    |
 | XML  | XmlConnectorHandler  | filepath | searchPath, encoding    |
-| XML  | XmlConnectorHandler  | filepath | searchPath, encoding    |
+| YAML  | YMLConnectorHandler  | filepath | searchPath, encoding    |
+| Properties  | PropertiesConnectorHandler  | filepath | searchPath, encoding    |
 
 #### REST 连接器
 

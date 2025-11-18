@@ -139,6 +139,21 @@ FROM Redis(
     redisKey: 'user:1'
 )
 ```
+### PROPERTIES 等形式的查询
+```sql
+SELECT
+  path('$.database.username')->username:string,
+        path('$.app.version')->name:string,
+        path('$.database.url')->email:string,
+        path('$.database.username')->age:string,
+        path('$.database.password')->department:object 
+    path('$.server.port')->salary:object 
+    path('$.logging.level')->hireDate:object
+FROM PROPERTIES(
+        filepath: 'D:\idea\jquick-connector\src\test\resources\file\config.properties',
+        searchPath: '$'
+     )
+```
 
 ### Mysql 等关系型数据库查询示例
 

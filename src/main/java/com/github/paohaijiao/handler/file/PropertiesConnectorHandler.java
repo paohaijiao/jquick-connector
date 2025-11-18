@@ -41,9 +41,7 @@ import com.github.paohaijiao.util.JSonExtractUtil;
 
 import java.io.*;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * JSON 转 Row 列表工具类
@@ -53,6 +51,8 @@ import java.util.Properties;
  * @since 2025/8/14
  */
 public class PropertiesConnectorHandler extends AbsFileConnectorBaseHandler implements ConnectorTypeProvider {
+
+    private static final ObjectMapper mapper = new ObjectMapper();
 
 
     protected static final String searchPath = "searchPath";
@@ -70,10 +70,7 @@ public class PropertiesConnectorHandler extends AbsFileConnectorBaseHandler impl
         query.getConnectorProperties().forEach(config::setProperty);
         String connectorPath = config.getProperty(filepath, String.class);
         try {
-            Properties properties = new Properties();
-            properties.load(new FileInputStream(connectorPath));
-            ObjectMapper mapper = new ObjectMapper();
-            String content = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(properties);
+            String content =convertToNestedJson(connectorPath);
             console.log(JLogLevel.INFO,"json: " + content);
             String connectorSearchPath = config.getProperty(searchPath, String.class);
             List<Row> rows = JSonExtractUtil.buildRowsFromJSon(content, connectorSearchPath);
@@ -83,6 +80,39 @@ public class PropertiesConnectorHandler extends AbsFileConnectorBaseHandler impl
         }
         return new ArrayList<>();
     }
+    private static void setNestedValue(Map<String, Object> map, String key, Object value) {
+        String[] keys = key.split("\\.");
+        Map<String, Object> current = map;
+
+        for (int i = 0; i < keys.length - 1; i++) {
+            current = (Map<String, Object>) current.computeIfAbsent(keys[i], k -> new HashMap<>());
+        }
+
+        current.put(keys[keys.length - 1], value);
+    }
+    private static Map<String, Object> convertToNestedMap(Properties properties) {
+        Map<String, Object> result = new HashMap<>();
+        for (String key : properties.stringPropertyNames()) {
+            setNestedValue(result, key, properties.getProperty(key));
+        }
+        return result;
+    }
+    public static String convertToNestedJson(String propertiesFilePath) throws IOException {
+        Properties properties = loadProperties(propertiesFilePath);
+        Map<String, Object> nestedMap = convertToNestedMap(properties);
+        return mapper.writerWithDefaultPrettyPrinter()
+                .writeValueAsString(nestedMap);
+    }
+    private static Properties loadProperties(String filePath) throws IOException {
+        Properties properties = new Properties();
+        try (FileInputStream input = new FileInputStream(filePath)) {
+            properties.load(input);
+        }
+        return properties;
+    }
+
+
+
 
 
     @Override

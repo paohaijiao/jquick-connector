@@ -41,7 +41,7 @@ public class PropertyTest {
                 "    path('$.server.port')->salary:object \n" +
                 "    path('$.logging.level')->hireDate:object \n" +
                 "FROM PROPERTIES(\n" +
-                "    filepath: 'D:\\my\\jquick-connector\\src\\test\\resources\\file\\config.properties',\n" +
+                "    filepath: 'D:\\idea\\jquick-connector\\src\\test\\resources\\file\\config.properties',\n" +
                 "    searchPath: '$'\n" +
                 ")";
         System.out.println(query);

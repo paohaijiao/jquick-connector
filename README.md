@@ -110,6 +110,35 @@ FROM excel(
         header: 'true'
      )
 ```
+### XML 文件查询示例
+```sql
+SELECT
+    path('$.attributes.id[0]')->id:Long,
+    path('$.user.name[0]')->name:string,
+    path('$.user.email[0]')->email:string,
+    path('$.user.age[0]')->age:string,
+    path('$.user.department[0]')->department:object 
+    path('$.user.salary[0]')->salary:object 
+    path('$.user.hireDate[0]')->hireDate:object 
+FROM XML(
+    filepath: 'D:\my\jquick-connector\src\test\resources\file\user.xml',
+    searchPath: '$.users'
+)
+```
+### reids查询示例
+```sql
+SELECT
+    field(name)->name:string,
+    field(age)->age:Long,
+    field(email)->email:string 
+FROM Redis(
+    host: '127.0.0.1',
+    port: 6379,
+    password: '',
+    database: 0,
+    redisKey: 'user:1'
+)
+```
 
 ### Mysql 等关系型数据库查询示例
 
@@ -180,7 +209,10 @@ field(列名) -> 目标字段:数据类型
 | Sybase     | SysbaseConnectorHandler    | url, username, password, sql | driver, database, port    |
 | 达梦         | DaMengConnectorHandler     | url, username, password, sql | driver, database, port    |
 | Informix   | InfomixConnectorHandler    | url, username, password, sql | driver, database, port    |
-
+#### 非机构化数据
+| 连接器类型 | 处理器类                  | 必需参数     | 可选参数                    |
+|-------|-----------------------|----------|-------------------------|
+| REDIS  | RedisConnectorHandler  | host ,port|                      |
 #### 文件连接器
 
 文件连接器
@@ -190,6 +222,8 @@ field(列名) -> 目标字段:数据类型
 | CSV   | CsvConnectorHandler   | filepath | split, header, encoding |
 | Excel | ExcelConnectorHandler | filepath | sheet, header, startRow |
 | JSON  | JsonConnectorHandler  | filepath | searchPath, encoding    |
+| XML  | XmlConnectorHandler  | filepath | searchPath, encoding    |
+| XML  | XmlConnectorHandler  | filepath | searchPath, encoding    |
 
 #### REST 连接器
 

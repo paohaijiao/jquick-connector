@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+    <user id="1">
+        <name>张三</name>
+        <email>zhangsan@example.com</email>
+        <age>28</age>
+        <department>技术部</department>
+        <salary>15000</salary>
+        <hireDate>2020-03-15</hireDate>
+    </user>
+    <user id="2">
+        <name>李四</name>
+        <email>lisi@example.com</email>
+        <age>32</age>
+        <department>销售部</department>
+        <salary>12000</salary>
+        <hireDate>2019-07-22</hireDate>
+    </user>
+    <user id="3">
+        <name>王五</name>
+        <email>wangwu@example.com</email>
+        <age>25</age>
+        <department>市场部</department>
+        <salary>10000</salary>
+        <hireDate>2021-01-10</hireDate>
+    </user>
+</users>

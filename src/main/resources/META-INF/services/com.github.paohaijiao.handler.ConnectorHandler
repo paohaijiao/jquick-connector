@@ -17,5 +17,9 @@ com.github.paohaijiao.handler.database.SysbaseConnectorHandler
 com.github.paohaijiao.handler.file.CsvConnectorHandler
 com.github.paohaijiao.handler.file.ExcelConnectorHandler
 com.github.paohaijiao.handler.file.JsonConnectorHandler
+com.github.paohaijiao.handler.file.XmlConnectorHandler
+com.github.paohaijiao.handler.file.PropertiesConnectorHandler
 
 com.github.paohaijiao.handler.rest.CurlConnectorHandler
+
+com.github.paohaijiao.handler.redis.RedisConnectorHandler

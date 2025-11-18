@@ -21,8 +21,17 @@ public class JSonExtractUtil {
         if (json instanceof JSONObject) {
             JSONObject jsonObject = (JSONObject) json;
             JSONPathResult result = JSONPathQueryBuilder.from(jsonObject).path(searchPath).execute();
-            JAssert.isTrue(result.isList(), "only list result can be parsed");
-            return convert(result.getAsList());
+            if(result.isList()){
+                return convert(result.getAsList());
+            }else{
+                Object object= result.getRawData();
+                JSONObject jsonData= (JSONObject) object;
+                List<Row> list= new ArrayList<>();
+                Row row = new Row(jsonData);
+                list.add(row);
+                return list;
+            }
+
         } else {
             JAssert.throwNewException("not support this data type[" + content.toString() + "]");
         }

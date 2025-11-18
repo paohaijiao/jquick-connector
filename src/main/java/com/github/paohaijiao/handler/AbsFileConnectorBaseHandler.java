@@ -29,7 +29,7 @@ import java.util.List;
 public abstract class AbsFileConnectorBaseHandler extends AbsConnectorBaseHandler {
 
     protected static final String header = "header";
-    private static final String filepath = "filepath";
+    protected static final String filepath = "filepath";
 
     public Path doGetPath(Configuration config) {
         String connectorPath = config.getProperty(filepath, String.class);

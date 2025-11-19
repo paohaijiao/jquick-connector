@@ -25,7 +25,6 @@ package com.github.paohaijiao.handler.file;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import com.github.paohaijiao.config.ConnectorConfiguration;
 import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.enums.ConnectorCategory;

@@ -29,17 +29,16 @@ import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.enums.ConnectorCategory;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import com.github.paohaijiao.enums.JLogLevel;
-import com.github.paohaijiao.executor.JQuickXMLExecutor;
 import com.github.paohaijiao.handler.AbsFileConnectorBaseHandler;
 import com.github.paohaijiao.meta.ConnectorType;
 import com.github.paohaijiao.meta.ConnectorTypeMetadata;
-import com.github.paohaijiao.model.JSONObject;
 import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 import com.github.paohaijiao.registry.ConnectorTypeFactory;
 import com.github.paohaijiao.util.JSonExtractUtil;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
 

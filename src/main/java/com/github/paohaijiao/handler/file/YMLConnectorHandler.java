@@ -30,7 +30,6 @@ import com.github.paohaijiao.config.ConnectorConfiguration;
 import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.enums.ConnectorCategory;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
-import com.github.paohaijiao.enums.JLogLevel;
 import com.github.paohaijiao.handler.AbsFileConnectorBaseHandler;
 import com.github.paohaijiao.meta.ConnectorType;
 import com.github.paohaijiao.meta.ConnectorTypeMetadata;
@@ -38,12 +37,12 @@ import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 import com.github.paohaijiao.registry.ConnectorTypeFactory;
 import com.github.paohaijiao.util.JSonExtractUtil;
-import org.yaml.snakeyaml.Yaml;
 
-import java.io.*;
-import java.nio.file.Files;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * JSON 转 Row 列表工具类
@@ -53,11 +52,6 @@ import java.util.*;
  * @since 2025/8/14
  */
 public class YMLConnectorHandler extends AbsFileConnectorBaseHandler implements ConnectorTypeProvider {
-
-
-    private static final YAMLMapper yamlMapper = new YAMLMapper();
-
-    private static final ObjectMapper jsonMapper = new ObjectMapper();
 
 
     protected static final String searchPath = "searchPath";
@@ -82,28 +76,17 @@ public class YMLConnectorHandler extends AbsFileConnectorBaseHandler implements 
             String connectorSearchPath = config.getProperty(searchPath, String.class);
             List<Row> rows = JSonExtractUtil.buildRowsFromJSon(json, connectorSearchPath);
             return rows;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
         return new ArrayList<>();
     }
-    public static String yamlToJson(String yamlContent) throws IOException {
-        Object obj = yamlMapper.readValue(yamlContent, Object.class);
-        return jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
-    }
-
-
-
-
 
 
     @Override
     public ConnectorType getConnectorType() {
         ConnectorTypeFactory connectorTypeFactory = ConnectorTypeFactory.getInstance();
-        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder = connectorTypeFactory.buildType(ConnectorTypeEnums.YAML.getCode(), ConnectorTypeEnums.YAML.getName(), ConnectorCategory.FILE);
+        ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder = ConnectorTypeFactory.buildType(ConnectorTypeEnums.YAML.getCode(), ConnectorTypeEnums.YAML.getName(), ConnectorCategory.FILE);
         ConnectorType connectorType = connectorTypeBuilder.withAliases(ConnectorTypeEnums.YAML.getCode(), ConnectorTypeEnums.YAML.getMime()).withMetadata(new ConnectorTypeMetadata("1.0", ConnectorCategory.FILE.getDescription(), ConnectorCategory.FILE.getDescription())).build();
         return connectorType;
     }

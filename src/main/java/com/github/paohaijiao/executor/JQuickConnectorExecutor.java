@@ -20,14 +20,14 @@ import com.github.paohaijiao.exception.JAntlrExecutionException;
 import com.github.paohaijiao.param.JContext;
 import com.github.paohaijiao.parser.JQuickConnectorLexer;
 import com.github.paohaijiao.parser.JQuickConnectorParser;
-import com.github.paohaijiao.query.ConnectorParsedQuery;
+import com.github.paohaijiao.query.JQuickConnectorParsedQuery;
 import com.github.paohaijiao.visitor.JQuickConnectorCommonVisitor;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.TokenStream;
 
-public class JQuickConnectorExecutor extends JAbstractAntlrExecutor<String, ConnectorParsedQuery> {
+public class JQuickConnectorExecutor extends JAbstractAntlrExecutor<String, JQuickConnectorParsedQuery> {
 
     private JContext context = new JContext();
 
@@ -50,7 +50,7 @@ public class JQuickConnectorExecutor extends JAbstractAntlrExecutor<String, Conn
     }
 
     @Override
-    protected ConnectorParsedQuery parse(Parser parser) throws JAntlrExecutionException {
+    protected JQuickConnectorParsedQuery parse(Parser parser) throws JAntlrExecutionException {
         JQuickConnectorParser calcParser = (JQuickConnectorParser) parser;
         JQuickConnectorParser.SelectContext tree = calcParser.select();
         JQuickConnectorCommonVisitor visitor = new JQuickConnectorCommonVisitor(this.context);

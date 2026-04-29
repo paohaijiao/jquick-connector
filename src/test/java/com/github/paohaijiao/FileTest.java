@@ -15,8 +15,8 @@
  */
 package com.github.paohaijiao;
 
-import com.github.paohaijiao.dataset.DataSet;
-import com.github.paohaijiao.factory.ConnectorFactory;
+import com.github.paohaijiao.dataset.JQuickConnectorDataSet;
+import com.github.paohaijiao.factory.JQuickConnectorFactory;
 import com.github.paohaijiao.param.JContext;
 import org.junit.Test;
 
@@ -44,8 +44,8 @@ public class FileTest {
                 "    split: ',',\n" +
                 "    header: 'true'" +
                 ")";
-        ConnectorFactory factory = new ConnectorFactory();
-        DataSet dataSet = factory.executeQuery(query);
+        JQuickConnectorFactory factory = new JQuickConnectorFactory();
+        JQuickConnectorDataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
             System.out.println("id: " + row.get("id") + ", name: " + row.getString("name"));
         });
@@ -67,8 +67,8 @@ public class FileTest {
                 "    sheet: 'Sheet1',\n" +
                 "    header: 'true'" +
                 ")";
-        ConnectorFactory factory = new ConnectorFactory();
-        DataSet dataSet = factory.executeQuery(query);
+        JQuickConnectorFactory factory = new JQuickConnectorFactory();
+        JQuickConnectorDataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
             System.out.println("id: " + row.get("id") + ", birth_date: " + row.getDate("birth_date"));
         });
@@ -86,8 +86,8 @@ public class FileTest {
                 "    filepath: 'D:\\my\\jquick-connector\\src\\test\\resources\\file\\data.json',\n" +
                 "    searchPath: '$.departments'\n" +
                 ")";
-        ConnectorFactory factory = new ConnectorFactory();
-        DataSet dataSet = factory.executeQuery(query);
+        JQuickConnectorFactory factory = new JQuickConnectorFactory();
+        JQuickConnectorDataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
             System.out.println("id: " + row.get("id") + ", title: " + row.getString("title") + ", manager: " + row.getObject("manager"));
         });

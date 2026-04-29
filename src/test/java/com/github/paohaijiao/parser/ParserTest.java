@@ -1,10 +1,10 @@
 package com.github.paohaijiao.parser;
 
-import com.github.paohaijiao.dataset.DataSet;
+import com.github.paohaijiao.dataset.JQuickConnectorDataSet;
 import com.github.paohaijiao.executor.JQuickConnectorExecutor;
-import com.github.paohaijiao.factory.ConnectorFactory;
+import com.github.paohaijiao.factory.JQuickConnectorFactory;
 import com.github.paohaijiao.param.JContext;
-import com.github.paohaijiao.query.ConnectorParsedQuery;
+import com.github.paohaijiao.query.JQuickConnectorParsedQuery;
 import org.junit.Test;
 
 public class ParserTest {
@@ -13,7 +13,7 @@ public class ParserTest {
         JContext context = new JContext();
         context.put("user", "test");
         JQuickConnectorExecutor executor = new JQuickConnectorExecutor(context);
-        ConnectorParsedQuery parsedQuery = executor.execute("SELECT\n" +
+        JQuickConnectorParsedQuery parsedQuery = executor.execute("SELECT\n" +
                 "    field(id)->b:Integer,\n" +
                 "    field(c)->b:Integer\n" +
                 "FROM MYSQL(\n" +
@@ -49,8 +49,8 @@ public class ParserTest {
                 "    sql: 'select * from business_activity',\n" +
                 "    driver: 'com.mysql.jdbc.Driver'\n" +
                 ")";
-        ConnectorFactory factory = new ConnectorFactory();
-        DataSet dataSet = factory.executeQuery(query);
+        JQuickConnectorFactory factory = new JQuickConnectorFactory();
+        JQuickConnectorDataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
             System.out.println("created_time: " + row.get("created_time") + ", title: " + row.getString("title"));
         });

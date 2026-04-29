@@ -1,5 +1,4 @@
 # JQuick Connector
-
 简体中文 | [English](./readme-en.md)
 一个强大的数据连接器框架，支持使用类SQL语法统一查询多种数据源，包括数据库、文件和REST API。
 

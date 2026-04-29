@@ -24,6 +24,7 @@ import com.github.paohaijiao.meta.ConnectorTypeMetadata;
 import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 import com.github.paohaijiao.registry.ConnectorTypeFactory;
+import com.github.paohaijiao.statement.JQuickRow;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -54,7 +55,7 @@ public class ExcelConnectorHandler extends AbsFileConnectorBaseHandler implement
      * @return List<Row> 对象列表
      * @throws IOException 如果文件读取失败
      */
-    public static List<com.github.paohaijiao.dataset.Row> convert(File excelFile, String sheetName, boolean hasHeader) throws IOException {
+    public static List<JQuickRow> convert(File excelFile, String sheetName, boolean hasHeader) throws IOException {
         try (FileInputStream fis = new FileInputStream(excelFile)) {
             return convert(fis, excelFile.getName(), sheetName, hasHeader);
         }
@@ -70,7 +71,7 @@ public class ExcelConnectorHandler extends AbsFileConnectorBaseHandler implement
      * @return List<Row> 对象列表
      * @throws IOException 如果读取失败
      */
-    public static List<com.github.paohaijiao.dataset.Row> convert(InputStream inputStream, String fileName, String sheetName, boolean hasHeader) throws IOException {
+    public static List<JQuickRow> convert(InputStream inputStream, String fileName, String sheetName, boolean hasHeader) throws IOException {
         byte[] bytes = toByteArray(inputStream);
         try (ByteArrayInputStream bis = new ByteArrayInputStream(bytes)) {
             Workbook workbook = createWorkbook(bis, fileName);
@@ -86,8 +87,8 @@ public class ExcelConnectorHandler extends AbsFileConnectorBaseHandler implement
      * @param hasHeader 是否包含表头
      * @return List<Row> 对象列表
      */
-    public static List<com.github.paohaijiao.dataset.Row> convert(Workbook workbook, String sheetName, boolean hasHeader) {
-        List<com.github.paohaijiao.dataset.Row> result = new ArrayList<>();
+    public static List<JQuickRow> convert(Workbook workbook, String sheetName, boolean hasHeader) {
+        List<JQuickRow> result = new ArrayList<>();
         try {
             Sheet sheet = workbook.getSheet(sheetName);
             Iterator<org.apache.poi.ss.usermodel.Row> rowIterator = sheet.iterator();
@@ -110,7 +111,7 @@ public class ExcelConnectorHandler extends AbsFileConnectorBaseHandler implement
                 if (headers == null) {
                     headers = generateDefaultHeaders(values.size());
                 }
-                com.github.paohaijiao.dataset.Row row = new com.github.paohaijiao.dataset.Row();
+                JQuickRow row = new JQuickRow();
                 for (int i = 0; i < Math.min(headers.length, values.size()); i++) {
                     Object value = values.get(i);
                     row.put(headers[i], value);
@@ -312,7 +313,7 @@ public class ExcelConnectorHandler extends AbsFileConnectorBaseHandler implement
     }
 
     @Override
-    public List<com.github.paohaijiao.dataset.Row> doParse(Path path, ConnectorParsedQuery query) {
+    public List<JQuickRow> doParse(Path path, ConnectorParsedQuery query) {
         ConnectorConfiguration config = new ConnectorConfiguration();
         query.getConnectorProperties().forEach(config::setProperty);
         Boolean h = config.getProperty(header, Boolean.class);

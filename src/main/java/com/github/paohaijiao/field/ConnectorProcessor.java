@@ -15,12 +15,13 @@
  */
 package com.github.paohaijiao.field;
 
-import com.github.paohaijiao.dataset.Row;
+
 import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
+import com.github.paohaijiao.statement.JQuickRow;
 
 public interface ConnectorProcessor {
 
-    Object process(Row row, ConnectorFieldMappingHolder mapping);
+    Object process(JQuickRow row, ConnectorFieldMappingHolder mapping);
 
     String getType();
 }

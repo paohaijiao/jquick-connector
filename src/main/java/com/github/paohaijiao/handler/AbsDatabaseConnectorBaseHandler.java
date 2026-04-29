@@ -3,9 +3,9 @@ package com.github.paohaijiao.handler;
 
 import com.github.paohaijiao.config.Configuration;
 import com.github.paohaijiao.config.ConnectorConfiguration;
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
+import com.github.paohaijiao.statement.JQuickRow;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -48,10 +48,10 @@ public abstract class AbsDatabaseConnectorBaseHandler extends AbsConnectorBaseHa
      * @return
      */
     @Override
-    public List<Row> buildRow(ConnectorParsedQuery query) {
+    public List<JQuickRow> buildRow(ConnectorParsedQuery query) {
         ConnectorConfiguration config = new ConnectorConfiguration();
         query.getConnectorProperties().forEach(config::setProperty);
-        List<Row> rows = new ArrayList<>();
+        List<JQuickRow> rows = new ArrayList<>();
         Connection connection = doConnection(config);
         JAssert.notNull(connection, "connection is null");
         String connectorSql = config.getProperty(sql, String.class);
@@ -62,7 +62,7 @@ public abstract class AbsDatabaseConnectorBaseHandler extends AbsConnectorBaseHa
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
             while (rs.next()) {
-                Row row = new Row();
+                JQuickRow row = new JQuickRow();
                 for (int i = 1; i <= columnCount; i++) {
                     String columnName = metaData.getColumnName(i);
                     Object value = rs.getObject(i);

@@ -25,7 +25,6 @@ package com.github.paohaijiao.handler.file;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.paohaijiao.config.ConnectorConfiguration;
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.enums.ConnectorCategory;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import com.github.paohaijiao.enums.JLogLevel;
@@ -35,6 +34,7 @@ import com.github.paohaijiao.meta.ConnectorTypeMetadata;
 import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 import com.github.paohaijiao.registry.ConnectorTypeFactory;
+import com.github.paohaijiao.statement.JQuickRow;
 import com.github.paohaijiao.util.JSonExtractUtil;
 
 import java.io.FileInputStream;
@@ -64,7 +64,7 @@ public class PropertiesConnectorHandler extends AbsFileConnectorBaseHandler impl
      * @throws IOException 如果文件读取失败或 JSON 解析失败
      */
     @Override
-    public List<Row> doParse(Path path, ConnectorParsedQuery query) {
+    public List<JQuickRow> doParse(Path path, ConnectorParsedQuery query) {
         ConnectorConfiguration config = new ConnectorConfiguration();
         query.getConnectorProperties().forEach(config::setProperty);
         String connectorPath = config.getProperty(filepath, String.class);
@@ -72,7 +72,7 @@ public class PropertiesConnectorHandler extends AbsFileConnectorBaseHandler impl
             String content =convertToNestedJson(connectorPath);
             console.log(JLogLevel.INFO,"json: " + content);
             String connectorSearchPath = config.getProperty(searchPath, String.class);
-            List<Row> rows = JSonExtractUtil.buildRowsFromJSon(content, connectorSearchPath);
+            List<JQuickRow> rows = JSonExtractUtil.buildRowsFromJSon(content, connectorSearchPath);
             return rows;
         } catch (IOException e) {
             e.printStackTrace();

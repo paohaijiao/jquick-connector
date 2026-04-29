@@ -18,7 +18,7 @@ package com.github.paohaijiao.factory;
 import com.github.paohaijiao.assembler.DataSetAssembler;
 import com.github.paohaijiao.console.JConsole;
 import com.github.paohaijiao.dataset.DataSet;
-import com.github.paohaijiao.dataset.Row;
+
 import com.github.paohaijiao.field.ConnectorProcessor;
 import com.github.paohaijiao.handler.ConnectorHandler;
 import com.github.paohaijiao.param.JContext;
@@ -26,6 +26,7 @@ import com.github.paohaijiao.query.ConnectorParsedQuery;
 import com.github.paohaijiao.query.ConnectorQueryParser;
 import com.github.paohaijiao.registry.ConnectorRegistry;
 import com.github.paohaijiao.registry.ConnectoryProcessorRegistry;
+import com.github.paohaijiao.statement.JQuickRow;
 
 import java.util.List;
 
@@ -78,7 +79,7 @@ public class ConnectorFactory {
         if (connector == null) {
             throw new IllegalArgumentException("unsupported connector type: " + connectorParsedQuery.getConnectorType());
         }
-        List<Row> rows = connector.buildRow(connectorParsedQuery);
+        List<JQuickRow> rows = connector.buildRow(connectorParsedQuery);
         DataSet rawDataSet = DataSetAssembler.convert(rows, connectorParsedQuery.getFieldMappings());
         return rawDataSet;
     }

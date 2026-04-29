@@ -16,9 +16,9 @@
 package com.github.paohaijiao.handler;
 
 import com.github.paohaijiao.console.JConsole;
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.param.JContext;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
+import com.github.paohaijiao.statement.JQuickRow;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public abstract class AbsConnectorBaseHandler implements ConnectorHandler {
      *
      * @return
      */
-    public abstract List<Row> buildRow(ConnectorParsedQuery query);
+    public abstract List<JQuickRow> buildRow(ConnectorParsedQuery query);
 
 
 }

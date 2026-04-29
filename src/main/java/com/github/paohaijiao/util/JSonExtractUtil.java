@@ -1,11 +1,11 @@
 package com.github.paohaijiao.util;
 
 import com.github.paohaijiao.builder.JSONPathQueryBuilder;
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.executor.JSONExecutor;
 import com.github.paohaijiao.model.JSONObject;
 import com.github.paohaijiao.model.JSONPathResult;
+import com.github.paohaijiao.statement.JQuickRow;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class JSonExtractUtil {
 
-    public static List<Row> buildRowsFromJSon(String content, String searchPath) {
+    public static List<JQuickRow> buildRowsFromJSon(String content, String searchPath) {
         JSONExecutor executor = new JSONExecutor();
         Object json = executor.execute(content.toString());
         if (json instanceof JSONObject) {
@@ -26,8 +26,8 @@ public class JSonExtractUtil {
             }else{
                 Object object= result.getRawData();
                 JSONObject jsonData= (JSONObject) object;
-                List<Row> list= new ArrayList<>();
-                Row row = new Row(jsonData);
+                List<JQuickRow> list= new ArrayList<>();
+                JQuickRow row = new JQuickRow(jsonData);
                 list.add(row);
                 return list;
             }
@@ -38,7 +38,7 @@ public class JSonExtractUtil {
         return new ArrayList<>();
     }
 
-    public static List<Row> convert(List<Object> objectList) {
+    public static List<JQuickRow> convert(List<Object> objectList) {
         if (objectList == null || objectList.isEmpty()) {
             return new ArrayList<>();
         }
@@ -48,18 +48,18 @@ public class JSonExtractUtil {
     /**
      * 转换单个对象到 Row
      */
-    public static Row convertObjectToRow(Object obj) {
+    public static JQuickRow convertObjectToRow(Object obj) {
         if (obj == null) {
-            return new Row();
+            return new JQuickRow();
         }
-        Row row = new Row();
+        JQuickRow row = new JQuickRow();
         try {
             if (obj instanceof Map) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> map = (Map<String, Object>) obj;
                 row.putAll(map);
-            } else if (obj instanceof Row) {
-                return (Row) obj;
+            } else if (obj instanceof JQuickRow) {
+                return (JQuickRow) obj;
             } else {
                 Map<String, String> properties = BeanUtils.describe(obj);
                 properties.forEach((key, value) -> {

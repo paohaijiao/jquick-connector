@@ -15,6 +15,8 @@
  */
 package com.github.paohaijiao.dataset;
 
+import com.github.paohaijiao.statement.JQuickRow;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,9 +36,9 @@ public class DataSet {
 
     private final List<ColumnMeta> columns;
 
-    private final List<Row> rows;
+    private final List<JQuickRow> rows;
 
-    public DataSet(List<ColumnMeta> columns, List<Row> rows) {
+    public DataSet(List<ColumnMeta> columns, List<JQuickRow> rows) {
         this.columns = Collections.unmodifiableList(new ArrayList<>(columns));
         this.rows = Collections.unmodifiableList(new ArrayList<>(rows));
     }
@@ -49,7 +51,7 @@ public class DataSet {
         return columns;
     }
 
-    public List<Row> getRows() {
+    public List<JQuickRow> getRows() {
         return rows;
     }
 
@@ -69,13 +71,13 @@ public class DataSet {
         return rows.isEmpty();
     }
 
-    public DataSet filter(Predicate<Row> predicate) {
-        List<Row> filtered = rows.stream().filter(predicate).collect(Collectors.toList());
+    public DataSet filter(Predicate<JQuickRow> predicate) {
+        List<JQuickRow> filtered = rows.stream().filter(predicate).collect(Collectors.toList());
         return new DataSet(columns, filtered);
     }
 
-    public DataSet map(Function<Row, Row> mapper) {
-        List<Row> mapped = rows.stream().map(mapper).collect(Collectors.toList());
+    public DataSet map(Function<JQuickRow, JQuickRow> mapper) {
+        List<JQuickRow> mapped = rows.stream().map(mapper).collect(Collectors.toList());
         return new DataSet(columns, mapped);
     }
 
@@ -85,14 +87,14 @@ public class DataSet {
 
     public static class Builder {
         private final List<ColumnMeta> columns = new ArrayList<>();
-        private final List<Row> rows = new ArrayList<>();
+        private final List<JQuickRow> rows = new ArrayList<>();
 
         public Builder addColumn(String name, Class<?> type, String source) {
             columns.add(new ColumnMeta(name, type, source));
             return this;
         }
 
-        public Builder addRow(Row row) {
+        public Builder addRow(JQuickRow row) {
             rows.add(row);
             return this;
         }

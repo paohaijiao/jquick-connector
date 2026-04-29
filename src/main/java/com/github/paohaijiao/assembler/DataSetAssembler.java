@@ -32,8 +32,8 @@ package com.github.paohaijiao.assembler;
 
 import com.github.paohaijiao.dataset.ColumnMeta;
 import com.github.paohaijiao.dataset.DataSet;
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
+import com.github.paohaijiao.statement.JQuickRow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,12 +54,12 @@ public class DataSetAssembler {
      * @param fieldMappings 字段映射配置列表
      * @return 转换后的DataSet
      */
-    public static DataSet convert(List<Row> rows, List<ConnectorFieldMappingHolder> fieldMappings) {
+    public static DataSet convert(List<JQuickRow> rows, List<ConnectorFieldMappingHolder> fieldMappings) {
         if (rows == null || fieldMappings == null) {
             throw new IllegalArgumentException("Rows and fieldMappings cannot be null");
         }
         List<ColumnMeta> columns = buildColumnMeta(fieldMappings);
-        List<Row> processedRows = processRows(rows, fieldMappings);
+        List<JQuickRow> processedRows = processRows(rows, fieldMappings);
         return new DataSet(columns, processedRows);
     }
 
@@ -80,10 +80,10 @@ public class DataSetAssembler {
     /**
      * 处理每一行数据，应用字段映射和处理器
      */
-    private static List<Row> processRows(List<Row> rows, List<ConnectorFieldMappingHolder> fieldMappings) {
-        List<Row> processedRows = new ArrayList<>();
-        for (Row row : rows) {
-            Row processedRow = new Row();
+    private static List<com.github.paohaijiao.statement.JQuickRow> processRows(List<JQuickRow> rows, List<ConnectorFieldMappingHolder> fieldMappings) {
+        List<com.github.paohaijiao.statement.JQuickRow> processedRows = new ArrayList<>();
+        for (JQuickRow row : rows) {
+            JQuickRow processedRow = new JQuickRow();
             for (ConnectorFieldMappingHolder mapping : fieldMappings) {
                 Object value = mapping.getProcessor().process(row, mapping);
                 processedRow.put(mapping.getTargetField(), value);
@@ -101,9 +101,9 @@ public class DataSetAssembler {
      * @param fieldMappings 字段映射配置列表
      * @return 转换后的DataSet列表
      */
-    public static List<DataSet> convertBatch(List<List<Row>> rowsList, List<ConnectorFieldMappingHolder> fieldMappings) {
+    public static List<DataSet> convertBatch(List<List<JQuickRow>> rowsList, List<ConnectorFieldMappingHolder> fieldMappings) {
         List<DataSet> dataSets = new ArrayList<>();
-        for (List<Row> rows : rowsList) {
+        for (List<JQuickRow> rows : rowsList) {
             dataSets.add(convert(rows, fieldMappings));
         }
         return dataSets;

@@ -1,7 +1,6 @@
 package com.github.paohaijiao.handler.file;
 
 import com.github.paohaijiao.config.ConnectorConfiguration;
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.enums.ConnectorCategory;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import com.github.paohaijiao.handler.AbsFileConnectorBaseHandler;
@@ -10,6 +9,7 @@ import com.github.paohaijiao.meta.ConnectorTypeMetadata;
 import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 import com.github.paohaijiao.registry.ConnectorTypeFactory;
+import com.github.paohaijiao.statement.JQuickRow;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,8 +23,8 @@ public class CsvConnectorHandler extends AbsFileConnectorBaseHandler implements 
 
     protected static final String split = "split";
 
-    private static List<Row> convert(BufferedReader reader, String split, boolean hasHeader) throws IOException {
-        List<Row> result = new ArrayList<>();
+    private static List<JQuickRow> convert(BufferedReader reader, String split, boolean hasHeader) throws IOException {
+        List<JQuickRow> result = new ArrayList<>();
         String[] headers = null;
         String line;
         int lineNumber = 0;
@@ -41,7 +41,7 @@ public class CsvConnectorHandler extends AbsFileConnectorBaseHandler implements 
             if (headers == null) {
                 headers = generateDefaultHeaders(values.length);
             }
-            Row row = new Row();
+            JQuickRow row = new JQuickRow();
             for (int i = 0; i < Math.min(headers.length, values.length); i++) {
                 String value = values[i].trim();
                 row.put(headers[i], value);
@@ -60,7 +60,7 @@ public class CsvConnectorHandler extends AbsFileConnectorBaseHandler implements 
     }
 
     @Override
-    public List<Row> doParse(Path path, ConnectorParsedQuery query) {
+    public List<JQuickRow> doParse(Path path, ConnectorParsedQuery query) {
         ConnectorConfiguration config = new ConnectorConfiguration();
         query.getConnectorProperties().forEach(config::setProperty);
         Boolean h = config.getProperty(header, Boolean.class);
@@ -77,7 +77,6 @@ public class CsvConnectorHandler extends AbsFileConnectorBaseHandler implements 
     public ConnectorType getConnectorType() {
         ConnectorTypeFactory connectorTypeFactory = ConnectorTypeFactory.getInstance();
         ConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder = connectorTypeFactory.buildType(ConnectorTypeEnums.CSV.getCode(), ConnectorTypeEnums.CSV.getName(), ConnectorCategory.FILE);
-        ;
         ConnectorType connectorType = connectorTypeBuilder.withAliases(ConnectorTypeEnums.CSV.getCode(), ConnectorTypeEnums.CSV.getMime()).withMetadata(new ConnectorTypeMetadata("1.0", ConnectorCategory.FILE.getDescription(), ConnectorCategory.FILE.getDescription())).build();
         return connectorType;
     }

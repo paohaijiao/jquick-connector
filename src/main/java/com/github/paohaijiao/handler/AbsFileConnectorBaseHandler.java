@@ -17,9 +17,9 @@ package com.github.paohaijiao.handler;
 
 import com.github.paohaijiao.config.Configuration;
 import com.github.paohaijiao.config.ConnectorConfiguration;
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
+import com.github.paohaijiao.statement.JQuickRow;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,19 +37,19 @@ public abstract class AbsFileConnectorBaseHandler extends AbsConnectorBaseHandle
         return Paths.get(connectorPath);
     }
 
-    public abstract List<Row> doParse(Path path, ConnectorParsedQuery query);
+    public abstract List<JQuickRow> doParse(Path path, ConnectorParsedQuery query);
 
     /**
      * @param query
      * @return
      */
     @Override
-    public List<Row> buildRow(ConnectorParsedQuery query) {
+    public List<JQuickRow> buildRow(ConnectorParsedQuery query) {
         ConnectorConfiguration config = new ConnectorConfiguration();
         query.getConnectorProperties().forEach(config::setProperty);
         Path path = doGetPath(config);
         JAssert.notNull(path, "filepath require not null");
-        List<Row> rows = doParse(path, query);
+        List<JQuickRow> rows = doParse(path, query);
         return rows;
     }
 

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.paohaijiao.builder.JSONPathQueryBuilder;
 import com.github.paohaijiao.config.ConnectorConfiguration;
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.enums.ConnectorCategory;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import com.github.paohaijiao.exception.JAssert;
@@ -17,6 +16,7 @@ import com.github.paohaijiao.model.JSONObject;
 import com.github.paohaijiao.model.JSONPathResult;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 import com.github.paohaijiao.registry.ConnectorTypeFactory;
+import com.github.paohaijiao.statement.JQuickRow;
 import com.github.paohaijiao.util.JSonExtractUtil;
 import org.apache.commons.lang3.StringUtils;
 import redis.clients.jedis.Jedis;
@@ -161,7 +161,7 @@ public class RedisConnectorHandler extends AbsConnectorBaseHandler {
     }
 
     @Override
-    public List<Row> buildRow(ConnectorParsedQuery query) {
+    public List<JQuickRow> buildRow(ConnectorParsedQuery query) {
         ConnectorConfiguration connectorConfiguration = new ConnectorConfiguration();
         query.getConnectorProperties().forEach(connectorConfiguration::setProperty);
         String hostStr = connectorConfiguration.getProperty(host, String.class);
@@ -187,13 +187,13 @@ public class RedisConnectorHandler extends AbsConnectorBaseHandler {
         String value = redisValueToJsonString(redis, redisKeyStr);
         JSONPathResult result = JSONPathQueryBuilder.from(value).path(jsonPathValue).execute();
         if (result.isList()) {
-            List<Row> rows = JSonExtractUtil.buildRowsFromJSon(value,jsonPathValue );
+            List<JQuickRow> rows = JSonExtractUtil.buildRowsFromJSon(value,jsonPathValue );
             return rows;
         } else {
             Object objct = result.getRawData();
             JAssert.isTrue(objct instanceof JSONObject, "不是Json 数据无法操作");
-            Row row = objectMapper.convertValue(objct, Row.class);
-            List<Row> rows = new ArrayList<>();
+            JQuickRow row = objectMapper.convertValue(objct, JQuickRow.class);
+            List<JQuickRow> rows = new ArrayList<>();
             rows.add(row);
             return rows;
         }

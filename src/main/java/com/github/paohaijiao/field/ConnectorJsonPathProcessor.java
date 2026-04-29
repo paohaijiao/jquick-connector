@@ -16,10 +16,10 @@
 package com.github.paohaijiao.field;
 
 import com.github.paohaijiao.builder.JSONPathQueryBuilder;
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.holder.ConnectorFieldMappingHolder;
 import com.github.paohaijiao.model.JSONObject;
 import com.github.paohaijiao.model.JSONPathResult;
+import com.github.paohaijiao.statement.JQuickRow;
 
 /**
  * packageName com.github.paohaijiao.field
@@ -44,7 +44,7 @@ public class ConnectorJsonPathProcessor implements ConnectorProcessor {
     }
 
     @Override
-    public Object process(Row row, ConnectorFieldMappingHolder mapping) {
+    public Object process(JQuickRow row, ConnectorFieldMappingHolder mapping) {
         String sourceField = mapping.getSourceField();
         String path = trimQuotes(sourceField);
         JSONObject json = new JSONObject(row);

@@ -15,15 +15,15 @@
  */
 package com.github.paohaijiao.handler;
 
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
+import com.github.paohaijiao.statement.JQuickRow;
 
 import java.util.List;
 
 public interface ConnectorHandler extends ConnectorTypeProvider {
 
 
-    List<Row> buildRow(ConnectorParsedQuery query);
+    List<JQuickRow> buildRow(ConnectorParsedQuery query);
 
 }

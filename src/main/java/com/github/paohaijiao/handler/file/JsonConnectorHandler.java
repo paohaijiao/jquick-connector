@@ -24,7 +24,6 @@ package com.github.paohaijiao.handler.file;
  */
 
 import com.github.paohaijiao.config.ConnectorConfiguration;
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.enums.ConnectorCategory;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import com.github.paohaijiao.handler.AbsFileConnectorBaseHandler;
@@ -33,6 +32,7 @@ import com.github.paohaijiao.meta.ConnectorTypeMetadata;
 import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 import com.github.paohaijiao.registry.ConnectorTypeFactory;
+import com.github.paohaijiao.statement.JQuickRow;
 import com.github.paohaijiao.util.JSonExtractUtil;
 import org.apache.commons.lang3.StringUtils;
 
@@ -66,7 +66,7 @@ public class JsonConnectorHandler extends AbsFileConnectorBaseHandler implements
      * @throws IOException 如果文件读取失败或 JSON 解析失败
      */
     @Override
-    public List<Row> doParse(Path path, ConnectorParsedQuery query) {
+    public List<JQuickRow> doParse(Path path, ConnectorParsedQuery query) {
         ConnectorConfiguration config = new ConnectorConfiguration();
         query.getConnectorProperties().forEach(config::setProperty);
         String connectorEncoding = config.getProperty(encoding, String.class);
@@ -83,7 +83,7 @@ public class JsonConnectorHandler extends AbsFileConnectorBaseHandler implements
             e.printStackTrace();
         }
         String connectorSearchPath = config.getProperty(searchPath, String.class);
-        List<Row> rows = JSonExtractUtil.buildRowsFromJSon(content.toString(), connectorSearchPath);
+        List<JQuickRow> rows = JSonExtractUtil.buildRowsFromJSon(content.toString(), connectorSearchPath);
         return rows;
     }
 

@@ -24,7 +24,6 @@ package com.github.paohaijiao.handler.file;
  */
 
 import com.github.paohaijiao.config.ConnectorConfiguration;
-import com.github.paohaijiao.dataset.Row;
 import com.github.paohaijiao.enums.ConnectorCategory;
 import com.github.paohaijiao.enums.ConnectorTypeEnums;
 import com.github.paohaijiao.executor.JQuickXMLExecutor;
@@ -35,6 +34,7 @@ import com.github.paohaijiao.model.JSONObject;
 import com.github.paohaijiao.provider.ConnectorTypeProvider;
 import com.github.paohaijiao.query.ConnectorParsedQuery;
 import com.github.paohaijiao.registry.ConnectorTypeFactory;
+import com.github.paohaijiao.statement.JQuickRow;
 import com.github.paohaijiao.util.JSonExtractUtil;
 import org.apache.commons.lang3.StringUtils;
 
@@ -68,7 +68,7 @@ public class XmlConnectorHandler extends AbsFileConnectorBaseHandler implements 
      * @throws IOException 如果文件读取失败或 JSON 解析失败
      */
     @Override
-    public List<Row> doParse(Path path, ConnectorParsedQuery query) {
+    public List<JQuickRow> doParse(Path path, ConnectorParsedQuery query) {
         ConnectorConfiguration config = new ConnectorConfiguration();
         query.getConnectorProperties().forEach(config::setProperty);
         String connectorEncoding = config.getProperty(encoding, String.class);
@@ -88,7 +88,7 @@ public class XmlConnectorHandler extends AbsFileConnectorBaseHandler implements 
         JQuickXMLExecutor executor = new JQuickXMLExecutor();
         JSONObject jsonObject=executor.execute(content.toString());
         String jsonString = jsonObject.toString();
-        List<Row> rows = JSonExtractUtil.buildRowsFromJSon(jsonString, connectorSearchPath);
+        List<JQuickRow> rows = JSonExtractUtil.buildRowsFromJSon(jsonString, connectorSearchPath);
         return rows;
     }
 

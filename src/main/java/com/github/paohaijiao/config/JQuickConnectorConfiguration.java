@@ -22,4 +22,7 @@ public interface JQuickConnectorConfiguration {
     <T> T getProperty(String key, Class<T> type);
 
     boolean hasProperty(String key);
+
+
+    public  void setProperty(String key, Object value) ;
 }

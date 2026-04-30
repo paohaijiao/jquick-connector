@@ -15,7 +15,8 @@
  */
 package com.github.paohaijiao.handler;
 
-import com.github.paohaijiao.config.ConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfigurationImpl;
 import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.query.JQuickConnectorParsedQuery;
 import com.github.paohaijiao.statement.JQuickRow;
@@ -44,7 +45,7 @@ public abstract class JQuickConnectorAbsFileBaseHandler extends JQuickConnectorA
      */
     @Override
     public List<JQuickRow> buildRow(JQuickConnectorParsedQuery query) {
-        ConnectorConfiguration config = new ConnectorConfiguration();
+        JQuickConnectorConfiguration config = new JQuickConnectorConfigurationImpl();
         query.getConnectorProperties().forEach(config::setProperty);
         Path path = doGetPath(config);
         JAssert.notNull(path, "filepath require not null");

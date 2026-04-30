@@ -1,7 +1,8 @@
 package com.github.paohaijiao.handler;
 
 
-import com.github.paohaijiao.config.ConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfigurationImpl;
 import com.github.paohaijiao.exception.JAssert;
 import com.github.paohaijiao.query.JQuickConnectorParsedQuery;
 import com.github.paohaijiao.statement.JQuickRow;
@@ -48,7 +49,7 @@ public abstract class JQuickConnectorAbsDatabaseBaseHandler extends JQuickConnec
      */
     @Override
     public List<JQuickRow> buildRow(JQuickConnectorParsedQuery query) {
-        ConnectorConfiguration config = new ConnectorConfiguration();
+       JQuickConnectorConfiguration config = new JQuickConnectorConfigurationImpl();
         query.getConnectorProperties().forEach(config::setProperty);
         List<JQuickRow> rows = new ArrayList<>();
         Connection connection = doConnection(config);

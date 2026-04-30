@@ -15,7 +15,6 @@ public class JQuickConnectorSybaseHandler extends JQuickConnectorAbsDatabaseBase
     public JQuickConnectorType getConnectorType() {
         JQuickConnectorTypeFactory connectorTypeFactory = JQuickConnectorTypeFactory.getInstance();
         JQuickConnectorTypeFactory.ConnectorTypeBuilder connectorTypeBuilder = connectorTypeFactory.buildType(JQuickConnectorTypeEnums.SYBASE.getCode(), JQuickConnectorTypeEnums.SYBASE.getName(), JQuickConnectorCategory.DATABASE);
-        ;
         JQuickConnectorType connectorType = connectorTypeBuilder.withAliases(JQuickConnectorTypeEnums.SYBASE.getCode(), JQuickConnectorTypeEnums.SYBASE.getCode()).withMetadata(new JQuickConnectorTypeMetadata("1.0", JQuickConnectorCategory.DATABASE.getDescription(), JQuickConnectorCategory.DATABASE.getDescription())).build();
         return connectorType;
     }

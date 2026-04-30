@@ -44,8 +44,6 @@ public class JQuickConnectorProcessorRegistry {
     static {
         registerProcessor("field", new JQuickConnectorFieldProcessor(), 1);
         registerProcessor("jsonPath", new JQuickConnectorJsonPathProcessor(), 2);
-//        registerAlias("field", "f");
-//        registerAlias("jsonPath", "json");
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.github.paohaijiao.handler.rest;
 
-import com.github.paohaijiao.config.ConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfigurationImpl;
 import com.github.paohaijiao.enums.JQuickConnectorCategory;
 import com.github.paohaijiao.enums.JQuickConnectorTypeEnums;
 import com.github.paohaijiao.exception.JAssert;
@@ -24,7 +25,7 @@ public class JQuickConnectorCurlHandler extends JQuickConnectorAbsBaseHandler {
 
     @Override
     public List<JQuickRow> buildRow(JQuickConnectorParsedQuery query) {
-        ConnectorConfiguration config = new ConnectorConfiguration();
+        JQuickConnectorConfiguration config = new JQuickConnectorConfigurationImpl();
         query.getConnectorProperties().forEach(config::setProperty);
         String connectorcurl = config.getProperty(curl, String.class);
         JQuickCurlExecutor executor = new JQuickCurlExecutor();

@@ -25,7 +25,8 @@ package com.github.paohaijiao.handler.file;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import com.github.paohaijiao.config.ConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfigurationImpl;
 import com.github.paohaijiao.enums.JQuickConnectorCategory;
 import com.github.paohaijiao.enums.JQuickConnectorTypeEnums;
 import com.github.paohaijiao.handler.JQuickConnectorAbsFileBaseHandler;
@@ -64,7 +65,7 @@ public class JQuickConnectorYMLHandler extends JQuickConnectorAbsFileBaseHandler
      */
     @Override
     public List<JQuickRow> doParse(Path path, JQuickConnectorParsedQuery query) {
-        ConnectorConfiguration config = new ConnectorConfiguration();
+        JQuickConnectorConfiguration config = new JQuickConnectorConfigurationImpl();
         query.getConnectorProperties().forEach(config::setProperty);
         ObjectMapper yamlReader = new ObjectMapper(new YAMLFactory());
         String connectorPath = config.getProperty(filepath, String.class);

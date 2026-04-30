@@ -5,7 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.paohaijiao.builder.JSONPathQueryBuilder;
-import com.github.paohaijiao.config.ConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfigurationImpl;
 import com.github.paohaijiao.enums.JQuickConnectorCategory;
 import com.github.paohaijiao.enums.JQuickConnectorTypeEnums;
 import com.github.paohaijiao.exception.JAssert;
@@ -162,7 +163,7 @@ public class JQuickConnectorRedisHandler extends JQuickConnectorAbsBaseHandler {
 
     @Override
     public List<JQuickRow> buildRow(JQuickConnectorParsedQuery query) {
-        ConnectorConfiguration connectorConfiguration = new ConnectorConfiguration();
+        JQuickConnectorConfiguration connectorConfiguration = new JQuickConnectorConfigurationImpl();
         query.getConnectorProperties().forEach(connectorConfiguration::setProperty);
         String hostStr = connectorConfiguration.getProperty(host, String.class);
         Integer portValue = connectorConfiguration.getProperty(port, Integer.class);

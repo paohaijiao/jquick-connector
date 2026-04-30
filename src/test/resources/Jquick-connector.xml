@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE connectors PUBLIC "-//PAOHAIJIAO//DTD API CURL 1.0//EN"
+        "classpath:paohaijiao/dtd/JQuick-connector.dtd">
+<connectors namespace="com.github.paohaijiao.test.xml.UserApi">
+    <connector name="getConfigByYaml" returnClass="java.util.List">
+        SELECT
+        path('$.app.name')->name:string,
+        path('$.app.version')->version:string
+        FROM YAML(
+        filepath: 'D:\my\jquick-connector\src\test\resources\file\config.yml',
+        searchPath: '$'
+        )
+    </connector>
+</connectors>

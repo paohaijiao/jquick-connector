@@ -24,7 +24,8 @@ package com.github.paohaijiao.handler.file;
  */
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.paohaijiao.config.ConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfiguration;
+import com.github.paohaijiao.config.JQuickConnectorConfigurationImpl;
 import com.github.paohaijiao.enums.JQuickConnectorCategory;
 import com.github.paohaijiao.enums.JQuickConnectorTypeEnums;
 import com.github.paohaijiao.enums.JLogLevel;
@@ -65,7 +66,7 @@ public class JQuickConnectorPropertiesHandler extends JQuickConnectorAbsFileBase
      */
     @Override
     public List<JQuickRow> doParse(Path path, JQuickConnectorParsedQuery query) {
-        ConnectorConfiguration config = new ConnectorConfiguration();
+        JQuickConnectorConfiguration config = new JQuickConnectorConfigurationImpl();
         query.getConnectorProperties().forEach(config::setProperty);
         String connectorPath = config.getProperty(filepath, String.class);
         try {

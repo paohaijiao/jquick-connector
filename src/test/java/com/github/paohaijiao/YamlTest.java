@@ -36,7 +36,7 @@ public class YamlTest {
                 "    path('$.app.name')->name:string,\n" +
                 "    path('$.app.version')->version:string\n" +
                 "FROM YAML(\n" +
-                "    filepath: 'D:\\idea\\jquick-connector\\src\\test\\resources\\file\\config.yml',\n" +
+                "    filepath: 'D:\\my\\jquick-connector\\src\\test\\resources\\file\\config.yml',\n" +
                 "    searchPath: '$'\n" +
                 ")";
         System.out.println(query);

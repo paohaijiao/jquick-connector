@@ -27,6 +27,7 @@ import com.github.paohaijiao.query.JQuickConnectorQueryParser;
 import com.github.paohaijiao.registry.JQuickConnectorRegistry;
 import com.github.paohaijiao.registry.JQuickConnectorProcessorRegistry;
 import com.github.paohaijiao.statement.JQuickRow;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -54,6 +55,16 @@ public class JQuickConnectorFactory {
     public JQuickConnectorFactory(JContext context) {
         this.context = context;
         this.queryParser = new JQuickConnectorQueryParser(this.context);
+    }
+    public JQuickConnectorFactory(JContext context,String type, JQuickConnectorHandler connector,String name, JQuickConnectorProcessor processor) {
+        this.context = context;
+        this.queryParser = new JQuickConnectorQueryParser(this.context);
+        if(StringUtils.isNotBlank(type)&&null!=connector) {
+            registerConnector(type, connector);
+        }
+        if(StringUtils.isNotBlank(name)&&null!=processor) {
+            registerProcessor(name, processor);
+        }
     }
 
     /**
@@ -83,4 +94,5 @@ public class JQuickConnectorFactory {
         JQuickConnectorDataSet rawDataSet = JQuickConnectorDataSetAssembler.convert(rows, connectorParsedQuery.getFieldMappings());
         return rawDataSet;
     }
+
 }

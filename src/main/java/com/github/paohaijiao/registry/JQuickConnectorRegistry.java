@@ -34,9 +34,13 @@ import java.util.stream.Collectors;
 public class JQuickConnectorRegistry {
 
     private static final Map<String, JQuickConnectorMetadata> CONNECTOR_METADATA_MAP = new ConcurrentHashMap<>();
+
     private static final Map<Class<?>, List<JQuickConnectorMetadata>> TYPE_HIERARCHY_MAP = new ConcurrentHashMap<>();
+
     private static final List<RegistryListener> LISTENERS = new CopyOnWriteArrayList<>();
+
     public static JConsole console = new JConsole();
+
     private static volatile RegistryState state = RegistryState.INITIALIZING;
 
     static {
@@ -297,10 +301,12 @@ public class JQuickConnectorRegistry {
      * 注册表监听器接口
      */
     public interface RegistryListener {
+
         void onConnectorRegistered(String type, JQuickConnectorHandler handler);
 
         void onConnectorUnregistered(String type, JQuickConnectorHandler handler);
 
         void onRegistryStateChanged(RegistryState oldState, RegistryState newState);
+
     }
 }

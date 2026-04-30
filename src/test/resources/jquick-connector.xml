@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE connectors PUBLIC "-//PAOHAIJIAO//DTD API CURL 1.0//EN"
+        "classpath:paohaijiao/dtd/Jquick-connector.dtd">
+<connectors namespace="com.github.paohaijiao.xml.service.JQuickConnectorService">
+    <connector name="getConfigByYaml" returnClass="java.util.List">
+        SELECT
+            path('$.database.username')->username:string,
+            path('$.app.version')->name:string,
+            path('$.database.url')->email:string,
+            path('$.database.username')->age:string,
+            path('$.database.password')->department:object
+            path('$.server.port')->salary:object
+            path('$.logging.level')->hireDate:object
+        FROM PROPERTIES(
+            filepath: 'D:\my\jquick-connector\src\test\resources\file\config.properties',
+            searchPath: '$'
+        )
+    </connector>
+</connectors>

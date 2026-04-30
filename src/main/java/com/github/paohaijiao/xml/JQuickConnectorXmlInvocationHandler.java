@@ -98,9 +98,6 @@ public class JQuickConnectorXmlInvocationHandler extends JQuickXmlInvocationHand
         if (hasName != hasProcessor) {
             throw new IllegalArgumentException("name和processor必须成对出现：要么同时提供，要么同时为null");
         }
-        if (!(hasType && hasConnector) && !(hasName && hasProcessor)) {
-            throw new IllegalArgumentException("必须提供一组成对出现的参数：(type, connector) 或 (name, processor)");
-        }
         if (null != jcontext && !jcontext.isEmpty()) {
             context.putAll(jcontext);
         }

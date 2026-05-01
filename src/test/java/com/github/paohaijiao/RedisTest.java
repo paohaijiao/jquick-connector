@@ -15,9 +15,9 @@
  */
 package com.github.paohaijiao;
 
-import com.github.paohaijiao.dataset.JQuickConnectorDataSet;
 import com.github.paohaijiao.factory.JQuickConnectorFactory;
 import com.github.paohaijiao.param.JContext;
+import com.github.paohaijiao.statement.JQuickDataSet;
 import org.junit.Test;
 
 /**
@@ -28,6 +28,7 @@ import org.junit.Test;
  * @since 2025/10/26
  */
 public class RedisTest {
+
     protected static final String host = "'127.0.0.1'";
 
     protected static final String port = "6379";
@@ -53,7 +54,7 @@ public class RedisTest {
 
         System.out.println( query);
         JQuickConnectorFactory factory = new JQuickConnectorFactory();
-        JQuickConnectorDataSet dataSet = factory.executeQuery(query);
+        JQuickDataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
             System.out.println("name: " + row.get("name") + ", age: " + row.getObject("age"));
         });

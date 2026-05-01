@@ -26,6 +26,7 @@ import com.github.paohaijiao.query.JQuickConnectorParsedQuery;
 import com.github.paohaijiao.query.JQuickConnectorQueryParser;
 import com.github.paohaijiao.registry.JQuickConnectorRegistry;
 import com.github.paohaijiao.registry.JQuickConnectorProcessorRegistry;
+import com.github.paohaijiao.statement.JQuickDataSet;
 import com.github.paohaijiao.statement.JQuickRow;
 import org.apache.commons.lang3.StringUtils;
 
@@ -84,14 +85,14 @@ public class JQuickConnectorFactory {
     /**
      * 执行查询并返回DataSet
      */
-    public JQuickConnectorDataSet executeQuery(String query) {
+    public JQuickDataSet executeQuery(String query) {
         JQuickConnectorParsedQuery connectorParsedQuery = queryParser.parse(query);
         JQuickConnectorHandler connector = JQuickConnectorRegistry.getConnector(connectorParsedQuery.getConnectorType());
         if (connector == null) {
             throw new IllegalArgumentException("unsupported connector type: " + connectorParsedQuery.getConnectorType());
         }
         List<JQuickRow> rows = connector.buildRow(connectorParsedQuery);
-        JQuickConnectorDataSet rawDataSet = JQuickConnectorDataSetAssembler.convert(rows, connectorParsedQuery.getFieldMappings());
+        JQuickDataSet rawDataSet = JQuickConnectorDataSetAssembler.convert(rows, connectorParsedQuery.getFieldMappings());
         return rawDataSet;
     }
 

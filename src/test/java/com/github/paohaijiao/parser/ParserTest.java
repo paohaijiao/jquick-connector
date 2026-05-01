@@ -1,10 +1,10 @@
 package com.github.paohaijiao.parser;
 
-import com.github.paohaijiao.dataset.JQuickConnectorDataSet;
 import com.github.paohaijiao.executor.JQuickConnectorExecutor;
 import com.github.paohaijiao.factory.JQuickConnectorFactory;
 import com.github.paohaijiao.param.JContext;
 import com.github.paohaijiao.query.JQuickConnectorParsedQuery;
+import com.github.paohaijiao.statement.JQuickDataSet;
 import org.junit.Test;
 
 public class ParserTest {
@@ -50,7 +50,7 @@ public class ParserTest {
                 "    driver: 'com.mysql.jdbc.Driver'\n" +
                 ")";
         JQuickConnectorFactory factory = new JQuickConnectorFactory();
-        JQuickConnectorDataSet dataSet = factory.executeQuery(query);
+        JQuickDataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
             System.out.println("created_time: " + row.get("created_time") + ", title: " + row.getString("title"));
         });

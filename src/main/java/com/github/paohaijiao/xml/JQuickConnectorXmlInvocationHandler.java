@@ -17,7 +17,6 @@ package com.github.paohaijiao.xml;
 
 import com.github.paohaijiao.config.JQuickCurlConfig;
 import com.github.paohaijiao.console.JConsole;
-import com.github.paohaijiao.dataset.JQuickConnectorDataSet;
 import com.github.paohaijiao.enums.JLogLevel;
 import com.github.paohaijiao.exception.JAntlrExecutionException;
 import com.github.paohaijiao.executor.JQuickCurlExecutor;
@@ -25,6 +24,7 @@ import com.github.paohaijiao.factory.JQuickConnectorFactory;
 import com.github.paohaijiao.field.JQuickConnectorProcessor;
 import com.github.paohaijiao.handler.JQuickConnectorHandler;
 import com.github.paohaijiao.param.JContext;
+import com.github.paohaijiao.statement.JQuickDataSet;
 import com.github.paohaijiao.xml.invocation.JQuickXmlInvocationHandler;
 
 import java.lang.reflect.Method;
@@ -116,7 +116,7 @@ public class JQuickConnectorXmlInvocationHandler extends JQuickXmlInvocationHand
             String curlString=replaceVariables(lexer,context);
             console.log(JLogLevel.INFO,"Merged curl command:"+ curlString);
             JQuickConnectorFactory factory = new JQuickConnectorFactory(context,type,connector,name,processor);
-            JQuickConnectorDataSet dataSet = factory.executeQuery(lexer);
+            JQuickDataSet dataSet = factory.executeQuery(lexer);
             return dataSet;
         } catch (JAntlrExecutionException e) {
             console.error("Curl execution error", e);

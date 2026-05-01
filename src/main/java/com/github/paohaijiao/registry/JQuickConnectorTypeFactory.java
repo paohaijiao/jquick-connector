@@ -1,6 +1,8 @@
 package com.github.paohaijiao.registry;
 
 import com.github.paohaijiao.console.JConsole;
+import com.github.paohaijiao.console.JConsoleConfig;
+import com.github.paohaijiao.console.JConsoleConfigLoader;
 import com.github.paohaijiao.enums.JQuickConnectorCategory;
 import com.github.paohaijiao.enums.JLogLevel;
 import com.github.paohaijiao.exception.JAssert;
@@ -24,7 +26,6 @@ public class JQuickConnectorTypeFactory {
     protected final List<JQuickConnectorTypeProvider> providers = new CopyOnWriteArrayList<>();
     protected final Map<String, Set<String>> dependencyGraph = new ConcurrentHashMap<>();
     protected final Map<String, JQuickConnectorTypeMetadata> metadataRegistry = new ConcurrentHashMap<>();
-    protected JConsole console = new JConsole();
     protected boolean initialized = false;
 
     private JQuickConnectorTypeFactory() {
@@ -71,6 +72,7 @@ public class JQuickConnectorTypeFactory {
      * 通过SPI加载插件类型
      */
     private void loadPluginTypes() {
+        JConsole console = JConsole.initConsoleEnvironment();
         ServiceLoader<JQuickConnectorTypeProvider> loader = ServiceLoader.load(JQuickConnectorTypeProvider.class);
         for (JQuickConnectorTypeProvider provider : loader) {
             try {
@@ -107,6 +109,7 @@ public class JQuickConnectorTypeFactory {
      * 注册类型
      */
     public void registerType(JQuickConnectorType type) {
+        JConsole console = JConsole.initConsoleEnvironment();
         Objects.requireNonNull(type, "ConnectorType cannot be null");
         Objects.requireNonNull(type.getCode(), "ConnectorType code cannot be null");
         validateType(type);
@@ -209,6 +212,7 @@ public class JQuickConnectorTypeFactory {
     }
 
     public synchronized void unregisterType(String code) {
+        JConsole console = JConsole.initConsoleEnvironment();
         JQuickConnectorType type = registry.remove(code);
         if (type != null) {
             for (String alias : type.getAliases()) {

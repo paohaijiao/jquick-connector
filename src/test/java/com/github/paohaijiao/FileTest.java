@@ -15,9 +15,9 @@
  */
 package com.github.paohaijiao;
 
-import com.github.paohaijiao.dataset.JQuickConnectorDataSet;
 import com.github.paohaijiao.factory.JQuickConnectorFactory;
 import com.github.paohaijiao.param.JContext;
+import com.github.paohaijiao.statement.JQuickDataSet;
 import org.junit.Test;
 
 /**
@@ -45,7 +45,7 @@ public class FileTest {
                 "    header: 'true'" +
                 ")";
         JQuickConnectorFactory factory = new JQuickConnectorFactory();
-        JQuickConnectorDataSet dataSet = factory.executeQuery(query);
+        JQuickDataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
             System.out.println("id: " + row.get("id") + ", name: " + row.getString("name"));
         });
@@ -68,7 +68,7 @@ public class FileTest {
                 "    header: 'true'" +
                 ")";
         JQuickConnectorFactory factory = new JQuickConnectorFactory();
-        JQuickConnectorDataSet dataSet = factory.executeQuery(query);
+        JQuickDataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
             System.out.println("id: " + row.get("id") + ", birth_date: " + row.getDate("birth_date"));
         });
@@ -87,7 +87,7 @@ public class FileTest {
                 "    searchPath: '$.departments'\n" +
                 ")";
         JQuickConnectorFactory factory = new JQuickConnectorFactory();
-        JQuickConnectorDataSet dataSet = factory.executeQuery(query);
+        JQuickDataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
             System.out.println("id: " + row.get("id") + ", title: " + row.getString("title") + ", manager: " + row.getObject("manager"));
         });

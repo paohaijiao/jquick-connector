@@ -12,7 +12,7 @@
             path('$.server.port')->salary:object
             path('$.logging.level')->hireDate:object
         FROM PROPERTIES(
-            filepath: 'D:\my\jquick-connector\src\test\resources\file\config.properties',
+            filepath: 'D:\idea\jquick-connector\src\test\resources\file\config.properties',
             searchPath: '$'
         )
     </connector>

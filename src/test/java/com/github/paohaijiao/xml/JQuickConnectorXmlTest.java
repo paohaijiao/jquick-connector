@@ -1,6 +1,6 @@
 package com.github.paohaijiao.xml;
 
-import com.github.paohaijiao.dataset.JQuickConnectorDataSet;
+import com.github.paohaijiao.statement.JQuickDataSet;
 import com.github.paohaijiao.xml.factory.JQuickFactory;
 import com.github.paohaijiao.xml.factory.JQuickXmlFactory;
 import com.github.paohaijiao.xml.handler.JQuickParseHandler;
@@ -13,7 +13,7 @@ public class JQuickConnectorXmlTest {
         JQuickParseHandler parser = new JQuickConnectorXmlParseFactory();
         JQuickFactory factory = new JQuickXmlFactory(parser, "jquick-connector.xml");
         JQuickConnectorService userApi = factory.createApi(JQuickConnectorService.class);
-        JQuickConnectorDataSet dataSet=userApi.getConfigByYaml("haha");
+        JQuickDataSet dataSet=userApi.getConfigByYaml("haha");
         dataSet.printTable();
     }
 }

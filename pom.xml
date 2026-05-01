@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.paohaijiao</groupId>
     <artifactId>jquick-connector</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
     <name>jquick-connector</name>
     <url>https://github.com/paohaijiao/jquick-connector</url>
     <parent>
         <groupId>io.github.paohaijiao</groupId>
         <artifactId>javelin</artifactId>
-        <version>1.7.6</version>
+        <version>1.7.8</version>
     </parent>
     <dependencies>
         <dependency>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>io.github.paohaijiao</groupId>
             <artifactId>javelin-core</artifactId>
-            <version>1.7.6</version>
+            <version>1.7.8</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -59,10 +59,6 @@
             <groupId>org.antlr</groupId>
             <artifactId>antlr4</artifactId>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.github.paohaijiao</groupId>
-            <artifactId>javelin-mybatis</artifactId>
         </dependency>
         <dependency>
             <groupId>io.github.paohaijiao</groupId>

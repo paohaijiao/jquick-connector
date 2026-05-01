@@ -30,9 +30,9 @@
  */
 package com.github.paohaijiao.assembler;
 
-import com.github.paohaijiao.dataset.JQuickConnectorColumnMeta;
-import com.github.paohaijiao.dataset.JQuickConnectorDataSet;
 import com.github.paohaijiao.holder.JQuickConnectorFieldMappingHolder;
+import com.github.paohaijiao.statement.JQuickColumnMeta;
+import com.github.paohaijiao.statement.JQuickDataSet;
 import com.github.paohaijiao.statement.JQuickRow;
 
 import java.util.ArrayList;
@@ -54,25 +54,25 @@ public class JQuickConnectorDataSetAssembler {
      * @param fieldMappings 字段映射配置列表
      * @return 转换后的DataSet
      */
-    public static JQuickConnectorDataSet convert(List<JQuickRow> rows, List<JQuickConnectorFieldMappingHolder> fieldMappings) {
+    public static JQuickDataSet convert(List<JQuickRow> rows, List<JQuickConnectorFieldMappingHolder> fieldMappings) {
         if (rows == null || fieldMappings == null) {
             throw new IllegalArgumentException("Rows and fieldMappings cannot be null");
         }
-        List<JQuickConnectorColumnMeta> columns = buildColumnMeta(fieldMappings);
+        List<JQuickColumnMeta> columns = buildColumnMeta(fieldMappings);
         List<JQuickRow> processedRows = processRows(rows, fieldMappings);
-        return new JQuickConnectorDataSet(columns, processedRows);
+        return new JQuickDataSet(columns, processedRows);
     }
 
     /**
      * 构建ColumnMeta列表
      */
-    private static List<JQuickConnectorColumnMeta> buildColumnMeta(List<JQuickConnectorFieldMappingHolder> fieldMappings) {
-        List<JQuickConnectorColumnMeta> columns = new ArrayList<>();
+    private static List<JQuickColumnMeta> buildColumnMeta(List<JQuickConnectorFieldMappingHolder> fieldMappings) {
+        List<JQuickColumnMeta> columns = new ArrayList<>();
         for (JQuickConnectorFieldMappingHolder mapping : fieldMappings) {
             String columnName = mapping.getTargetField() != null ? mapping.getTargetField() : mapping.getSourceField();
             Class<?> dataType = mapping.getDataType() != null ? mapping.getDataType() : Object.class;
             String source = mapping.getSourceField();
-            columns.add(new JQuickConnectorColumnMeta(columnName, dataType, source));
+            columns.add(new JQuickColumnMeta(columnName, dataType, source));
         }
         return columns;
     }
@@ -101,8 +101,8 @@ public class JQuickConnectorDataSetAssembler {
      * @param fieldMappings 字段映射配置列表
      * @return 转换后的DataSet列表
      */
-    public static List<JQuickConnectorDataSet> convertBatch(List<List<JQuickRow>> rowsList, List<JQuickConnectorFieldMappingHolder> fieldMappings) {
-        List<JQuickConnectorDataSet> dataSets = new ArrayList<>();
+    public static List<JQuickDataSet> convertBatch(List<List<JQuickRow>> rowsList, List<JQuickConnectorFieldMappingHolder> fieldMappings) {
+        List<JQuickDataSet> dataSets = new ArrayList<>();
         for (List<JQuickRow> rows : rowsList) {
             dataSets.add(convert(rows, fieldMappings));
         }

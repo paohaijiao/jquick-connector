@@ -15,9 +15,9 @@
  */
 package com.github.paohaijiao;
 
-import com.github.paohaijiao.dataset.JQuickConnectorDataSet;
 import com.github.paohaijiao.factory.JQuickConnectorFactory;
 import com.github.paohaijiao.param.JContext;
+import com.github.paohaijiao.statement.JQuickDataSet;
 import org.junit.Test;
 
 /**
@@ -47,7 +47,7 @@ public class CurlTest {
                 "    searchPath: '$.data'\n" +
                 ")";
         JQuickConnectorFactory factory = new JQuickConnectorFactory();
-        JQuickConnectorDataSet dataSet = factory.executeQuery(query);
+        JQuickDataSet dataSet = factory.executeQuery(query);
         dataSet.getRows().forEach(row -> {
             System.out.println("projectId: " + row.get("projectId") + ", projectName: " + row.getString("projectName"));
         });
